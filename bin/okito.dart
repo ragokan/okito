@@ -1,17 +1,13 @@
-import 'modules/communication.dart';
+import 'modules/controller.dart';
 
-class OkitoController {}
+class CounterController extends OkitoController {
+  int count = 0;
 
-ControllerCommunication communication =
-    ControllerCommunication<OkitoController>();
+  void increment() => setState(() => count++);
+}
 
-class First extends OkitoController {}
+CounterController counter = CounterController();
 
-class Second extends OkitoController {}
-
-void main(List<String> args) {
-  communication.watch<First>(print);
-
-  communication.notify<First>('message');
-  communication.notify<Second>(3);
+void main() {
+  print('here we go');
 }
