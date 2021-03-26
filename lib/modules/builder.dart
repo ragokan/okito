@@ -21,7 +21,7 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
   @override
   void initState() {
     super.initState();
-    communication.watch(() => setState(() {}));
+    communication.watch(widget.controller, () => setState(() {}));
   }
 
   @override
