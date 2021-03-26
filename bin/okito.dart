@@ -10,8 +10,8 @@ class First extends OkitoController {}
 class Second extends OkitoController {}
 
 void main(List<String> args) {
-  communication.watch<Second, int>(print);
+  communication.watch<First>(print);
 
-  communication.notify<First, String>('message');
-  communication.notify<Second, int>(3);
+  communication.notify<First>('message');
+  communication.notify<Second>(3);
 }

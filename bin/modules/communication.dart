@@ -4,7 +4,7 @@ import 'listener.dart';
 class ControllerCommunication<Okito> {
   final _listeners = <Listener>{};
 
-  void notify<T extends Okito, X>(X message) {
+  void notify<T extends Okito>(Object message) {
     for (var listener in _listeners) {
       if (listener.event == T) {
         listener.callback(message);
@@ -12,7 +12,7 @@ class ControllerCommunication<Okito> {
     }
   }
 
-  void watch<T extends Okito, X>(VoidCallback<X> callback) {
+  void watch<T extends Okito>(VoidCallback<Object> callback) {
     var listener = Listener(T, callback as void Function(dynamic));
     _listeners.add(listener);
   }
