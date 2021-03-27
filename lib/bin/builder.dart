@@ -5,14 +5,14 @@ import '../types/callback_types.dart';
 import 'controller.dart';
 
 class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
-  final ControllerCallback builder;
   final T controller;
   final List<T> otherControllers;
-  OkitoBuilder({
+  final ControllerCallback builder;
+  const OkitoBuilder({
     Key? key,
-    required this.builder,
     required this.controller,
     this.otherControllers = const [],
+    required this.builder,
   }) : super(key: key);
 
   @override
