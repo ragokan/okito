@@ -51,3 +51,10 @@ OkitoBuilder(
                   child: const Text('Decrement'),
                 )
 ```
+
+
+
+#### How to contribute okito
+- okito needs tests.
+- okito needs a better readme file.
+- okito needs more examples.
