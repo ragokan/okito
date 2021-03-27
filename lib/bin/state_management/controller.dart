@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
-import '../modules/communication.dart';
-import '../types/callback_types.dart';
+import '../../modules/communication.dart';
+import '../../types/callback_types.dart';
 
 /// [OkitoController] is the head of okito state management.
 ///

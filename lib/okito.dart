@@ -7,5 +7,5 @@
 ///  need context to have a state or update state.
 library okito;
 
-export 'package:okito/bin/builder.dart';
-export 'package:okito/bin/controller.dart';
+export 'package:okito/bin/state_management/builder.dart';
+export 'package:okito/bin/state_management/controller.dart';

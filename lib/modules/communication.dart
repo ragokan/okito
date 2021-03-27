@@ -1,4 +1,4 @@
-import '../bin/controller.dart';
+import '../bin/state_management/controller.dart';
 import '../types/callback_types.dart';
 import 'watcher.dart';
 
