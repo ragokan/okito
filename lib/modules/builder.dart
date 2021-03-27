@@ -5,12 +5,14 @@ import 'communication.dart';
 import 'controller.dart';
 
 class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
-  final ControllerCallback callback;
+  final ControllerCallback builder;
   final T controller;
+  final List<T> otherControllers;
   OkitoBuilder({
     Key? key,
-    required this.callback,
+    required this.builder,
     required this.controller,
+    this.otherControllers = const [],
   }) : super(key: key);
 
   @override
@@ -21,9 +23,14 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
   @override
   void initState() {
     super.initState();
+
     communication.watch(widget.controller, () => setState(() {}));
+
+    widget.otherControllers.forEach((controller) {
+      communication.watch(controller, () => setState(() {}));
+    });
   }
 
   @override
-  Widget build(_) => widget.callback();
+  Widget build(_) => widget.builder();
 }

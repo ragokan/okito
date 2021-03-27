@@ -20,20 +20,20 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: OkitoBuilder(
-              callback: () {
-                print('rerender');
-                return Text(counterController.count.toString());
-              },
-              controller: counterController),
+            builder: () => Text('Current count is ${counterController.count}'),
+            controller: counterController,
+          ),
         ),
         body: Center(
           child: Container(
-            child: Row(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   onPressed: counterController.increment,
                   child: const Text('Increment'),
                 ),
+                const OtherWidget(),
                 ElevatedButton(
                   onPressed: () => counterController
                       .setState(() => counterController.count--),
@@ -44,6 +44,23 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class OtherWidget extends StatelessWidget {
+  const OtherWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OkitoBuilder(
+      builder: () => Text(
+        '${counterController.count}',
+        style: const TextStyle(fontSize: 30),
+      ),
+      controller: counterController,
     );
   }
 }
