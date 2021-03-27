@@ -59,31 +59,29 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
   List<Function> unmountFunctions = [];
 
   @protected
-  @mustCallSuper
   @override
   void initState() {
     super.initState();
 
     /// Here, we mount the [watch] function to re-render state on changes.
     final unmount =
-        controllerXstate.watch(widget.controller, () => setState(() {}));
+        controllerXview.watch(widget.controller, () => setState(() {}));
     unmountFunctions.add(unmount);
 
     /// Just like the above example, here we mount all of the controllers
     /// that build method wants to watch.
     widget.otherControllers.forEach((controller) {
-      final unmount = controllerXstate.watch(controller, () => setState(() {}));
+      final unmount = controllerXview.watch(controller, () => setState(() {}));
       unmountFunctions.add(unmount);
     });
   }
 
   @protected
-  @mustCallSuper
   @override
   void dispose() {
     super.dispose();
 
-    /// On dispose, we would like to unmount the listeners, so that
+    /// On dispose, we would like to unmount the watchers, so that
     /// we don't leak the memory and the [notify] function don't
     /// call the [watch] function.
     unmountFunctions.forEach((unmount) => unmount());

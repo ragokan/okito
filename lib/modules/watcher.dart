@@ -1,8 +1,8 @@
 import '../types/callback_types.dart';
 
-class Listener<T> {
+class Watcher<T> {
   final T event;
   final VoidCallback callback;
 
-  const Listener(this.event, this.callback);
+  const Watcher(this.event, this.callback);
 }

@@ -1,10 +1,14 @@
 # okito
 ## The simplest state management solution ever, at least I think so. It depends on nothing, works really fast with minimum code usage.
+---
 ### With okito, you don't need to wrap your material app for state, you don't need any complex libraries and most importantly your don't need context to have a state or update state.
+---
 
+&nbsp;
 
 
 ## State Management Usage
+---
 
 #### Create Controller
 ```dart
@@ -22,7 +26,7 @@ class CounterController extends OkitoController {
 CounterController counterController = CounterController();
 ```
 
-
+---
 #### Watch Controller
 ```dart
 // That simple!
@@ -32,6 +36,7 @@ OkitoBuilder(
     );
 ```
 
+---
 #### Update Controller
 ```dart
     main(){
@@ -54,7 +59,8 @@ OkitoBuilder(
 
 
 
-#### How to contribute okito
+---
+## How to contribute okito
 - okito needs tests.
 - okito needs a better readme file.
 - okito needs more examples.

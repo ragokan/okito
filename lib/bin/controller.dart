@@ -46,7 +46,7 @@ class OkitoController {
   ///```
   ///
   @mustCallSuper
-  void update() => controllerXstate.notify(this);
+  void update() => controllerXview.notify(this);
 
   /// [setState] method notifies all the builders to re-build the state
   /// after the callback ends.
