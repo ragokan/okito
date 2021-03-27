@@ -1,5 +1,5 @@
-import '../types/callback_types.dart';
 import '../bin/controller.dart';
+import '../types/callback_types.dart';
 import 'listener.dart';
 
 class ControllerCommunication<Okito> {
@@ -13,9 +13,11 @@ class ControllerCommunication<Okito> {
     }
   }
 
-  void watch<T extends Okito>(T type, VoidCallback<Object> callback) {
+  Function watch<T extends Okito>(T type, VoidCallback<Object> callback) {
     var listener = Listener(type, callback);
     _listeners.add(listener);
+
+    return () => _listeners.remove(listener);
   }
 }
 

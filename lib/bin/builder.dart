@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../types/callback_types.dart';
 import '../modules/communication.dart';
+import '../types/callback_types.dart';
 import 'controller.dart';
 
 class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
@@ -20,15 +20,26 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
 }
 
 class _OkitoBuilderState extends State<OkitoBuilder> {
+  List<Function> unmountFunctions = [];
+
   @override
   void initState() {
     super.initState();
 
-    communication.watch(widget.controller, () => setState(() {}));
+    final unmount =
+        communication.watch(widget.controller, () => setState(() {}));
+    unmountFunctions.add(unmount);
 
     widget.otherControllers.forEach((controller) {
-      communication.watch(controller, () => setState(() {}));
+      final unmount = communication.watch(controller, () => setState(() {}));
+      unmountFunctions.add(unmount);
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    unmountFunctions.forEach((unmount) => unmount());
   }
 
   @override
