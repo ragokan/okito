@@ -66,11 +66,8 @@ class OtherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OkitoBuilder(
-      builder: () => Text(
-        '${counterController.count}',
-        style: const TextStyle(fontSize: 30),
-      ),
       controller: counterController,
+      builder: () => Text('${counterController.count}'),
     );
   }
 }

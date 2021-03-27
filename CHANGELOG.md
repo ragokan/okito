@@ -1,3 +1,5 @@
 ## 1.0.0
 
-- Initial version, created by Stagehand
+- Initial version.
+- You can use state management.
+- You can have multiple controllers to watch.

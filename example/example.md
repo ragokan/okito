@@ -1,10 +1,4 @@
-# okito
-## The simplest state management solution ever, at least I think so. If depends on nothing, works really fast with minimum code usage.
-### With okito, you don't need to wrap your material app for state, you don't need any complex libraries and most importantly your don't need context to have a state or update state.
-
-
-
-## State Management Usage
+# Usage
 
 #### Create Controller
 ```dart
@@ -51,3 +45,13 @@ OkitoBuilder(
                   child: const Text('Decrement'),
                 )
 ```
+
+#### Watch Multiple Controllers?, Of course!
+```dart
+OkitoBuilder(
+      controller: counterController,
+      otherControllers: [ageController /* ,  ...otherControllers  */],
+      builder: () => Text('${counterController.count}'),
+    );
+```
+
