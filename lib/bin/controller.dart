@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import '../types/callback_types.dart';
-import 'communication.dart';
+import '../modules/communication.dart';
 
 class OkitoController {
   @mustCallSuper

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'modules/builder.dart';
-import 'modules/controller.dart';
+import 'bin/builder.dart';
+import 'bin/controller.dart';
 
 class CounterController extends OkitoController {
   int count = 0;

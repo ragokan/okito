@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../types/callback_types.dart';
-import 'communication.dart';
+import '../modules/communication.dart';
 import 'controller.dart';
 
 class OkitoBuilder<T extends OkitoController> extends StatefulWidget {

@@ -1,5 +1,5 @@
 import '../types/callback_types.dart';
-import 'controller.dart';
+import '../bin/controller.dart';
 import 'listener.dart';
 
 class ControllerCommunication<Okito> {
