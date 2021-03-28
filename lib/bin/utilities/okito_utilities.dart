@@ -1,13 +1,13 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import '../extensions//okito_extensions.dart';
 
 mixin OkitoUtilities {
-  BuildContext? context;
-  double get width => MediaQuery.of(context!).size.width;
-  double get height => MediaQuery.of(context!).size.height;
-  double get aspectRatio => MediaQuery.of(context!).size.aspectRatio;
-
-  bool get isLandscape =>
-      MediaQuery.of(context!).orientation == Orientation.landscape;
-  bool get isPortrait =>
-      MediaQuery.of(context!).orientation == Orientation.portrait;
+  late BuildContext context;
+  double get width => context.width;
+  double get height => context.height;
+  double get aspectRatio => context.aspectRatio;
+  bool get isLandscape => context.isLandscape;
+  bool get isPortrait => context.isPortrait;
+  ThemeData get theme => Theme.of(context);
+  double get devicePixelRatio => context.devicePixelRatio;
 }

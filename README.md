@@ -7,7 +7,7 @@
 
 &nbsp;
 
-## Guide
+## Content
 ```dart
 import 'package:okito/okito.dart'; // You should add this import first.
 ```
@@ -19,6 +19,8 @@ import 'package:okito/okito.dart'; // You should add this import first.
     - [Cleaner Widgets](#cleaner-widgets)
     - [Update State](#update-state)
 - [How to contribute okito](#how-to-contribute-okito)
+
+// examples
 
 &nbsp;
 # State Management

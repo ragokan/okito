@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-mixin OkitoWidgets {
-  BuildContext? context;
+import '../extensions/okito_extensions.dart';
 
-  void showSnackbar({required SnackBar snackBar}) {
-    ScaffoldMessenger.of(context!).showSnackBar(snackBar);
-  }
+mixin OkitoWidgets {
+  late BuildContext context;
+
+  void showSnackbar({required SnackBar snackBar}) =>
+      context.showSnackBar(snackBar: snackBar);
+
+  void showDialog({required Widget child}) => context.showDialog(child: child);
 
   void showModal({
     required Widget child,
@@ -21,9 +24,8 @@ mixin OkitoWidgets {
     AnimationController? transitionAnimationController,
     bool useRootNavigator = false,
   }) {
-    showModalBottomSheet(
-      context: context!,
-      builder: (_) => child,
+    context.showModal(
+      child: child,
       backgroundColor: backgroundColor,
       barrierColor: barrierColor,
       clipBehavior: clipBehavior,
