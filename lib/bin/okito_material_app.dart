@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'okito.dart';
+import 'okito_instance.dart';
 
 class OkitoMaterialApp extends StatelessWidget {
   const OkitoMaterialApp(
@@ -80,75 +80,84 @@ class OkitoMaterialApp extends StatelessWidget {
   final bool checkerboardOffscreenLayers;
 
   @override
-  Widget build(_) => routerDelegate == null
-      ? MaterialApp(
-          navigatorKey: navigatorKey,
-          actions: actions,
-          builder: (context, child) {
-            Okito.context = context;
-            return builder == null ? child! : builder!(context, child);
-          },
-          color: color,
-          darkTheme: darkTheme,
-          debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-          debugShowMaterialGrid: debugShowMaterialGrid,
-          highContrastDarkTheme: highContrastDarkTheme,
-          highContrastTheme: highContrastTheme,
-          home: home,
-          initialRoute: initialRoute,
-          key: key,
-          locale: locale,
-          localeListResolutionCallback: localeListResolutionCallback,
-          localeResolutionCallback: localeResolutionCallback,
-          checkerboardOffscreenLayers: checkerboardOffscreenLayers,
-          checkerboardRasterCacheImages: checkerboardRasterCacheImages,
-          localizationsDelegates: localizationsDelegates,
-          navigatorObservers: navigatorObservers ?? const <NavigatorObserver>[],
-          onGenerateInitialRoutes: onGenerateInitialRoutes,
-          onGenerateRoute: onGenerateRoute,
-          onGenerateTitle: onGenerateTitle,
-          onUnknownRoute: onUnknownRoute,
-          restorationScopeId: restorationScopeId,
-          routes: routes ?? const <String, WidgetBuilder>{},
-          scaffoldMessengerKey: scaffoldMessengerKey,
-          shortcuts: shortcuts,
-          showPerformanceOverlay: showPerformanceOverlay,
-          showSemanticsDebugger: showSemanticsDebugger,
-          supportedLocales: supportedLocales,
-          theme: theme,
-          themeMode: themeMode,
-          title: title,
-        )
-      : MaterialApp.router(
-          actions: actions,
-          builder: (context, child) {
-            Okito.context = context;
-            return builder == null ? child! : builder!(context, child);
-          },
-          routerDelegate: routerDelegate!,
-          routeInformationParser: routeInformationParser!,
-          color: color,
-          darkTheme: darkTheme,
-          debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-          debugShowMaterialGrid: debugShowMaterialGrid,
-          highContrastDarkTheme: highContrastDarkTheme,
-          highContrastTheme: highContrastTheme,
-          key: key,
-          locale: locale,
-          localeListResolutionCallback: localeListResolutionCallback,
-          localeResolutionCallback: localeResolutionCallback,
-          checkerboardOffscreenLayers: checkerboardOffscreenLayers,
-          checkerboardRasterCacheImages: checkerboardRasterCacheImages,
-          localizationsDelegates: localizationsDelegates,
-          onGenerateTitle: onGenerateTitle,
-          restorationScopeId: restorationScopeId,
-          scaffoldMessengerKey: scaffoldMessengerKey,
-          shortcuts: shortcuts,
-          showPerformanceOverlay: showPerformanceOverlay,
-          showSemanticsDebugger: showSemanticsDebugger,
-          supportedLocales: supportedLocales,
-          theme: theme,
-          themeMode: themeMode,
-          title: title,
-        );
+  Widget build(BuildContext ctx) {
+    void setOkito(BuildContext context) {
+      Okito.context = context;
+      Okito.setUtilities(context);
+    }
+
+    return routerDelegate == null
+        ? MaterialApp(
+            navigatorKey: navigatorKey,
+            actions: actions,
+            builder: (context, child) {
+              setOkito(context);
+              return builder == null ? child! : builder!(context, child);
+            },
+            color: color,
+            darkTheme: darkTheme,
+            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+            debugShowMaterialGrid: debugShowMaterialGrid,
+            highContrastDarkTheme: highContrastDarkTheme,
+            highContrastTheme: highContrastTheme,
+            home: home,
+            initialRoute: initialRoute,
+            key: key,
+            locale: locale,
+            localeListResolutionCallback: localeListResolutionCallback,
+            localeResolutionCallback: localeResolutionCallback,
+            checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+            checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+            localizationsDelegates: localizationsDelegates,
+            navigatorObservers:
+                navigatorObservers ?? const <NavigatorObserver>[],
+            onGenerateInitialRoutes: onGenerateInitialRoutes,
+            onGenerateRoute: onGenerateRoute,
+            onGenerateTitle: onGenerateTitle,
+            onUnknownRoute: onUnknownRoute,
+            restorationScopeId: restorationScopeId,
+            routes: routes ?? const <String, WidgetBuilder>{},
+            scaffoldMessengerKey: scaffoldMessengerKey,
+            shortcuts: shortcuts,
+            showPerformanceOverlay: showPerformanceOverlay,
+            showSemanticsDebugger: showSemanticsDebugger,
+            supportedLocales: supportedLocales,
+            theme: theme,
+            themeMode: themeMode,
+            title: title,
+          )
+        : MaterialApp.router(
+            actions: actions,
+            builder: (context, child) {
+              setOkito(context);
+
+              return builder == null ? child! : builder!(context, child);
+            },
+            routerDelegate: routerDelegate!,
+            routeInformationParser: routeInformationParser!,
+            color: color,
+            darkTheme: darkTheme,
+            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+            debugShowMaterialGrid: debugShowMaterialGrid,
+            highContrastDarkTheme: highContrastDarkTheme,
+            highContrastTheme: highContrastTheme,
+            key: key,
+            locale: locale,
+            localeListResolutionCallback: localeListResolutionCallback,
+            localeResolutionCallback: localeResolutionCallback,
+            checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+            checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+            localizationsDelegates: localizationsDelegates,
+            onGenerateTitle: onGenerateTitle,
+            restorationScopeId: restorationScopeId,
+            scaffoldMessengerKey: scaffoldMessengerKey,
+            shortcuts: shortcuts,
+            showPerformanceOverlay: showPerformanceOverlay,
+            showSemanticsDebugger: showSemanticsDebugger,
+            supportedLocales: supportedLocales,
+            theme: theme,
+            themeMode: themeMode,
+            title: title,
+          );
+  }
 }

@@ -59,3 +59,13 @@ example/**/*.yaml
 example/**/*.md
 example/**/*.lock
 example/**/*.metadata
+example/**/*bin
+example/**/*modules
+example/**/*types
+android
+ios
+linux
+web
+# It is for testing app with current lib
+lib/main.dart
+*.stamp
