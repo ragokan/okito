@@ -1,14 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 mixin OkitoUtilities {
-  double width = 0;
-  double height = 0;
-  double aspectRatio = 0;
-
-  void setUtilities(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    width = size.width;
-    height = size.height;
-    aspectRatio = size.aspectRatio;
-  }
+  BuildContext? context;
+  double get width => MediaQuery.of(context!).size.width;
+  double get height => MediaQuery.of(context!).size.height;
+  double get aspectRatio => MediaQuery.of(context!).size.aspectRatio;
 }

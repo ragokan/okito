@@ -83,7 +83,6 @@ class OkitoMaterialApp extends StatelessWidget {
   Widget build(BuildContext ctx) {
     void setOkito(BuildContext context) {
       Okito.context = context;
-      Okito.setUtilities(context);
     }
 
     return routerDelegate == null

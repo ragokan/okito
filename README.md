@@ -8,6 +8,9 @@
 &nbsp;
 
 ## Guide
+```dart
+import 'package:okito/okito.dart'; // You should add this import first.
+```
 - [State Management](#state-management)
     - [Create Controller](#create-controller)
     - [Watch Controller](#watch-controller)
