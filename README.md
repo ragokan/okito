@@ -93,7 +93,7 @@ OkitoBuilder CounterBuilder({
 }) =>
     OkitoBuilder(
       controller: counterController,
-      builder: () => builder(state),
+      builder: () => builder(counterController),
     );
 
 // Usage
