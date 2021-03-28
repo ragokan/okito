@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import '../../okito.dart';
 
 extension Utilities on BuildContext {
-  double get width => MediaQuery.of(this).size.width;
-  double get height => MediaQuery.of(this).size.height;
-  double get aspectRatio => MediaQuery.of(this).size.aspectRatio;
-  bool get isLandscape =>
-      MediaQuery.of(this).orientation == Orientation.landscape;
-  bool get isPortrait =>
-      MediaQuery.of(this).orientation == Orientation.portrait;
+  double get width => Okito.of(this).width;
+  double get height => Okito.of(this).height;
+  double get aspectRatio => Okito.of(this).aspectRatio;
+  bool get isLandscape => Okito.of(this).isLandscape;
+  bool get isPortrait => Okito.of(this).isPortrait;
 }
