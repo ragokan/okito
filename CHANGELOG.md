@@ -9,3 +9,12 @@
 
 - Better guide.
 - Fix lint errors.
+
+
+## 1.0.2
+
+- Even better guide.
+- Context extensions.
+- Okito class for context purposes.
+- Better readme.
+- More examples.

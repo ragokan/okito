@@ -5,11 +5,16 @@ import '../extensions/okito_extensions.dart';
 mixin OkitoWidgets {
   late BuildContext context;
 
+  /// Shows a [SnackBar] across all registered [Scaffold]s.
   void showSnackbar({required SnackBar snackBar}) =>
       context.showSnackBar(snackBar: snackBar);
 
+  /// Displays a Material dialog above the current contents of the app,
+  /// with Material entrance and exit animations, modal barrier color, and
+  ///  modal barrier behavior (dialog is dismissible with a tap on the barrier).
   void showDialog({required Widget child}) => context.showDialog(child: child);
 
+  /// Shows a modal material design bottom sheet.
   void showModal({
     required Widget child,
     Color? backgroundColor,

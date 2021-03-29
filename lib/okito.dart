@@ -10,4 +10,3 @@ library okito;
 export 'package:okito/bin/state_management/builder.dart';
 export 'package:okito/bin/state_management/controller.dart';
 export 'package:okito/bin/okito_instance.dart';
-export 'package:okito/bin/extensions/okito_extensions.dart';

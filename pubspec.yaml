@@ -1,6 +1,6 @@
 name: okito
 description: Okito is the simplest state management solution ever, at least I think so. It depends on nothing, works really fast with minimum code usage.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/ragokan/okito
 repository: https://github.com/ragokan/okito
 
