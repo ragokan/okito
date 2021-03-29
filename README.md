@@ -4,7 +4,7 @@
 [![likes](https://badges.bar/okito/likes)](https://pub.dev/packages/okito/score)
 [![popularity](https://badges.bar/okito/popularity)](https://pub.dev/packages/okito/score)
 [![pub version](https://img.shields.io/pub/v/okito)](https://pub.dev/packages/okito)
-![GitHub last commit](https://img.shields.io/github/last-commit/ragokan/okito)
+[![GitHub last commit](https://img.shields.io/github/last-commit/ragokan/okito)](https://github.com/ragokan/okito)
 ### With okito, you don't need to wrap your material app for state, you don't need any complex libraries and most importantly your don't need context to have a state or update state. For the state management purposes, it is as small as it can be. The aim is reducing the size and dependency usage as much as possible. Basically the state management has only what it needs, nothing more, nothing less!
 
 &nbsp;
