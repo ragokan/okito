@@ -15,14 +15,14 @@ class CounterController extends OkitoController {
 CounterController counterController = CounterController();
 
 void main() {
-  runApp(MyApp());
+  runApp(CounterApp());
   // You can change state from anywhere
   Future.delayed(const Duration(seconds: 3), () {
     counterController.increment();
   });
 }
 
-class MyApp extends StatelessWidget {
+class CounterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -67,7 +67,7 @@ class OtherWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return OkitoBuilder(
       controller: counterController,
-      builder: () => Text('${counterController.count}'),
+      builder: () => Text('Second widget: ${counterController.count}'),
     );
   }
 }
