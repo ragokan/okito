@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../extensions//okito_extensions.dart';
+import '../extensions/context_extensions.dart';
 
-mixin OkitoUtilities {
+mixin OkitoDevice {
   late BuildContext context;
 
   /// The horizontal extent of this size.

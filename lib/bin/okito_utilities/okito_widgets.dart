@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../extensions/okito_extensions.dart';
+import '../extensions/context_extensions.dart';
 
 mixin OkitoWidgets {
   late BuildContext context;

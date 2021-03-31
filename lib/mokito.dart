@@ -1,1 +1,1 @@
-export 'package:okito/bin/extensions/okito_extensions.dart';
+export 'package:okito/bin/extensions/context_extensions.dart';
