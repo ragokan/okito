@@ -15,8 +15,9 @@ import 'package:okito/okito.dart'; // You should add this import first.
 ```
 - [State Management](#state-management)
     - [Create Controller](#create-controller)
-    - [Watch Controller](#watch-controller)
+    - [Use Controller](#use-controller)
     - [Update Controller](#update-controller)
+    - [Watch Controller](#watch-controller)
 - [Tips](#tips)
     - [Cleaner Widgets](#cleaner-widgets)
     - [Update State](#update-state)
@@ -44,7 +45,7 @@ CounterController counterController = CounterController();
 ```
 
 ---
-#### Watch Controller
+#### Use Controller
 ```dart
 // That simple!
 OkitoBuilder(
@@ -74,7 +75,26 @@ OkitoBuilder(
                 )
 ```
 
+---
+#### Watch Controller
+```dart
+    OkitoWatcher(
+    watch: counterController,
+    onChange: (CounterController controller) {
+      // You can also update the state there.
+      // onChange gives to you is the instance of controller.
+      print(controller.count);
+    },
+  );
+  counterController.increment();
 
+  // OkitoWatcher also returns a function that stops watching which
+  // reduces the memory usage, you can use it when your usage ends.
+
+  final stopWatching = OkitoWatcher(/* code here */);
+  // do what you want to do while watching, then:
+  stopWatching();
+```
 
 # Tips
 

@@ -18,3 +18,10 @@
 - Okito class for context purposes.
 - Better readme.
 - More examples.
+
+
+## 1.0.3
+
+- New feature: OkitoWatcher (Check test/okito_watcher_test.dart)
+- More examples
+- More tests

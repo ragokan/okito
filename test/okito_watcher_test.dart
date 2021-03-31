@@ -14,12 +14,16 @@ class CounterController extends OkitoController {
 CounterController counterController = CounterController();
 
 void main() {
-  OkitoWatcher<CounterController>(
+  final stopWatching = OkitoWatcher(
     watch: counterController,
-    onChance: (state) {
-      print(state.count);
+    onChange: (CounterController controller) {
+      // You can also update the state there, the controller it gives to you is
+      // the instance of controller.
+      print(controller.count);
     },
   );
 
   counterController.increment();
+
+  stopWatching();
 }

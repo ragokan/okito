@@ -4,10 +4,10 @@ import 'controller.dart';
 
 Function OkitoWatcher<T extends OkitoController>({
   required T watch,
-  required WatcherCallback<T> onChance,
+  required WatcherCallback<T> onChange,
 }) {
   return controllerXview.watch(
     watch,
-    () => onChance(watch),
+    () => onChange(watch),
   );
 }
