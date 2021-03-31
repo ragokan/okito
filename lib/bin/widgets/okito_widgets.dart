@@ -6,7 +6,7 @@ mixin OkitoWidgets {
   late BuildContext context;
 
   /// Shows a [SnackBar] across all registered [Scaffold]s.
-  void showSnackbar({required SnackBar snackBar}) =>
+  void showSnackBar({required SnackBar snackBar}) =>
       context.showSnackBar(snackBar: snackBar);
 
   /// Displays a Material dialog above the current contents of the app,
