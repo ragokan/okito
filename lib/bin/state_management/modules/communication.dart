@@ -1,5 +1,5 @@
-import '../bin/state_management/controller.dart';
-import '../types/callback_types.dart';
+import '../../../types/callback_types.dart';
+import '../controller.dart';
 import 'watcher_model.dart';
 
 class _ControllerCommunication<Okito> {

@@ -1,4 +1,4 @@
-import '../types/callback_types.dart';
+import '../../../types/callback_types.dart';
 
 class Watcher<T> {
   final T event;
