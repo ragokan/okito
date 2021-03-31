@@ -6,17 +6,20 @@ class _ControllerCommunication<Okito> {
   final _watchers = <Watcher>{};
 
   /// [notify] method is the method called when you use 'update' or 'setState'.
-  void notify<T extends Okito>(T type) {
+  void notify<T extends Okito>(T controller) {
     for (var watcher in _watchers) {
-      if (watcher.event == type) {
+      if (watcher.controller == controller) {
         watcher.callback();
       }
     }
   }
 
   /// With [watch] method, state watches changes that are coming from notify.
-  Function watch<T extends Okito>(T type, VoidCallback<Object> callback) {
-    var watcher = Watcher(type, callback);
+  Function watch<T extends Okito>(
+    T controller,
+    VoidCallback callback,
+  ) {
+    var watcher = Watcher(controller, callback);
     _watchers.add(watcher);
 
     return () => _watchers.remove(watcher);

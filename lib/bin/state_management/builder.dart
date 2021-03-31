@@ -4,6 +4,24 @@ import '../../types/callback_types.dart';
 import 'controller.dart';
 import 'modules/communication.dart';
 
+/// [OkitoBuilder] is the easiest way to track state changes and
+/// re-render state on change.
+///
+/// Instead of having a stateful widget that re-renders on any change
+/// which causes all the dependencies to re-render no matter if they
+/// are changed or not, StatelessWidget with OkitoBuilder just re-renders
+/// where did you use OkitoBuilder. If your widget don't need a dynamic
+/// state, just don't put it inside builder. It won't re-built.
+///
+/// Example
+///
+/// ```dart
+/// OkitoBuilder(
+/// controller: counterController,
+/// builder: () => Text('${counterController.count}',
+///   ),
+/// );
+/// ```
 class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
   /// [controller] should be a class that extends or mixs [OkitoController].
   final T controller;
@@ -15,7 +33,7 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
   /// Builder callback is called whenever your state changes.
   ///
   /// You have to return a Widget that you want to re-build on state changes.
-  final ControllerCallback builder;
+  final BuilderCallback builder;
 
   /// OkitoBuilder is the way to use OkitoController.
   ///

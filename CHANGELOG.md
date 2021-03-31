@@ -25,3 +25,9 @@
 - New feature: OkitoWatcher (Check test/okito_watcher_test.dart)
 - More examples
 - More tests
+
+
+## 1.0.4
+
+- Document for OkitoWatcher
+- Document for all variables and parameters

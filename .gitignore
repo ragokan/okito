@@ -69,3 +69,4 @@ web
 # It is for testing app with current lib
 lib/main.dart
 *.stamp
+.vscode/settings.json

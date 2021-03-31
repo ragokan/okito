@@ -1,6 +1,7 @@
 name: okito
-description: Okito is the simplest state management solution ever, at least I think so. It depends on nothing, works really fast with minimum code usage.
-version: 1.0.3
+description: Okito is the simplest state management solution ever, at least I
+  think so. It depends on nothing, works really fast with minimum code usage.
+version: 1.0.4
 homepage: https://github.com/ragokan/okito
 repository: https://github.com/ragokan/okito
 
@@ -12,6 +13,6 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
-  pedantic: ^1.9.0
   flutter_test:
     sdk: flutter
+  pedantic: ^1.11.0

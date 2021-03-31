@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final flutterDialog = showDialog;
 
-extension BuildContextUtilities on BuildContext {
+extension BuildContextExtensions on BuildContext {
   /// The horizontal extent of this size.
   double get width => MediaQuery.of(this).size.width;
 
