@@ -21,7 +21,8 @@ import 'package:okito/okito.dart'; // You should add this import first.
 - [Tips](#tips)
     - [Cleaner Widgets](#cleaner-widgets)
     - [Update State](#update-state)
-- [Utilities](#utilities)
+- [Utilities + Routing](#utilities)
+- [Extensions](#extensions)
 - [Examples](#examples)
 - [How to contribute okito](#how-to-contribute-okito)
 
@@ -145,57 +146,46 @@ class CounterController extends OkitoController {
 ```
 
 # Utilities
-#### This part contains the code I wrote to make my coding easier and it is open source, you can also use or contribute it!
-
+### Firstly, we should wrap our app with Okito or provide Okito
 ```dart
-// First Usage
-Okito.of(context).width;
-Okito.of(context).height;
-Okito.of(context).aspectRatio;
-Okito.of(context).devicePixelRatio;
-Okito.of(context).isLandscape;
-Okito.of(context).isPortrait;
-Okito.of(context).theme;
+// Basically, you should add *Okito* to the beginning of your app or provide key/observers manually.
 
-Okito.of(context).showSnackBar();
-Okito.of(context).showModal();
-Okito.of(context).showDialog();
+OkitoMaterialApp(/*  Everything is same with [MaterialApp] */);
 
-Okito.of(context).push();
-Okito.of(context).pushReplacement();
-Okito.of(context).pushNamed();
-Okito.of(context).pushReplacementNamed();
-Okito.of(context).pop();
-Okito.of(context).arguments;
-Okito.of(context).routeName;
+// Or
+OkitoCupertinoApp(/*  Everything is same with [CupertinoApp] */);
 
-// Second Usage
-final okito = Okito(context:context);
-okito.width;
-okito.height;
-okito.aspectRatio;
-okito.devicePixelRatio;
-okito.isLandscape;
-okito.isPortrait;
-okito.theme;
+// Or
+Material/CupertinoApp(
+    navigatorKey: Okito.navigatorKey,
+    navigatorObservers: [OkitoObserver()]);
+```
 
-okito.showSnackBar();
-okito.showModal();
-okito.showDialog();
+Then you can use all of Okito Benefits!
+```dart
+Okito.width;
+Okito.height;
+Okito.aspectRatio;
+Okito.devicePixelRatio;
+Okito.isLandscape;
+Okito.isPortrait;
+Okito.theme;
 
-okito.push();
-okito.pushReplacement();
-okito.pushNamed();
-okito.pushReplacementNamed();
-okito.pop();
-okito.arguments;
-okito.routeName;
+Okito.showSnackBar();
+Okito.showModal();
+Okito.showDialog();
 
-// Third Usage
-import 'package:okito/okito.dart';  //or 
-import 'package:okito/bin/extensions/okito_extensions.dart'; 
-// These are extensions for the 'context', I didn't wanted to include in default import in case of your other packages' or your having a chance to use them.
+Okito.push();
+Okito.pushReplacement();
+Okito.pushNamed();
+Okito.pushReplacementNamed();
+Okito.pop();
+Okito.arguments;
+Okito.routeName;
+```
 
+# Extensions
+```dart
 context.width;
 context.height;
 context.aspectRatio;
@@ -203,18 +193,6 @@ context.devicePixelRatio;
 context.isLandscape;
 context.isPortrait;
 context.theme;
-
-context.showSnackBar();
-context.showModal();
-context.showDialog();
-
-context.push();
-context.pushReplacement();
-context.pushNamed();
-context.pushReplacementNamed();
-context.pop();
-context.arguments;
-context.routeName;
 ```
 
 

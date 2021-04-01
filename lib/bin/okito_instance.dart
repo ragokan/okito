@@ -18,7 +18,7 @@ class _Okito with OkitoWidgets, OkitoDevice, OkitoRouting {
       2) [OkitoCupertinoApp] instead of CupertinoApp,
       3) Add these to your Material/Cupertino App;
         - navigatorKey: Okito.navigatorKey,
-        - navigatorObservers: [Okito.navigatorObserver].
+        - navigatorObservers: [OkitoObserver()].
         
       If you did and still got an error, please create a github issue.
     ''');

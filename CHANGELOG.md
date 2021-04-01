@@ -31,3 +31,11 @@
 
 - Document for OkitoWatcher
 - Document for all variables and parameters
+
+## 1.0.5
+
+- The biggest update since initial release.
+- Okito now doesn't need any context for utilities.
+- New features with *OkitoMaterialApp* and *OkitoCupertinoApp* are here!
+- Now, Okito can use routing, and it will be done without context.
+- Snackbar, modal, dialog, they all will be available without context!
