@@ -9,11 +9,29 @@ import 'okito_utilities/okito_widgets.dart';
 ///
 /// This class has shortcuts for routing, small utilities of context like
 /// size of the device and has usage with widgets like show bottom modal sheet.
-class Okito with OkitoWidgets, OkitoDevice, OkitoRouting {
-  /// The context of your app.
+class _Okito with OkitoWidgets, OkitoDevice, OkitoRouting {
   @override
-  final BuildContext context;
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  Okito(this.context);
-  Okito.of(this.context);
+  /// The [BuildContext]:[context] of your app.
+  @override
+  BuildContext? get context {
+    if (navigatorKey.currentContext == null) {
+      throw Exception('''
+      If you want to use [context] in your app just like this, you have to
+      use one of these; 
+      1) [OkitoMaterialApp] instead of MaterialApp,
+      2) [OkitoCupertinoApp] instead of CupertinoApp,
+      3) Add these to your Material/Cupertino App;
+        - navigatorKey: Okito.navigatorKey,
+        - navigatorObservers: [Okito.navigatorObserver].
+        
+      If you did and still got an error, please create a github issue.
+    ''');
+    }
+    return navigatorKey.currentContext;
+  }
 }
+
+// ignore: non_constant_identifier_names
+_Okito Okito = _Okito();

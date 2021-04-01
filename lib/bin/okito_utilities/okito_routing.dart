@@ -1,43 +1,132 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../extensions/context_extensions.dart';
 
 mixin OkitoRouting {
-  late BuildContext context;
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  NavigatorState? get _state => navigatorKey.currentState;
 
-  /// Push the given route onto the navigator that most
-  /// tightly encloses the given context.
-  void push({required Widget page, required RouteSettings settings}) =>
-      context.push(page: page, settings: settings);
+  /// Equals to [Navigator.of(context).push()]
+  /// Give it the [Route] you want to push
+  ///
+  /// Example
+  /// ```dart
+  /// Okito.push(MaterialPageRoute(builder: (context) => CounterPage()));
+  /// ```
+  Future<T?> push<T>(Route<T> route) async => _state?.push<T>(route);
 
-  /// Replace the current route of the navigator that most tightly encloses the
-  ///  given context by pushing the given route and then disposing the previous
-  ///  route once the new route has finished animating in.
-  void pushReplacement(
-          {required Widget page, required RouteSettings settings}) =>
-      context.pushReplacement(page: page, settings: settings);
+  /// Similar to [Navigator.of(context).push()]
+  /// Just give it the [page] you want to push
+  ///
+  /// Example
+  /// ```dart
+  /// // That Simple!
+  /// Okito.pushEasy(CounterPage());
+  /// ```
+  Future<T?> pushEasy<T>(
+    Widget page, {
+    bool isMaterialPageRoute = true,
+  }) async =>
+      _state?.push<T>(isMaterialPageRoute
+          ? MaterialPageRoute(builder: (_) => page)
+          : CupertinoPageRoute(builder: (_) => page));
 
-  /// Pop the top-most route off the navigator that
-  ///  most tightly encloses the given context.
-  void pop({Object? result}) => context.pop(result: result);
+  /// Equals to [Navigator.of(context).push()]
+  /// Just give it the [routeName] you want to push
+  ///
+  /// Example
+  /// ```dart
+  /// // That Simple!
+  /// Okito.pushNamed('/counterPage');
+  /// // You can also add arguments as secondary parameter.
+  /// ```
+  Future<T?> pushNamed<T>(String routeName, {Object? arguments}) async =>
+      _state?.pushNamed<T>(
+        routeName,
+        arguments: arguments,
+      );
 
-  /// Push a named route onto the navigator that most
-  ///  tightly encloses the given context.
-  void pushNamed(
-          {required String routeName,
-          RouteSettings? settings,
-          Object? arguments}) =>
-      context.pushNamed(routeName: routeName, arguments: arguments);
+  /// Equals to [Navigator.of(context).pushReplacementNamed()]
+  /// Just give it the [routeName] you want to push
+  ///
+  /// Example
+  /// ```dart
+  /// // That Simple!
+  /// Okito.pushReplacementNamed('/counterPage');
+  /// // You can also add arguments as secondary parameter.
+  /// ```
+  Future<T?> pushReplacementNamed<T, X>(
+    String routeName, {
+    Object? arguments,
+  }) async =>
+      _state?.pushReplacementNamed<T, X>(
+        routeName,
+        arguments: arguments,
+      );
 
-  /// Replace the current route of the navigator that most tightly encloses
-  ///  the given context by pushing the route named [routeName] and then
-  ///  disposing the previous route once the new route has finished
-  /// animating in.
-  void pushReplacementNamed({required String routeName, Object? arguments}) =>
-      context.pushReplacementNamed(routeName: routeName, arguments: arguments);
+  /// Equals to [Navigator.of(context).pushNamedAndRemoveUntil()]
+  /// Just give it the [routeName] you want to push
+  ///
+  /// Example
+  /// ```dart
+  /// // That Simple!
+  /// Okito.pushNamedAndRemoveUntil('/counterPage');
+  /// // You can also add arguments as secondary parameter.
+  /// ```
+  ///  Not required but you can give it a [predicate]
+  Future<T?> pushNamedAndRemoveUntil<T>(
+    String routeName, {
+    Object? arguments,
+    bool Function(Route<dynamic>)? predicate,
+  }) async =>
+      _state?.pushNamedAndRemoveUntil<T>(
+        routeName,
+        predicate ?? (_) => false,
+        arguments: arguments,
+      );
 
-  /// The arguments passed to this route.
-  Object? get arguments => context.arguments;
+  /// Equals to [Navigator.of(context).pushAndRemoveUntil()]
+  /// Just give it the [route] you want to push
+  ///
+  /// Example
+  /// ```dart
+  /// // That Simple!
+  /// Okito.pushAndRemoveUntil(
+  ///    MaterialPageRoute(builder: (context) => CounterPage()));
+  /// ```
+  ///  Not required but you can give it a [predicate]
+  Future<T?> pushAndRemoveUntil<T>(
+    Route<T> route, {
+    bool Function(Route<dynamic>)? predicate,
+  }) async =>
+      _state?.pushAndRemoveUntil<T>(
+        route,
+        predicate ?? (_) => false,
+      );
 
-  /// The name of the route (e.g., "/settings").
-  String? get routeName => context.routeName;
+  /// Equals to [Navigator.of(context).pop()]
+  ///
+  /// Example
+  /// ```dart
+  /// // That Simple!
+  /// Okito.pop();
+  /// // You can also give it a result
+  /// Okito.pop(result: 'Message sent successfully!');
+  /// ```
+  void pop<T>({T? result}) => _state?.pop<T>(result);
+
+  /// Equals to [Navigator.of(context).canPop()]
+  ///
+  /// Example
+  /// ```dart
+  /// // That Simple!
+  /// bool? canPop = Okito.canPop();
+  /// ```
+  bool? canPop() => _state?.canPop();
+
+  /// Equals to [Navigator.of(context).maybePop()]
+  Future<bool?> maybePop<T>([T? arguments]) async =>
+      _state?.maybePop<T>(arguments);
+
+  /// Equals to [Navigator.of(context).popUntil()]
+  void popUntil(String route) => _state?.popUntil(ModalRoute.withName(route));
 }

@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 
-import '../extensions/context_extensions.dart';
+final flutterDialog = showDialog;
 
 mixin OkitoWidgets {
-  late BuildContext context;
+  BuildContext? get context;
 
   /// Shows a [SnackBar] across all registered [Scaffold]s.
-  void showSnackBar({required SnackBar snackBar}) =>
-      context.showSnackBar(snackBar: snackBar);
+  void showSnackBar({required SnackBar snackBar}) {
+    if (context != null) {
+      ScaffoldMessenger.of(context!).showSnackBar(snackBar);
+    }
+  }
 
   /// Displays a Material dialog above the current contents of the app,
   /// with Material entrance and exit animations, modal barrier color, and
   ///  modal barrier behavior (dialog is dismissible with a tap on the barrier).
-  void showDialog({required Widget child}) => context.showDialog(child: child);
+  void showDialog({required Widget child}) {
+    if (context != null) {
+      flutterDialog(context: context!, builder: (ctx) => child);
+    }
+  }
 
   /// Shows a modal material design bottom sheet.
   void showModal({
@@ -29,19 +36,22 @@ mixin OkitoWidgets {
     AnimationController? transitionAnimationController,
     bool useRootNavigator = false,
   }) {
-    context.showModal(
-      child: child,
-      backgroundColor: backgroundColor,
-      barrierColor: barrierColor,
-      clipBehavior: clipBehavior,
-      elevation: elevation,
-      enableDrag: enableDrag,
-      isDismissible: isDismissible,
-      isScrollControlled: isScrollControlled,
-      routeSettings: routeSettings,
-      shape: shape,
-      transitionAnimationController: transitionAnimationController,
-      useRootNavigator: useRootNavigator,
-    );
+    if (context != null) {
+      showModalBottomSheet(
+        context: context!,
+        builder: (_) => child,
+        backgroundColor: backgroundColor,
+        barrierColor: barrierColor,
+        clipBehavior: clipBehavior,
+        elevation: elevation,
+        enableDrag: enableDrag,
+        isDismissible: isDismissible,
+        isScrollControlled: isScrollControlled,
+        routeSettings: routeSettings,
+        shape: shape,
+        transitionAnimationController: transitionAnimationController,
+        useRootNavigator: useRootNavigator,
+      );
+    }
   }
 }
