@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'okito_utilities/okito_device.dart';
-import 'okito_utilities/okito_routing.dart';
-import 'okito_utilities/okito_widgets.dart';
+import 'okito_utilities/index.dart';
 
-/// The root of [Okito] library's utilities.
-///
-/// This class has shortcuts for routing, small utilities of context like
-/// size of the device and has usage with widgets like show bottom modal sheet.
 class _Okito with OkitoWidgets, OkitoDevice, OkitoRouting {
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -31,7 +25,14 @@ class _Okito with OkitoWidgets, OkitoDevice, OkitoRouting {
     }
     return navigatorKey.currentContext;
   }
+
+  String? currentRoute;
+  Object? arguments;
 }
 
+/// The root of [Okito] library's utilities.
+///
+/// This class has shortcuts for routing, small utilities of context like
+/// size of the device and has usage with widgets like show bottom modal sheet.
 // ignore: non_constant_identifier_names
 _Okito Okito = _Okito();
