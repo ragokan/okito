@@ -172,6 +172,7 @@ Okito.isPortrait;
 Okito.theme;
 
 Okito.showSnackBar();
+Okito.showToast(); // Snackbar without widget, usefull for simple usage.
 Okito.showModal();
 Okito.showDialog();
 

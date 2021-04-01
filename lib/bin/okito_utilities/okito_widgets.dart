@@ -6,23 +6,30 @@ mixin OkitoWidgets {
   BuildContext? get context;
 
   /// Shows a [SnackBar] across all registered [Scaffold]s.
+  void showToast(
+      {required String content, Duration? duration, SnackBarAction? action}) {
+    ScaffoldMessenger.of(context!).showSnackBar(
+      SnackBar(
+        content: Text(content),
+        duration: duration ?? const Duration(seconds: 5),
+        action: action,
+      ),
+    );
+  }
+
+  /// Shows a [SnackBar] across all registered [Scaffold]s.
   void showSnackBar({required SnackBar snackBar}) {
-    if (context != null) {
-      ScaffoldMessenger.of(context!).showSnackBar(snackBar);
-    }
+    ScaffoldMessenger.of(context!).showSnackBar(snackBar);
   }
 
   /// Displays a Material dialog above the current contents of the app,
   /// with Material entrance and exit animations, modal barrier color, and
   ///  modal barrier behavior (dialog is dismissible with a tap on the barrier).
-  void showDialog({required Widget child}) {
-    if (context != null) {
+  Future<T?> showDialog<T>({required Widget child}) async =>
       flutterDialog(context: context!, builder: (ctx) => child);
-    }
-  }
 
   /// Shows a modal material design bottom sheet.
-  void showModal({
+  Future<T?> showModal<T>({
     required Widget child,
     Color? backgroundColor,
     Color? barrierColor,
@@ -35,8 +42,7 @@ mixin OkitoWidgets {
     ShapeBorder? shape,
     AnimationController? transitionAnimationController,
     bool useRootNavigator = false,
-  }) {
-    if (context != null) {
+  }) async =>
       showModalBottomSheet(
         context: context!,
         builder: (_) => child,
@@ -52,6 +58,4 @@ mixin OkitoWidgets {
         transitionAnimationController: transitionAnimationController,
         useRootNavigator: useRootNavigator,
       );
-    }
-  }
 }

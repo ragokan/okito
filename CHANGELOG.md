@@ -39,3 +39,5 @@
 - New features with *OkitoMaterialApp* and *OkitoCupertinoApp* are here!
 - Now, Okito can use routing, and it will be done without context.
 - Snackbar, modal, dialog, they all will be available without context!
+- More examples, especially for new features.
+- More tests, especially for new features.
