@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'okito_utilities/index.dart';
+import 'okito_utilities/null_exception.dart';
 
 class _Okito with OkitoWidgets, OkitoDevice, OkitoRouting {
   @override
@@ -11,17 +12,7 @@ class _Okito with OkitoWidgets, OkitoDevice, OkitoRouting {
   @override
   BuildContext? get context {
     if (navigatorKey.currentContext == null) {
-      throw Exception('''
-      If you want to use [context] in your app just like this, you have to
-      use one of these; 
-      1) [OkitoMaterialApp] instead of MaterialApp,
-      2) [OkitoCupertinoApp] instead of CupertinoApp,
-      3) Add these to your Material/Cupertino App;
-        - navigatorKey: Okito.navigatorKey,
-        - navigatorObservers: [OkitoObserver()].
-        
-      If you did and still got an error, please create a github issue.
-    ''');
+      throw Exception(nullException);
     }
     return navigatorKey.currentContext;
   }

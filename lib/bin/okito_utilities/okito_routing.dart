@@ -1,9 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'null_exception.dart';
 
 mixin OkitoRouting {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  NavigatorState? get _state => navigatorKey.currentState;
+  NavigatorState? get _state {
+    if (navigatorKey.currentState == null) {
+      throw Exception(nullException);
+    }
+    return navigatorKey.currentState;
+  }
 
   /// Equals to [Navigator.of(context).push()]
   /// Give it the [Route] you want to push
