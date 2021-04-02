@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../types/callback_types.dart';
+import '../../typedefs/callback_types.dart';
 import 'controller.dart';
 import 'modules/communication.dart';
 
