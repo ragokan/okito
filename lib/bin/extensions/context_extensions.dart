@@ -29,4 +29,10 @@ extension BuildContextExtensions on BuildContext {
 
   /// App theme.
   ThemeData get theme => Theme.of(this);
+
+  /// Arguments of current context.
+  Object? get arguments => ModalRoute.of(this)?.settings.arguments;
+
+  /// Name of current route.
+  String? get routeName => ModalRoute.of(this)?.settings.name;
 }

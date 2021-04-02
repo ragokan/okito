@@ -162,6 +162,10 @@ Material/CupertinoApp(
 ```
 
 Then you can use all of Okito Benefits!
+-
+*All of the properities has same usages with its long usage*
+
+*For example: Okito.pushNamed('/secondPage') = Navigator.of(context).pushNamed('secondPage')*
 ```dart
 Okito.width;
 Okito.height;
@@ -194,6 +198,8 @@ context.devicePixelRatio;
 context.isLandscape;
 context.isPortrait;
 context.theme;
+context.arguments;
+context.routeName;
 ```
 
 
