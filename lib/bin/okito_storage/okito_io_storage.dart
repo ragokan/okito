@@ -22,7 +22,7 @@ class ImplOkitoStorage {
   Future<void> init() async {
     var appDocDirectory = await getApplicationDocumentsDirectory();
 
-    var dir = '$appDocDirectory${Platform.isWindows ? '\\' : '/'}.$_key';
+    var dir = '${appDocDirectory.path}${Platform.isWindows ? '\\' : '/'}.$_key';
     File(dir).createSync(recursive: true);
     _file = File(dir);
     _currentData = _getData();
