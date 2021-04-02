@@ -1,3 +1,4 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:okito/okito.dart';
 
 class CounterController extends OkitoController {
@@ -14,16 +15,23 @@ class CounterController extends OkitoController {
 CounterController counterController = CounterController();
 
 void main() {
-  final stopWatching = OkitoWatcher(
-    watch: counterController,
-    onChange: (CounterController controller) {
-      // You can also update the state there, the controller it gives to you is
-      // the instance of controller.
-      print(controller.count);
-    },
-  );
+  test('okito_watcher', () {
+    final stopWatching = OkitoWatcher(
+      watch: counterController,
+      onChange: (CounterController controller) {
+        // You can also update the state there, the controller it gives to
+        // you is the instance of controller.
+        print(controller.count);
 
-  counterController.increment();
+        expect(counterController.count, 1);
+        expect(controller.count, 1);
+        expect(controller.count, counterController.count);
+      },
+    );
 
-  stopWatching();
+    counterController.increment();
+    expect(counterController.count, 1);
+
+    stopWatching();
+  });
 }
