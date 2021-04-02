@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../okito.dart';
 
 import '../../typedefs/callback_types.dart';
 import 'controller.dart';
@@ -29,6 +30,15 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
   /// If you have more than one [controller], you can create an array of
   /// [controller]s.
   final List<T> otherControllers;
+
+  /// The [OkitoStorage] keys that you want to listen.
+  ///
+  /// You can provide as much as keys you want to listen and whenever
+  /// a key changes, this widget will be rebuilt.
+  final List<String> watchStorageKeys;
+
+  /// If you want to watch any change in [OkitoStorage], make it true.
+  final bool watchAllStorageKeys;
 
   /// Builder callback is called whenever your state changes.
   ///
@@ -67,6 +77,8 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
     required this.controller,
     this.otherControllers = const [],
     required this.builder,
+    this.watchStorageKeys = const [],
+    this.watchAllStorageKeys = false,
   }) : super(key: key);
 
   @override
@@ -92,6 +104,18 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
       final unmount = controllerXview.watch(controller, () => setState(() {}));
       unmountFunctions.add(unmount);
     });
+
+    /// In this example, we watch the changes that are happening in
+    /// [OkitoStorage].
+    widget.watchStorageKeys.forEach((key) {
+      final unmount = OkitoStorage.watchKey(key, () => setState(() {}));
+      unmountFunctions.add(unmount);
+    });
+
+    if (widget.watchAllStorageKeys) {
+      final unmount = OkitoStorage.watchAll(() => setState(() {}));
+      unmountFunctions.add(unmount);
+    }
   }
 
   @protected

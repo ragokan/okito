@@ -41,3 +41,4 @@
 - Snackbar, modal, dialog, they all will be available without context!
 - More examples, especially for new features.
 - More tests, especially for new features.
+- New features with *OkitoStorage* that lets you use local storage on any device!
