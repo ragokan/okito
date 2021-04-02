@@ -17,12 +17,11 @@ class ImplOkitoStorage {
   /// if the file doesn't exists.
   late final File _file;
 
-  final String _key = 'okitoStorage';
-
-  Future<void> init() async {
+  Future<void> init({required String storageName}) async {
     var appDocDirectory = await getApplicationDocumentsDirectory();
-
-    var dir = '${appDocDirectory.path}${Platform.isWindows ? '\\' : '/'}.$_key';
+    var path = appDocDirectory.path;
+    var slash = Platform.isWindows ? '\\' : '/';
+    var dir = '$path$slash$storageName.okitoStorage';
     File(dir).createSync(recursive: true);
     _file = File(dir);
     _currentData = _getData();
@@ -57,14 +56,6 @@ class ImplOkitoStorage {
     if (!_isInitialized) return;
     _currentData[key] = value;
     _saveToIOStorage();
-  }
-
-  void writeIfNull<T>(String key, T value) {
-    if (!_isInitialized) return;
-    if (!_currentData.containsKey(key)) {
-      _currentData[key] = value;
-      _saveToIOStorage();
-    }
   }
 
   void removeKey<T>(String key) {

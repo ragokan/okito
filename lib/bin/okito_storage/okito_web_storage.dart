@@ -14,7 +14,7 @@ class ImplOkitoStorage {
   html.Storage get localStorage => html.window.localStorage;
 
   // Future for IO version.
-  Future<void> init() async {
+  Future<void> init({required String storageName}) async {
     if (!localStorage.containsKey(_key)) {
       localStorage[_key] = jsonEncode(_emptyData);
     }
@@ -49,14 +49,6 @@ class ImplOkitoStorage {
     if (!_isInitialized) return;
     _currentData[key] = value;
     _saveToWebStorage();
-  }
-
-  void writeIfNull<T>(String key, T value) {
-    if (!_isInitialized) return;
-    if (!_currentData.containsKey(key)) {
-      _currentData[key] = value;
-      _saveToWebStorage();
-    }
   }
 
   void removeKey<T>(String key) {

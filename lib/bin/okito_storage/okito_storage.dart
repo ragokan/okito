@@ -1,3 +1,4 @@
+import '../../okito.dart';
 // I learned this usage from https://github.com/gskinnerTeam/flutter-universal-platform/blob/master/lib/universal_platform.dart
 import 'okito_web_storage.dart' if (dart.library.io) 'okito_io_storage.dart';
 
@@ -16,7 +17,8 @@ class _OkitoStorage extends ImplOkitoStorage {
   ///}
   ///```
   @override
-  Future<void> init() async => await super.init();
+  Future<void> init({String storageName = 'okito'}) async =>
+      await super.init(storageName: storageName.trim());
 
   /// Reads the storage, if there are any match with the key, it returns
   /// the value of it. If there are no match, it will return null.
@@ -81,16 +83,6 @@ class _OkitoStorage extends ImplOkitoStorage {
   /// OkitoStorage.write<String>('myName','Okito');
   /// ```
   @override
-  void writeIfNull<T>(String key, T value) => super.writeIfNull(key, value);
-
-  /// Writes a value to the storage with a key if the key's value is null.
-  ///
-  /// Usage
-  ///
-  /// ```dart
-  /// OkitoStorage.write<String>('myName','Okito');
-  /// ```
-  @override
   void removeKey<T>(String key) => super.removeKey(key);
 
   /// Deletes all keys and values from the storage, the file
@@ -103,5 +95,14 @@ class _OkitoStorage extends ImplOkitoStorage {
   void deleteStorage() => super.deleteStorage();
 }
 
+/// [OkitoStorage] is a local storage implementation for [Okito].
+///
+/// Main methods are [OkitoStorage.read()] and [OkitoStorage.write(key, value)]
+///
+/// To use it, you should add this line to your main function.
+///
+/// ```dart
+/// await OkitoStorage.init();
+/// ```
 // ignore: non_constant_identifier_names
 _OkitoStorage OkitoStorage = _OkitoStorage();
