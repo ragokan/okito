@@ -5,7 +5,12 @@ import '../utilities/constants.dart';
 import 'okito_utilities/index.dart';
 
 class _Okito
-    with OkitoWidgets, OkitoDevice, OkitoRouting, OkitoDependencyInjection {
+    with
+        OkitoWidgets,
+        OkitoDevice,
+        OkitoRouting,
+        OkitoDependencyInjection,
+        OkitoFunctions {
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
