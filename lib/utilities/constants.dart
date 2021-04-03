@@ -11,3 +11,12 @@ const String nullException = '''
         
       If you did and still got an error, please create a github issue.
     ''';
+
+/// It is the exception that if the develop didn't provide a controller.
+const String dynamicInjectedException = '''
+      You should provide a controller that is already 'injected'
+      to the storage. For example;
+      Okito.inject(CounterController());
+
+      Rockito<CounterCountroller>((controller) => /* Code Here */);
+    ''';

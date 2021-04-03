@@ -13,10 +13,6 @@
 
 ## Features
 
-```dart
-import 'package:okito/okito.dart'; // You should add this import first.
-```
-
 - [State Management](#state-management)
   - [Create Controller](#create-controller)
   - [Use Controller](#use-controller)
@@ -26,6 +22,9 @@ import 'package:okito/okito.dart'; // You should add this import first.
 - [Local Storage](#local-storage)
 - [Extensions](#extensions)
 - [Dependency Injection](#dependency-injection)
+
+## Contents
+
 - [Tips](#tips)
   - [Cleaner Widgets](#cleaner-widgets)
   - [Update State](#update-state)

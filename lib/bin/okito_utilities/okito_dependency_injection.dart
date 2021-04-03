@@ -20,7 +20,6 @@ mixin OkitoDependencyInjection {
   /// ```
   T inject<T>(T dependency) {
     _dependencies.add(dependency);
-
     return dependency;
   }
 
