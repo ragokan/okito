@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../okito_instance.dart';
 import '../okito_utilities/okito_observer.dart';
 
+/// [OkitoCupertinoApp] is the replacement of [CupertinoApp] to use
+/// all of [Okito] features in your app!
 class OkitoCupertinoApp extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey = Okito.navigatorKey;
   final List<NavigatorObserver> navigatorObservers = <NavigatorObserver>[

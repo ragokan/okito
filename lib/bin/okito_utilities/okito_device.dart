@@ -28,4 +28,10 @@ mixin OkitoDevice {
   ///  be a power of two. Indeed, it might not even be an integer. For example,
   ///  the Nexus 6 has a device pixel ratio of 3.5.
   double? get devicePixelRatio => context?.devicePixelRatio;
+
+  /// Returns true if the device is *android*.
+  bool get isAndroid => Theme.of(context!).platform == TargetPlatform.android;
+
+  /// Returns true if the device is *iOS*.
+  bool get isIos => Theme.of(context!).platform == TargetPlatform.iOS;
 }

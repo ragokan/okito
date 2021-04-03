@@ -1,12 +1,16 @@
 # okito
-## The simplest state management solution ever, at least I think so. It depends on nothing, works really fast with minimum code usage.
+## Your best coding friend. State management, navigation management, storage management with best usages and with the support of best utilities! 
 [![pub points](https://badges.bar/okito/pub%20points)](https://pub.dev/packages/okito/score)
 [![likes](https://badges.bar/okito/likes)](https://pub.dev/packages/okito/score)
 [![popularity](https://badges.bar/okito/popularity)](https://pub.dev/packages/okito/score)
 [![pub version](https://img.shields.io/pub/v/okito)](https://pub.dev/packages/okito)
 [![GitHub last commit](https://img.shields.io/github/last-commit/ragokan/okito)](https://github.com/ragokan/okito)
-### With okito, you don't need to wrap your material app for state management, you don't need any complex libraries and most importantly your don't need context to have a state or update state. For the state management purposes, it is as small as it can be. The aim is reducing the size and dependency usage as much as possible. Basically the state management has only what it needs, nothing more, nothing less!
 
+### For the state management purposes, it is as small as it can be. The aim is reducing the size and dependency usage as much as possible. Basically the state management has only what it needs, nothing more, nothing less!
+
+### Routing, showing snackbars/dialogs/bottommodal without context and from anywhere such as controller with the least amount of code!
+
+### Having access to the local device storage in any device, even in web with same code. Moreover, it is one of the fastest libraries to do it!
 &nbsp;
 
 ## Content
@@ -18,7 +22,7 @@ import 'package:okito/okito.dart'; // You should add this import first.
     - [Use Controller](#use-controller)
     - [Update Controller](#update-controller)
     - [Watch Controller](#watch-controller)
-- [Utilities + Routing](#utilities)
+- [Utilities + Navigation](#utilities)
 - [Local Storage](#local-storage)
 - [Extensions](#extensions)
 - [Tips](#tips)
@@ -31,6 +35,17 @@ import 'package:okito/okito.dart'; // You should add this import first.
 # State Management
 
 #### Create Controller
+
+Q: What should I do to make it work?  
+A: Just create a regular class and extend *OkitoController*, if you want to change the state, call update() or setState()
+
+Q: How does these methods notify the state?  
+A: They have a conversation between themselves, whenever you call these methods, the notifier checks all the builders, if they are watching, they will be re-built. So the scheme is;  
+
+Model -> Controller -> Model  
+View -> Controller -> View  
+The controller is the root of them.
+
 ```dart
 class CounterController extends OkitoController {
   int count = 0;
@@ -99,6 +114,8 @@ OkitoBuilder(
 ```
 
 # Utilities
+### Navigation and using widgets without context.
+
 ### Firstly, we should wrap our app with Okito or provide Okito
 ```dart
 // Basically, you should add *Okito* to the beginning of your app or provide key/observers manually.
@@ -145,7 +162,7 @@ Okito.routeName;
 # Local Storage
 ### *OkitoStorage* is a way to save variables to the local storage.
 ### It works like SharedPereferences but it is synchronous or GetStorage.
-#### *OkitoStorage* is blazingly fast because in read operations, it uses memory to get data instead of reading from disk everytime!
+#### *OkitoStorage* is blazingly fast because in read operations it uses memory to get data instead of reading from disk everytime!
 
 ```dart
 // To use, you should init the storage, it is not required for web but required for all other platforms.
@@ -213,6 +230,7 @@ OkitoBuilder(
 
 # Extensions
 ```dart
+// Context Extensions
 context.width;
 context.height;
 context.aspectRatio;

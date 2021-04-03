@@ -5,12 +5,20 @@ final flutterDialog = showDialog;
 mixin OkitoWidgets {
   BuildContext? get context;
 
-  /// Shows a [SnackBar] across all registered [Scaffold]s.
-  void showToast(
-      {required String content, Duration? duration, SnackBarAction? action}) {
+  /// Shows a [SnackBar] across all registered [Scaffold]s but instead of
+  /// [SnackBar] widget, you can just give it a string.
+  void showToast({
+    required String text,
+    Duration? duration,
+    SnackBarAction? action,
+    TextStyle? textStyle,
+  }) {
     ScaffoldMessenger.of(context!).showSnackBar(
       SnackBar(
-        content: Text(content),
+        content: Text(
+          text,
+          style: textStyle,
+        ),
         duration: duration ?? const Duration(seconds: 5),
         action: action,
       ),

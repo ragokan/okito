@@ -1,3 +1,5 @@
+/// It is the reqular null exception that I throw in routing if the
+/// developer didn't use one of below examples.
 const String nullException = '''
       If you want to use [context] in your app just like this, you have to
       use one of these; 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../okito_instance.dart';
 import '../okito_utilities/okito_observer.dart';
 
+/// [OkitoMaterialApp] is the replacement of [MaterialApp] to use
+/// all of [Okito] features in your app!
 class OkitoMaterialApp extends StatelessWidget {
   OkitoMaterialApp(
       {Key? key,

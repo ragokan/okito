@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'okito_utilities/constants.dart';
 import 'okito_utilities/index.dart';
-import 'okito_utilities/null_exception.dart';
 
 class _Okito with OkitoWidgets, OkitoDevice, OkitoRouting {
   @override
@@ -17,7 +17,7 @@ class _Okito with OkitoWidgets, OkitoDevice, OkitoRouting {
     return navigatorKey.currentContext;
   }
 
-  String? currentRoute;
+  String? routeName;
   Object? arguments;
 }
 

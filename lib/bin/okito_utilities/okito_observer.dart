@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../okito.dart';
 
+/// Observer is the way
 class OkitoObserver extends NavigatorObserver {
   void _setVariables(Route? newRoute) {
-    Okito.currentRoute = newRoute?.settings.name;
-    Okito.arguments = newRoute?.settings.arguments;
+    Okito.routeName = newRoute?.settings.name ?? Okito.context?.routeName;
+    Okito.arguments = newRoute?.settings.arguments ?? Okito.context?.arguments;
   }
 
   @override
