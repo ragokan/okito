@@ -1,5 +1,7 @@
 # okito
-## Your best coding friend. State management, navigation management, storage management with best usages and with the support of best utilities! 
+
+## Your best coding friend. State management, navigation management, storage management with best usages and with the support of best utilities!
+
 [![pub points](https://badges.bar/okito/pub%20points)](https://pub.dev/packages/okito/score)
 [![likes](https://badges.bar/okito/likes)](https://pub.dev/packages/okito/score)
 [![popularity](https://badges.bar/okito/popularity)](https://pub.dev/packages/okito/score)
@@ -11,36 +13,40 @@
 ### Routing, showing snackbars/dialogs/bottommodal without context and from anywhere such as controller with the least amount of code!
 
 ### Having access to the local device storage in any device, even in web with same code. Moreover, it is one of the fastest libraries to do it!
+
 &nbsp;
 
 ## Content
+
 ```dart
 import 'package:okito/okito.dart'; // You should add this import first.
 ```
+
 - [State Management](#state-management)
-    - [Create Controller](#create-controller)
-    - [Use Controller](#use-controller)
-    - [Update Controller](#update-controller)
-    - [Watch Controller](#watch-controller)
+  - [Create Controller](#create-controller)
+  - [Use Controller](#use-controller)
+  - [Update Controller](#update-controller)
+  - [Watch Controller](#watch-controller)
 - [Utilities + Navigation](#utilities)
 - [Local Storage](#local-storage)
 - [Extensions](#extensions)
 - [Tips](#tips)
-    - [Cleaner Widgets](#cleaner-widgets)
-    - [Update State](#update-state)
+  - [Cleaner Widgets](#cleaner-widgets)
+  - [Update State](#update-state)
 - [Examples](#examples)
 - [How to contribute okito](#how-to-contribute-okito)
 
 &nbsp;
+
 # State Management
 
 #### Create Controller
 
 Q: What should I do to make it work?  
-A: Just create a regular class and extend *OkitoController*, if you want to change the state, call update() or setState()
+A: Just create a regular class and extend _OkitoController_, if you want to change the state, call update() or setState()
 
 Q: How does these methods notify the state?  
-A: They have a conversation between themselves, whenever you call these methods, the notifier checks all the builders, if they are watching, they will be re-built. So the scheme is;  
+A: They have a conversation between themselves, whenever you call these methods, the notifier checks all the builders, if they are watching, they will be re-built. So the scheme is;
 
 Model -> Controller -> Model  
 View -> Controller -> View  
@@ -62,7 +68,9 @@ CounterController counterController = CounterController();
 ```
 
 ---
+
 #### Use Controller
+
 ```dart
 // That simple!
 OkitoBuilder(
@@ -72,7 +80,9 @@ OkitoBuilder(
 ```
 
 ---
+
 #### Update Controller
+
 ```dart
     main(){
         // You can change state from anywhere without context!
@@ -93,7 +103,9 @@ OkitoBuilder(
 ```
 
 ---
+
 #### Watch Controller
+
 ```dart
     OkitoWatcher(
     watch: counterController,
@@ -114,9 +126,11 @@ OkitoBuilder(
 ```
 
 # Utilities
+
 ### Navigation and using widgets without context.
 
 ### Firstly, we should wrap our app with Okito or provide Okito
+
 ```dart
 // Basically, you should add *Okito* to the beginning of your app or provide key/observers manually.
 
@@ -131,11 +145,12 @@ Material/CupertinoApp(
     navigatorObservers: [OkitoObserver()]);
 ```
 
-Then you can use all of Okito Benefits!
--
-*All of the properities has same usages with its long usage*
+## Then you can use all of Okito Benefits!
 
-*For example: Okito.pushNamed('/secondPage') = Navigator.of(context).pushNamed('secondPage')*
+_All of the properities has same usages with its long usage_
+
+_For example: Okito.pushNamed('/secondPage') = Navigator.of(context).pushNamed('secondPage')_
+
 ```dart
 Okito.width;
 Okito.height;
@@ -160,9 +175,12 @@ Okito.routeName;
 ```
 
 # Local Storage
-### *OkitoStorage* is a way to save variables to the local storage.
+
+### _OkitoStorage_ is a way to save variables to the local storage.
+
 ### It works like SharedPereferences but it is synchronous or GetStorage.
-#### *OkitoStorage* is blazingly fast because in read operations it uses memory to get data instead of reading from disk everytime!
+
+#### _OkitoStorage_ is blazingly fast because in read operations it uses memory to get data instead of reading from disk everytime!
 
 ```dart
 // To use, you should init the storage, it is not required for web but required for all other platforms.
@@ -184,18 +202,20 @@ void main() async{
   // Rest of your code will be here.
 }
 ```
+
 Other Usages
+
 ```dart
-  box.watchKey('count', () => 
+  box.watchKey('count', () =>
     print('This function will be called whenever the count changes.');
   );
 
-  box.watchAll(() => 
+  box.watchAll(() =>
     print('This function will be called whenever the storage changes.');
   );
 
   box.removeKey('count'); // Removes the key
-  
+
   box.readAllKeys(); // returns all keys in storage
 
   box.readAllValues(); // returns all values in storage
@@ -208,6 +228,7 @@ Other Usages
 ```
 
 ### Watch OkitoStorage With OkitoBuilder
+
 ```dart
 // Check the example/flutter_okito_storage/lib/main.dart for more examples!
 
@@ -220,6 +241,7 @@ OkitoBuilder(
 ```
 
 #### Benefits Of OkitoStorage
+
 - Really fast
 - You can watch the changes from anywhere, even in your builders.
 - It is synchronous, so you don't have to use 'await' keyword.
@@ -229,6 +251,7 @@ OkitoBuilder(
 #### OkitoStorage is reliable but be careful when using it as database, because it is not created to be database. For complex works, you can try Hive!
 
 # Extensions
+
 ```dart
 // Context Extensions
 context.width;
@@ -245,6 +268,7 @@ context.routeName;
 # Tips
 
 #### Cleaner Widgets
+
 ```dart
 // In your widgets folder or any other folder, declare builder.
 OkitoBuilder CounterBuilder({
@@ -260,6 +284,7 @@ CounterBuilder(builder: () => Text('${counterController.count}'));
 ```
 
 My Favorite Way
+
 ```dart
 OkitoBuilder CounterBuilder({
   required Widget Function(CounterController state) builder,
@@ -273,9 +298,10 @@ OkitoBuilder CounterBuilder({
 CounterBuilder(builder: (state) => Text('${state.count}'));
 ```
 
-
 ---
+
 #### Update State
+
 ```dart
 class CounterController extends OkitoController {
   int _count = 0;
@@ -291,11 +317,12 @@ class CounterController extends OkitoController {
 ```
 
 # Examples
+
 - [Counter Example](https://github.com/ragokan/okito/blob/master/example/flutter_counter/lib/main.dart)
 - [To Do Example](https://github.com/ragokan/to_do)
 
-
 # How to contribute okito
+
 - okito needs tests.
 - okito needs more examples.
 - okito needs a better readme file :D

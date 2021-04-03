@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                   child: const Text('Show Dialog')),
               const SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () => Okito.showToast(content: 'Okito Toast'),
+                onPressed: () => Okito.showToast(text: 'Okito Toast'),
                 child: const Text('Show Dialog'),
               ),
             ],

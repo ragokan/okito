@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'okito_utilities/constants.dart';
+import '../utilities/constants.dart';
 import 'okito_utilities/index.dart';
 
-class _Okito with OkitoWidgets, OkitoDevice, OkitoRouting {
+class _Okito
+    with OkitoWidgets, OkitoDevice, OkitoRouting, OkitoDependencyInjection {
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

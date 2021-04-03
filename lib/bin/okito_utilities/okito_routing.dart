@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import '../../utilities/constants.dart';
 
 mixin OkitoRouting {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
