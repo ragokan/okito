@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../extensions/context_extensions.dart';
+import '../okito_extensions/context_extensions.dart';
 
 mixin OkitoDevice {
   BuildContext? get context;
