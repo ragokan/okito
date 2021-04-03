@@ -38,6 +38,8 @@ class OkitoCupertinoApp extends StatelessWidget {
   final bool showSemanticsDebugger;
   final bool debugShowCheckedModeBanner;
   final Map<Type, Action<Intent>>? actions;
+  final String? restorationScopeId;
+  final Map<LogicalKeySet, Intent>? shortcuts;
   OkitoCupertinoApp({
     Key? key,
     this.home,
@@ -52,26 +54,30 @@ class OkitoCupertinoApp extends StatelessWidget {
     this.routerDelegate,
     this.backButtonDispatcher,
     this.builder,
-    required this.title,
+    this.title = 'OkitoCupertinoApp',
     this.onGenerateTitle,
     this.color,
     this.locale,
     this.localizationsDelegates,
     this.localeListResolutionCallback,
     this.localeResolutionCallback,
-    required this.supportedLocales,
-    required this.showPerformanceOverlay,
-    required this.checkerboardRasterCacheImages,
-    required this.checkerboardOffscreenLayers,
-    required this.showSemanticsDebugger,
-    required this.debugShowCheckedModeBanner,
+    this.supportedLocales = const <Locale>[Locale('en', 'US')],
+    this.showPerformanceOverlay = false,
+    this.checkerboardRasterCacheImages = false,
+    this.checkerboardOffscreenLayers = false,
+    this.showSemanticsDebugger = false,
+    this.debugShowCheckedModeBanner = true,
     this.actions,
+    this.restorationScopeId,
+    this.shortcuts,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext ctx) {
     return routerDelegate == null
         ? CupertinoApp(
+            restorationScopeId: restorationScopeId,
+            shortcuts: shortcuts,
             theme: theme,
             navigatorKey: navigatorKey,
             actions: actions,
@@ -100,6 +106,10 @@ class OkitoCupertinoApp extends StatelessWidget {
             title: title,
           )
         : CupertinoApp.router(
+            shortcuts: shortcuts,
+            restorationScopeId: restorationScopeId,
+            backButtonDispatcher: backButtonDispatcher,
+            routeInformationProvider: routeInformationProvider,
             theme: theme,
             actions: actions,
             builder: (context, child) =>

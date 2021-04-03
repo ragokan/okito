@@ -32,4 +32,4 @@ class _Okito
 /// This class has shortcuts for routing, small utilities of context like
 /// size of the device and has usage with widgets like show bottom modal sheet.
 // ignore: non_constant_identifier_names
-_Okito Okito = _Okito();
+final _Okito Okito = _Okito();

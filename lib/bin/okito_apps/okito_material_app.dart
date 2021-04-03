@@ -121,6 +121,8 @@ class OkitoMaterialApp extends StatelessWidget {
             title: title,
           )
         : MaterialApp.router(
+            backButtonDispatcher: backButtonDispatcher,
+            routeInformationProvider: routeInformationProvider,
             actions: actions,
             builder: (context, child) =>
                 builder == null ? child! : builder!(context, child),

@@ -161,4 +161,4 @@ class _OkitoStorage extends ImplOkitoStorage {
 /// await OkitoStorage.init();
 /// ```
 // ignore: non_constant_identifier_names
-_OkitoStorage OkitoStorage = _OkitoStorage();
+final _OkitoStorage OkitoStorage = _OkitoStorage();
