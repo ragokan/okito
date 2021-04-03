@@ -1,22 +1,17 @@
 # okito
 
-## Your best coding friend. State management, navigation management, storage management with best usages and with the support of best utilities!
+## Your best coding friend. State management, navigation management, local storage, dependency injection, cool extensions with best usages and with the support of best utilities!
 
 [![pub points](https://badges.bar/okito/pub%20points)](https://pub.dev/packages/okito/score)
 [![likes](https://badges.bar/okito/likes)](https://pub.dev/packages/okito/score)
 [![popularity](https://badges.bar/okito/popularity)](https://pub.dev/packages/okito/score)
+[![GitHub Repo stars](https://img.shields.io/github/stars/ragokan/okito?label=github%20stars)](https://github.com/ragokan/okito)
 [![pub version](https://img.shields.io/pub/v/okito)](https://pub.dev/packages/okito)
 [![GitHub last commit](https://img.shields.io/github/last-commit/ragokan/okito)](https://github.com/ragokan/okito)
 
-### For the state management purposes, it is as small as it can be. The aim is reducing the size and dependency usage as much as possible. Basically the state management has only what it needs, nothing more, nothing less!
-
-### Routing, showing snackbars/dialogs/bottommodal without context and from anywhere such as controller with the least amount of code!
-
-### Having access to the local device storage in any device, even in web with same code. Moreover, it is one of the fastest libraries to do it!
-
 &nbsp;
 
-## Content
+## Features
 
 ```dart
 import 'package:okito/okito.dart'; // You should add this import first.
@@ -30,6 +25,7 @@ import 'package:okito/okito.dart'; // You should add this import first.
 - [Utilities + Navigation](#utilities)
 - [Local Storage](#local-storage)
 - [Extensions](#extensions)
+- [Dependency Injection](#dependency-injection)
 - [Tips](#tips)
   - [Cleaner Widgets](#cleaner-widgets)
   - [Update State](#update-state)
@@ -264,6 +260,34 @@ context.theme;
 context.arguments;
 context.routeName;
 ```
+
+# Dependency Injection
+
+### Dependency injection is your way to inject variables to the _Okito_ and use it anywhere in your app. With _Okito_, it is as simple as it can be!
+
+```dart
+// Example Variable
+class Counter(){
+  count = 0;
+}
+
+// Inject it
+Okito.inject(Counter());
+
+
+// Use it anywhere!
+Okito.take<Counter>();
+
+// Asign it with type support!
+final counter = Okito.take<Counter>();
+
+// Update however you want
+counter.count++;
+// or
+Okito.take<Counter>().count++;
+```
+
+#### For more details, check the tests or examples about it!
 
 # Tips
 
