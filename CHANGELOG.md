@@ -1,3 +1,8 @@
+## 1.0.7
+
+- Rockitos: A way to use state management with dependency injection!
+- As usual, more examples, more tests, new extensions.
+
 ## 1.0.6
 
 - Dependency injection.
