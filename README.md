@@ -18,6 +18,7 @@
   - [Use Controller](#use-controller)
   - [Update Controller](#update-controller)
   - [Watch Controller](#watch-controller)
+  - [Rockitos](#rockitos)
 - [Utilities + Navigation](#utilities)
 - [Local Storage](#local-storage)
 - [Extensions](#extensions)
@@ -118,6 +119,32 @@ OkitoBuilder(
   final stopWatching = OkitoWatcher(/* code here */);
   // do what you want to do while watching, then:
   stopWatching();
+```
+
+#### Rockitos
+
+Rockitos are our way to use state management with dependency injection!  
+If you don't know what is dependency injection, read [Dependency Injection Guide](#dependency-injection) first.
+
+```dart
+// Rockito - My favorite vay to use Okito state.
+
+Rockito<CounterController>(
+  (controller) => Text('${controller.count}')
+);
+// Isn't it  simple ?
+// To use _Rockito_, you should first inject the CounterController.
+
+Okito.inject(CounterController);
+```
+
+```dart
+// RockitoBuilder - Rockito but with more features and builder!
+  RockitoBuilder<CounterController>(
+    inject: CounterController(), // optionally, if you didn't inject it yet.
+    builder: (controller) => Text('${controller.count}'),
+    // You can use all of OkitoBuilder features here like otherControllers and etc.
+  );
 ```
 
 # Utilities
