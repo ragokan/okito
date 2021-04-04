@@ -6,9 +6,9 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return OkitoMaterialApp(
+    return const OkitoMaterialApp(
       title: 'Material App',
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
