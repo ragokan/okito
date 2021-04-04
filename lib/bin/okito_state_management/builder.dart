@@ -85,6 +85,7 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
   _OkitoBuilderState createState() => _OkitoBuilderState();
 }
 
+// check if mounted or not
 class _OkitoBuilderState extends State<OkitoBuilder> {
   List<Function> unmountFunctions = [];
 
@@ -129,6 +130,9 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
     unmountFunctions.forEach((unmount) => unmount());
   }
 
+  int count = 0;
   @override
-  Widget build(_) => widget.builder();
+  Widget build(_) {
+    return widget.builder();
+  }
 }

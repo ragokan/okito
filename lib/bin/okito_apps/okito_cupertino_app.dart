@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../okito.dart';
 import '../okito_instance.dart';
 import '../okito_utilities/okito_observer.dart';
+import 'okito_app_controller.dart';
 
 /// [OkitoCupertinoApp] is the replacement of [CupertinoApp] to use
 /// all of [Okito] features in your app!
@@ -73,63 +75,63 @@ class OkitoCupertinoApp extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext ctx) {
-    return routerDelegate == null
-        ? CupertinoApp(
-            restorationScopeId: restorationScopeId,
-            shortcuts: shortcuts,
-            theme: theme,
-            navigatorKey: navigatorKey,
-            actions: actions,
-            builder: (context, child) =>
-                builder == null ? child! : builder!(context, child),
-            color: color,
-            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-            home: home,
-            initialRoute: initialRoute,
-            key: key,
-            locale: locale,
-            localeListResolutionCallback: localeListResolutionCallback,
-            localeResolutionCallback: localeResolutionCallback,
-            checkerboardOffscreenLayers: checkerboardOffscreenLayers,
-            checkerboardRasterCacheImages: checkerboardRasterCacheImages,
-            localizationsDelegates: localizationsDelegates,
-            navigatorObservers: navigatorObservers,
-            onGenerateInitialRoutes: onGenerateInitialRoutes,
-            onGenerateRoute: onGenerateRoute,
-            onGenerateTitle: onGenerateTitle,
-            onUnknownRoute: onUnknownRoute,
-            routes: routes ?? const <String, WidgetBuilder>{},
-            showPerformanceOverlay: showPerformanceOverlay,
-            showSemanticsDebugger: showSemanticsDebugger,
-            supportedLocales: supportedLocales,
-            title: title,
-          )
-        : CupertinoApp.router(
-            shortcuts: shortcuts,
-            restorationScopeId: restorationScopeId,
-            backButtonDispatcher: backButtonDispatcher,
-            routeInformationProvider: routeInformationProvider,
-            theme: theme,
-            actions: actions,
-            builder: (context, child) =>
-                builder == null ? child! : builder!(context, child),
-            routerDelegate: routerDelegate!,
-            routeInformationParser: routeInformationParser!,
-            color: color,
-            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-            key: key,
-            locale: locale,
-            localeListResolutionCallback: localeListResolutionCallback,
-            localeResolutionCallback: localeResolutionCallback,
-            checkerboardOffscreenLayers: checkerboardOffscreenLayers,
-            checkerboardRasterCacheImages: checkerboardRasterCacheImages,
-            localizationsDelegates: localizationsDelegates,
-            onGenerateTitle: onGenerateTitle,
-            showPerformanceOverlay: showPerformanceOverlay,
-            showSemanticsDebugger: showSemanticsDebugger,
-            supportedLocales: supportedLocales,
-            title: title,
-          );
-  }
+  Widget build(BuildContext ctx) => RockitoBuilder<OkitoAppController>(
+      inject: OkitoAppController(),
+      builder: (_) => routerDelegate == null
+          ? CupertinoApp(
+              restorationScopeId: restorationScopeId,
+              shortcuts: shortcuts,
+              theme: theme,
+              navigatorKey: navigatorKey,
+              actions: actions,
+              builder: (context, child) =>
+                  builder == null ? child! : builder!(context, child),
+              color: color,
+              debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+              home: home,
+              initialRoute: initialRoute,
+              key: key,
+              locale: locale,
+              localeListResolutionCallback: localeListResolutionCallback,
+              localeResolutionCallback: localeResolutionCallback,
+              checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+              checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+              localizationsDelegates: localizationsDelegates,
+              navigatorObservers: navigatorObservers,
+              onGenerateInitialRoutes: onGenerateInitialRoutes,
+              onGenerateRoute: onGenerateRoute,
+              onGenerateTitle: onGenerateTitle,
+              onUnknownRoute: onUnknownRoute,
+              routes: routes ?? const <String, WidgetBuilder>{},
+              showPerformanceOverlay: showPerformanceOverlay,
+              showSemanticsDebugger: showSemanticsDebugger,
+              supportedLocales: supportedLocales,
+              title: title,
+            )
+          : CupertinoApp.router(
+              shortcuts: shortcuts,
+              restorationScopeId: restorationScopeId,
+              backButtonDispatcher: backButtonDispatcher,
+              routeInformationProvider: routeInformationProvider,
+              theme: theme,
+              actions: actions,
+              builder: (context, child) =>
+                  builder == null ? child! : builder!(context, child),
+              routerDelegate: routerDelegate!,
+              routeInformationParser: routeInformationParser!,
+              color: color,
+              debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+              key: key,
+              locale: locale,
+              localeListResolutionCallback: localeListResolutionCallback,
+              localeResolutionCallback: localeResolutionCallback,
+              checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+              checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+              localizationsDelegates: localizationsDelegates,
+              onGenerateTitle: onGenerateTitle,
+              showPerformanceOverlay: showPerformanceOverlay,
+              showSemanticsDebugger: showSemanticsDebugger,
+              supportedLocales: supportedLocales,
+              title: title,
+            ));
 }
