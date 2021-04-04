@@ -1,3 +1,3 @@
 import '../../okito.dart';
 
-class OkitoAppController extends OkitoController {}
+class AppController extends OkitoController {}

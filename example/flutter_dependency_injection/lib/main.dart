@@ -20,7 +20,7 @@ void main() {
 class CounterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final counterController = Okito.take<CounterController>();
+    final counterController = Okito.use<CounterController>();
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
@@ -62,9 +62,9 @@ class OtherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OkitoBuilder(
-      controller: Okito.take<CounterController>(),
+      controller: Okito.use<CounterController>(),
       builder: () =>
-          Text('Second widget: ${Okito.take<CounterController>().count}'),
+          Text('Second widget: ${Okito.use<CounterController>().count}'),
     );
   }
 }

@@ -85,8 +85,8 @@ class OkitoMaterialApp extends StatelessWidget {
   final bool checkerboardOffscreenLayers;
 
   @override
-  Widget build(BuildContext ctx) => RockitoBuilder<OkitoAppController>(
-        inject: OkitoAppController(),
+  Widget build(BuildContext ctx) => RockitoBuilder<AppController>(
+        inject: AppController(),
         builder: (_) => routerDelegate == null
             ? MaterialApp(
                 navigatorKey: navigatorKey,

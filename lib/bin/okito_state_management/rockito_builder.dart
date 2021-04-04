@@ -28,7 +28,7 @@ Widget RockitoBuilder<T extends OkitoController>({
 }) {
   if (inject != null) Okito.inject(inject);
 
-  final controller = Okito.take<T>();
+  final controller = Okito.use<T>();
   return OkitoBuilder(
     controller: controller,
     watchAllStorageKeys: watchAllStorageKeys,

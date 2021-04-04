@@ -304,15 +304,15 @@ Okito.inject(Counter());
 
 
 // Use it anywhere!
-Okito.take<Counter>();
+Okito.use<Counter>();
 
 // Asign it with type support!
-final counter = Okito.take<Counter>();
+final counter = Okito.use<Counter>();
 
 // Update however you want
 counter.count++;
 // or
-Okito.take<Counter>().count++;
+Okito.use<Counter>().count++;
 ```
 
 #### For more details, check the tests or examples about it!

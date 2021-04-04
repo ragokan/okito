@@ -34,13 +34,13 @@ class CounterApp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: Okito.take<CounterController>().increment,
+                  onPressed: Okito.use<CounterController>().increment,
                   child: const Text('Increment'),
                 ),
                 OtherWidget(),
                 ElevatedButton(
-                  onPressed: () => Okito.take<CounterController>()
-                      .setState(() => Okito.take<CounterController>().count--),
+                  onPressed: () => Okito.use<CounterController>()
+                      .setState(() => Okito.use<CounterController>().count--),
                   child: const Text('Decrement'),
                 ),
               ],

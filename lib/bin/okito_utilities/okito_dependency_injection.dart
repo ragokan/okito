@@ -6,7 +6,7 @@ mixin OkitoDependencyInjection {
   final Set _dependencies = <dynamic>{};
 
   /// Injects the dependency to the [Okito], so that you can use it
-  /// with [take] function.
+  /// with [use] function.
   ///
   /// It also returns the dependency, so you can directly use it.
   ///
@@ -16,7 +16,7 @@ mixin OkitoDependencyInjection {
   ///
   /// // or
   /// Okito.inject(Counter());
-  /// Okito.take<Counter>().count++;
+  /// Okito.use<Counter>().count++;
   /// ```
   T inject<T>(T dependency) {
     _dependencies.add(dependency);
@@ -26,17 +26,17 @@ mixin OkitoDependencyInjection {
   /// Returns the dependency that is injected before with [inject] function.
   ///
   /// ```dart
-  /// Okito.take<Counter>().count++;
+  /// Okito.use<Counter>().count++;
   /// ```
   ///
-  /// If you are going to use [take] function multiple times in your code,
+  /// If you are going to use [use] function multiple times in your code,
   /// it is best to assign it to a variable.
   /// ```dart
-  /// final counter = Okito.take<Counter>();
+  /// final counter = Okito.use<Counter>();
   /// counter.count++;
   /// counter.count--;
   /// ```
-  T take<T>() => _dependencies.firstWhere(
+  T use<T>() => _dependencies.firstWhere(
       (dependency) => dependency.runtimeType.toString() == T.toString(),
       orElse: () => throw Exception('''
       You have to declare a variable to use [use] function.

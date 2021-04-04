@@ -75,8 +75,8 @@ class OkitoCupertinoApp extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext ctx) => RockitoBuilder<OkitoAppController>(
-      inject: OkitoAppController(),
+  Widget build(BuildContext ctx) => RockitoBuilder<AppController>(
+      inject: AppController(),
       builder: (_) => routerDelegate == null
           ? CupertinoApp(
               restorationScopeId: restorationScopeId,
