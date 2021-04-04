@@ -32,7 +32,7 @@ class AppController extends OkitoController {
 
   // Both
   /// Returns [locale] of your app.
-  Locale locale = const Locale('en', 'UK');
+  Locale? locale;
 
   /// Updates the current [locale] of your app, then re-builds your app, so that
   /// your changes will be seen in the screen. If you don't want a re-build, you
