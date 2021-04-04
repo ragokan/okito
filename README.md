@@ -9,6 +9,8 @@
 [![pub version](https://img.shields.io/pub/v/okito)](https://pub.dev/packages/okito)
 [![GitHub last commit](https://img.shields.io/github/last-commit/ragokan/okito)](https://github.com/ragokan/okito)
 
+### [Click here to join discord community channel](https://discord.gg/2pg7B73U8j)
+
 &nbsp;
 
 ## Features
