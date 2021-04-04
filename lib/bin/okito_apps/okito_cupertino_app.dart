@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../okito.dart';
 import '../okito_instance.dart';
 import '../okito_utilities/okito_observer.dart';
-import 'okito_app_controller.dart';
+import 'app_controller.dart';
 
 /// [OkitoCupertinoApp] is the replacement of [CupertinoApp] to use
 /// all of [Okito] features in your app!
@@ -77,11 +77,11 @@ class OkitoCupertinoApp extends StatelessWidget {
   @override
   Widget build(BuildContext ctx) => RockitoBuilder<AppController>(
       inject: AppController(),
-      builder: (_) => routerDelegate == null
+      builder: (app) => routerDelegate == null
           ? CupertinoApp(
               restorationScopeId: restorationScopeId,
               shortcuts: shortcuts,
-              theme: theme,
+              theme: app.cupertinoThemeData,
               navigatorKey: navigatorKey,
               actions: actions,
               builder: (context, child) =>
@@ -91,7 +91,7 @@ class OkitoCupertinoApp extends StatelessWidget {
               home: home,
               initialRoute: initialRoute,
               key: key,
-              locale: locale,
+              locale: app.locale ?? locale,
               localeListResolutionCallback: localeListResolutionCallback,
               localeResolutionCallback: localeResolutionCallback,
               checkerboardOffscreenLayers: checkerboardOffscreenLayers,
@@ -113,7 +113,7 @@ class OkitoCupertinoApp extends StatelessWidget {
               restorationScopeId: restorationScopeId,
               backButtonDispatcher: backButtonDispatcher,
               routeInformationProvider: routeInformationProvider,
-              theme: theme,
+              theme: app.cupertinoThemeData,
               actions: actions,
               builder: (context, child) =>
                   builder == null ? child! : builder!(context, child),
@@ -122,7 +122,7 @@ class OkitoCupertinoApp extends StatelessWidget {
               color: color,
               debugShowCheckedModeBanner: debugShowCheckedModeBanner,
               key: key,
-              locale: locale,
+              locale: app.locale ?? locale,
               localeListResolutionCallback: localeListResolutionCallback,
               localeResolutionCallback: localeResolutionCallback,
               checkerboardOffscreenLayers: checkerboardOffscreenLayers,

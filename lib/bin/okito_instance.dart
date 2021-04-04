@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import '../okito.dart';
 
 import '../utilities/constants.dart';
 import 'okito_utilities/index.dart';
@@ -25,6 +26,8 @@ class _Okito
 
   String? routeName;
   Object? arguments;
+
+  AppController get app => use<AppController>();
 }
 
 /// The root of [Okito] library's utilities.

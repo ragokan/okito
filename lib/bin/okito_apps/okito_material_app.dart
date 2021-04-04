@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../okito.dart';
 import '../okito_instance.dart';
 import '../okito_utilities/okito_observer.dart';
-import 'okito_app_controller.dart';
+import 'app_controller.dart';
 
 /// [OkitoMaterialApp] is the replacement of [MaterialApp] to use
 /// all of [Okito] features in your app!
@@ -87,7 +87,7 @@ class OkitoMaterialApp extends StatelessWidget {
   @override
   Widget build(BuildContext ctx) => RockitoBuilder<AppController>(
         inject: AppController(),
-        builder: (_) => routerDelegate == null
+        builder: (app) => routerDelegate == null
             ? MaterialApp(
                 navigatorKey: navigatorKey,
                 actions: actions,
@@ -102,7 +102,7 @@ class OkitoMaterialApp extends StatelessWidget {
                 home: home,
                 initialRoute: initialRoute,
                 key: key,
-                locale: locale,
+                locale: app.locale ?? locale,
                 localeListResolutionCallback: localeListResolutionCallback,
                 localeResolutionCallback: localeResolutionCallback,
                 checkerboardOffscreenLayers: checkerboardOffscreenLayers,
@@ -120,8 +120,8 @@ class OkitoMaterialApp extends StatelessWidget {
                 showPerformanceOverlay: showPerformanceOverlay,
                 showSemanticsDebugger: showSemanticsDebugger,
                 supportedLocales: supportedLocales,
-                theme: theme,
-                themeMode: themeMode,
+                theme: app.themeData ?? theme,
+                themeMode: app.themeMode ?? themeMode,
                 title: title,
               )
             : MaterialApp.router(
@@ -139,7 +139,7 @@ class OkitoMaterialApp extends StatelessWidget {
                 highContrastDarkTheme: highContrastDarkTheme,
                 highContrastTheme: highContrastTheme,
                 key: key,
-                locale: locale,
+                locale: app.locale ?? locale,
                 localeListResolutionCallback: localeListResolutionCallback,
                 localeResolutionCallback: localeResolutionCallback,
                 checkerboardOffscreenLayers: checkerboardOffscreenLayers,
@@ -152,8 +152,8 @@ class OkitoMaterialApp extends StatelessWidget {
                 showPerformanceOverlay: showPerformanceOverlay,
                 showSemanticsDebugger: showSemanticsDebugger,
                 supportedLocales: supportedLocales,
-                theme: theme,
-                themeMode: themeMode,
+                theme: app.themeData ?? theme,
+                themeMode: app.themeMode ?? themeMode,
                 title: title,
               ),
       );
