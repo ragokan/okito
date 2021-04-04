@@ -9,7 +9,7 @@
 [![pub version](https://img.shields.io/pub/v/okito)](https://pub.dev/packages/okito)
 [![GitHub last commit](https://img.shields.io/github/last-commit/ragokan/okito)](https://github.com/ragokan/okito)
 
-### [Click here to join discord community channel](https://discord.gg/2pg7B73U8j)
+### [Click here to join our discord community channel!](https://discord.gg/2pg7B73U8j)
 
 &nbsp;
 
@@ -22,6 +22,7 @@
   - [Watch Controller](#watch-controller)
   - [Rockitos](#rockitos)
 - [Utilities + Navigation](#utilities)
+  - [Theme Management](#theme-management)
 - [Local Storage](#local-storage)
 - [Extensions](#extensions)
 - [Dependency Injection](#dependency-injection)
@@ -198,11 +199,31 @@ Okito.arguments;
 Okito.routeName;
 ```
 
+### Would you like to have more benefits? Of course!
+
+## Theme Management
+
+```dart
+// Firstly, the bottom method gives you the app controller, you can update anything manually.
+Okito.app; /* or */ Okito.use<AppController>();
+
+// Then you have all of its usages.
+
+Okito.app.setThemeData();
+Okito.app.setThemeMode();
+Okito.app.setCupertinoThemeData();
+
+
+// These both will be more usefull when I implement localization.
+Okito.app.locale;
+Okito.app.setLocale();
+```
+
 # Local Storage
 
 ### _OkitoStorage_ is a way to save variables to the local storage.
 
-### It works like SharedPereferences but it is synchronous or GetStorage.
+### It works like SharedPereferences but it is synchronous like GetStorage.
 
 #### _OkitoStorage_ is blazingly fast because in read operations it uses memory to get data instead of reading from disk everytime!
 
@@ -313,6 +334,13 @@ final counter = Okito.use<Counter>();
 counter.count++;
 // or
 Okito.use<Counter>().count++;
+```
+
+Soo, lets say that your job is done with that class, why would we let it to use memory?
+
+```dart
+// Counter will be gone forever!
+Okito.eject<Counter>();
 ```
 
 #### For more details, check the tests or examples about it!

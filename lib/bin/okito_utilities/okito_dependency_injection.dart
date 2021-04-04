@@ -23,6 +23,17 @@ mixin OkitoDependencyInjection {
     return dependency;
   }
 
+  /// Removes the dependency that is injected before with [inject] function.
+  ///
+  /// ```dart
+  /// Okito.eject<Counter>();
+  /// ```
+  ///
+  /// Good for memory, if you don't use dependency, just kill it :D
+  /// After you [eject], you won't be able to [use] it anymore.
+  void eject<T>() => _dependencies.removeWhere(
+      (dependency) => dependency.runtimeType.toString() == T.toString());
+
   /// Returns the dependency that is injected before with [inject] function.
   ///
   /// ```dart
@@ -43,4 +54,7 @@ mixin OkitoDependencyInjection {
       Please read the documents or hover over the [use] function to see its usage.
       Note that you can't use type [dynamic] with [use] function.
         '''));
+
+  /// Same as [use] function, use whichever you want :)
+  T take<T>() => use<T>();
 }
