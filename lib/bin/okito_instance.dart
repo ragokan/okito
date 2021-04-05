@@ -28,6 +28,10 @@ class _Okito
   Object? arguments;
 
   AppController get app => use<AppController>();
+
+  _Okito() {
+    inject(AppController());
+  }
 }
 
 /// The root of [Okito] library's utilities.

@@ -13,7 +13,6 @@ class OkitoCupertinoApp extends StatelessWidget {
   final CupertinoThemeData? theme;
   final Map<String, WidgetBuilder>? routes;
   final String? initialRoute;
-  final RouteFactory? onGenerateRoute;
   final InitialRouteListFactory? onGenerateInitialRoutes;
   final RouteFactory? onUnknownRoute;
   final RouteInformationProvider? routeInformationProvider;
@@ -44,7 +43,6 @@ class OkitoCupertinoApp extends StatelessWidget {
     this.theme,
     this.routes,
     this.initialRoute,
-    this.onGenerateRoute,
     this.onGenerateInitialRoutes,
     this.onUnknownRoute,
     this.routeInformationProvider,
@@ -72,66 +70,67 @@ class OkitoCupertinoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext ctx) {
+    if (routes != null) Okito.app.routes = routes!;
+    Okito.app.isMaterial = false;
+
     final navigatorKey = Okito.navigatorKey;
     final navigatorObservers = <NavigatorObserver>[OkitoObserver()];
-    return RockitoBuilder<AppController>(
-        inject: AppController(),
-        builder: (app) => routerDelegate == null
-            ? CupertinoApp(
-                restorationScopeId: restorationScopeId,
-                shortcuts: shortcuts,
-                theme: app.cupertinoThemeData,
-                navigatorKey: navigatorKey,
-                actions: actions,
-                builder: (context, child) =>
-                    builder == null ? child! : builder!(context, child),
-                color: color,
-                debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-                home: home,
-                initialRoute: initialRoute,
-                key: key,
-                locale: app.locale ?? locale,
-                localeListResolutionCallback: localeListResolutionCallback,
-                localeResolutionCallback: localeResolutionCallback,
-                checkerboardOffscreenLayers: checkerboardOffscreenLayers,
-                checkerboardRasterCacheImages: checkerboardRasterCacheImages,
-                localizationsDelegates: localizationsDelegates,
-                navigatorObservers: navigatorObservers,
-                onGenerateInitialRoutes: onGenerateInitialRoutes,
-                onGenerateRoute: onGenerateRoute,
-                onGenerateTitle: onGenerateTitle,
-                onUnknownRoute: onUnknownRoute,
-                routes: routes ?? const <String, WidgetBuilder>{},
-                showPerformanceOverlay: showPerformanceOverlay,
-                showSemanticsDebugger: showSemanticsDebugger,
-                supportedLocales: supportedLocales,
-                title: title,
-              )
-            : CupertinoApp.router(
-                shortcuts: shortcuts,
-                restorationScopeId: restorationScopeId,
-                backButtonDispatcher: backButtonDispatcher,
-                routeInformationProvider: routeInformationProvider,
-                theme: app.cupertinoThemeData,
-                actions: actions,
-                builder: (context, child) =>
-                    builder == null ? child! : builder!(context, child),
-                routerDelegate: routerDelegate!,
-                routeInformationParser: routeInformationParser!,
-                color: color,
-                debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-                key: key,
-                locale: app.locale ?? locale,
-                localeListResolutionCallback: localeListResolutionCallback,
-                localeResolutionCallback: localeResolutionCallback,
-                checkerboardOffscreenLayers: checkerboardOffscreenLayers,
-                checkerboardRasterCacheImages: checkerboardRasterCacheImages,
-                localizationsDelegates: localizationsDelegates,
-                onGenerateTitle: onGenerateTitle,
-                showPerformanceOverlay: showPerformanceOverlay,
-                showSemanticsDebugger: showSemanticsDebugger,
-                supportedLocales: supportedLocales,
-                title: title,
-              ));
+    return Rockito<AppController>((app) => routerDelegate == null
+        ? CupertinoApp(
+            restorationScopeId: restorationScopeId,
+            shortcuts: shortcuts,
+            theme: app.cupertinoThemeData,
+            navigatorKey: navigatorKey,
+            actions: actions,
+            builder: (context, child) =>
+                builder == null ? child! : builder!(context, child),
+            color: color,
+            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+            home: home,
+            initialRoute: initialRoute,
+            key: key,
+            locale: app.locale ?? locale,
+            localeListResolutionCallback: localeListResolutionCallback,
+            localeResolutionCallback: localeResolutionCallback,
+            checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+            checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+            localizationsDelegates: localizationsDelegates,
+            navigatorObservers: navigatorObservers,
+            onGenerateInitialRoutes: onGenerateInitialRoutes,
+            onGenerateRoute: Okito.app.onGenerateRoute,
+            onGenerateTitle: onGenerateTitle,
+            onUnknownRoute: onUnknownRoute,
+            routes: Okito.app.routes,
+            showPerformanceOverlay: showPerformanceOverlay,
+            showSemanticsDebugger: showSemanticsDebugger,
+            supportedLocales: supportedLocales,
+            title: title,
+          )
+        : CupertinoApp.router(
+            shortcuts: shortcuts,
+            restorationScopeId: restorationScopeId,
+            backButtonDispatcher: backButtonDispatcher,
+            routeInformationProvider: routeInformationProvider,
+            theme: app.cupertinoThemeData,
+            actions: actions,
+            builder: (context, child) =>
+                builder == null ? child! : builder!(context, child),
+            routerDelegate: routerDelegate!,
+            routeInformationParser: routeInformationParser!,
+            color: color,
+            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+            key: key,
+            locale: app.locale ?? locale,
+            localeListResolutionCallback: localeListResolutionCallback,
+            localeResolutionCallback: localeResolutionCallback,
+            checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+            checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+            localizationsDelegates: localizationsDelegates,
+            onGenerateTitle: onGenerateTitle,
+            showPerformanceOverlay: showPerformanceOverlay,
+            showSemanticsDebugger: showSemanticsDebugger,
+            supportedLocales: supportedLocales,
+            title: title,
+          ));
   }
 }

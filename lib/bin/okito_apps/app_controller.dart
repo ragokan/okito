@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 import '../../okito.dart';
+import '../okito_utilities/route_utilities/dynamic_routing.dart';
 
 class AppController extends OkitoController {
   // Material
@@ -38,4 +40,15 @@ class AppController extends OkitoController {
   /// your changes will be seen in the screen. If you don't want a re-build, you
   /// can directly set [locale].
   void setLocale(Locale newLocale) => setState(() => locale = newLocale);
+
+  // TODO: add info
+  bool isMaterial = true;
+
+  // TODO: add info
+  Map<String, Widget Function(BuildContext)> routes =
+      const <String, WidgetBuilder>{};
+
+  // TODO: add info
+  Route<dynamic>? onGenerateRoute(RouteSettings settings) =>
+      pageRouteBuilder(settings);
 }

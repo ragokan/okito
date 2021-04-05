@@ -14,7 +14,6 @@ class OkitoMaterialApp extends StatelessWidget {
       this.home,
       Map<String, WidgetBuilder> this.routes = const <String, WidgetBuilder>{},
       this.initialRoute,
-      this.onGenerateRoute,
       this.onGenerateInitialRoutes,
       this.onUnknownRoute,
       this.routeInformationProvider,
@@ -49,7 +48,6 @@ class OkitoMaterialApp extends StatelessWidget {
   final Widget? home;
   final Map<String, WidgetBuilder>? routes;
   final String? initialRoute;
-  final RouteFactory? onGenerateRoute;
   final InitialRouteListFactory? onGenerateInitialRoutes;
   final RouteFactory? onUnknownRoute;
   final RouteInformationProvider? routeInformationProvider;
@@ -82,11 +80,12 @@ class OkitoMaterialApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext ctx) {
+    if (routes != null) Okito.app.routes = routes!;
+    Okito.app.isMaterial = true;
     final navigatorKey = Okito.navigatorKey;
     final navigatorObservers = <NavigatorObserver>[OkitoObserver()];
-    return RockitoBuilder<AppController>(
-      inject: AppController(),
-      builder: (app) => routerDelegate == null
+    return Rockito<AppController>(
+      (app) => routerDelegate == null
           ? MaterialApp(
               navigatorKey: navigatorKey,
               actions: actions,
@@ -109,11 +108,11 @@ class OkitoMaterialApp extends StatelessWidget {
               localizationsDelegates: localizationsDelegates,
               navigatorObservers: navigatorObservers,
               onGenerateInitialRoutes: onGenerateInitialRoutes,
-              onGenerateRoute: onGenerateRoute,
+              onGenerateRoute: Okito.app.onGenerateRoute,
               onGenerateTitle: onGenerateTitle,
               onUnknownRoute: onUnknownRoute,
               restorationScopeId: restorationScopeId,
-              routes: routes ?? const <String, WidgetBuilder>{},
+              routes: Okito.app.routes,
               scaffoldMessengerKey: scaffoldMessengerKey,
               shortcuts: shortcuts,
               showPerformanceOverlay: showPerformanceOverlay,

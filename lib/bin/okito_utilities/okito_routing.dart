@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../okito.dart';
 import '../../utilities/constants.dart';
 
 mixin OkitoRouting {
@@ -28,11 +30,8 @@ mixin OkitoRouting {
   /// // That Simple!
   /// Okito.pushEasy(CounterPage());
   /// ```
-  Future<T?> pushEasy<T>(
-    Widget page, {
-    bool isMaterialPageRoute = true,
-  }) async =>
-      _state?.push<T>(isMaterialPageRoute
+  Future<T?> pushEasy<T>(Widget page) async =>
+      _state?.push<T>(Okito.app.isMaterial
           ? MaterialPageRoute(builder: (_) => page)
           : CupertinoPageRoute(builder: (_) => page));
 
@@ -45,11 +44,12 @@ mixin OkitoRouting {
   /// Okito.pushNamed('/counterPage');
   /// // You can also add arguments as secondary parameter.
   /// ```
-  Future<T?> pushNamed<T>(String routeName, {Object? arguments}) async =>
-      _state?.pushNamed<T>(
-        routeName,
-        arguments: arguments,
-      );
+  Future<T?> pushNamed<T>(String routeName, {Object? arguments}) async {
+    return _state?.pushNamed<T>(
+      routeName,
+      arguments: arguments,
+    );
+  }
 
   /// Equals to [Navigator.of(context).pushReplacementNamed()]
   /// Just give it the [routeName] you want to push
