@@ -44,6 +44,26 @@ mixin OkitoRouting {
   /// Okito.pushNamed('/counterPage');
   /// // You can also add arguments as secondary parameter.
   /// ```
+  ///
+  /// Dynamic Routing:\
+  /// In your [OkitoMaterialApp] or [OkitoCupertinoApp], you can add routes
+  /// like ['/users/:id'] which will require a parameter, id.
+  /// ```dart
+  /// OkitoMaterialApp(routes: {
+  ///      '/': (ctx) => FirstPage(),
+  ///      '/users/:id': (_) => UsersPage(),
+  ///    });
+  /// ```
+  ///
+  /// Then you can push to that route
+  /// ```dart
+  /// Okito.pushNamed('/users/31');
+  /// ```
+  ///
+  /// Lastly in your app
+  /// ```dart
+  /// Okito.parameters['id']; => 31
+  /// ```
   Future<T?> pushNamed<T>(String routeName, {Object? arguments}) async {
     return _state?.pushNamed<T>(
       routeName,
@@ -59,6 +79,26 @@ mixin OkitoRouting {
   /// // That Simple!
   /// Okito.pushReplacementNamed('/counterPage');
   /// // You can also add arguments as secondary parameter.
+  /// ```
+  ///
+  /// Dynamic Routing:\
+  /// In your [OkitoMaterialApp] or [OkitoCupertinoApp], you can add routes
+  /// like ['/users/:id'] which will require a parameter, id.
+  /// ```dart
+  /// OkitoMaterialApp(routes: {
+  ///      '/': (ctx) => FirstPage(),
+  ///      '/users/:id': (_) => UsersPage(),
+  ///    });
+  /// ```
+  ///
+  /// Then you can push to that route
+  /// ```dart
+  /// Okito.pushReplacementNamed('/users/31');
+  /// ```
+  ///
+  /// Lastly in your app
+  /// ```dart
+  /// Okito.parameters['id']; => 31
   /// ```
   Future<T?> pushReplacementNamed<T, X>(
     String routeName, {
@@ -79,6 +119,26 @@ mixin OkitoRouting {
   /// // You can also add arguments as secondary parameter.
   /// ```
   ///  Not required but you can give it a [predicate]
+  ///
+  /// Dynamic Routing:\
+  /// In your [OkitoMaterialApp] or [OkitoCupertinoApp], you can add routes
+  /// like ['/users/:id'] which will require a parameter, id.
+  /// ```dart
+  /// OkitoMaterialApp(routes: {
+  ///      '/': (ctx) => FirstPage(),
+  ///      '/users/:id': (_) => UsersPage(),
+  ///    });
+  /// ```
+  ///
+  /// Then you can push to that route
+  /// ```dart
+  /// Okito.pushNamedAndRemoveUntil('/users/31');
+  /// ```
+  ///
+  /// Lastly in your app
+  /// ```dart
+  /// Okito.parameters['id']; => 31
+  /// ```
   Future<T?> pushNamedAndRemoveUntil<T>(
     String routeName, {
     Object? arguments,

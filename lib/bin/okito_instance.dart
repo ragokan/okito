@@ -25,7 +25,7 @@ class _Okito
   }
 
   String? routeName;
-  Object? arguments;
+  Map<String, dynamic> arguments = {};
 
   AppController get app => use<AppController>();
 

@@ -41,14 +41,25 @@ class AppController extends OkitoController {
   /// can directly set [locale].
   void setLocale(Locale newLocale) => setState(() => locale = newLocale);
 
-  // TODO: add info
+  /// Returns the current app, if you used [OkitoMaterialApp], it will be true,
+  /// if you used [OkitoCupertinoApp], it will be false.
+  ///
+  /// We do use this parameter in routing animations.
   bool isMaterial = true;
 
-  // TODO: add info
+  /// These [routes] are the main [routes] of the [OkitoMaterialApp] or
+  /// [OkitoCupertinoApp], we don't do any change here, we just save it.
+  ///
+  /// The reason of saving here is dynamic routing in [onGenerateRoute];
   Map<String, Widget Function(BuildContext)> routes =
       const <String, WidgetBuilder>{};
 
-  // TODO: add info
+  /// When user tries to go to a dynamic route such as ['/users/31'] and
+  /// we have ['/users/:id'] on [routes], Flutter wont be able to identify
+  /// the correct route and [onGenerateRoute] function will be evaluated.
+  ///
+  /// We will use [pageRouteBuilder] method to find the route and give it
+  /// the required params.
   Route<dynamic>? onGenerateRoute(RouteSettings settings) =>
       pageRouteBuilder(settings);
 }

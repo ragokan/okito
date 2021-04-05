@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import '../../okito.dart';
 
-/// Observer is the way
+/// Observer is the way to observe navigation in [Okito]
 class OkitoObserver extends NavigatorObserver {
   void _setVariables(Route? newRoute) {
     Okito.routeName = newRoute?.settings.name ?? Okito.context?.routeName;
-    Okito.arguments = newRoute?.settings.arguments ?? Okito.context?.arguments;
+
+    if (newRoute?.settings.arguments.runtimeType.toString() ==
+        '_InternalLinkedHashMap<String, dynamic>') {
+      Okito.arguments = newRoute?.settings.arguments as Map<String, dynamic>;
+    } else {
+      Okito.arguments = {'arguments': newRoute?.settings.arguments};
+    }
   }
 
   @override
