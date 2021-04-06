@@ -1,3 +1,11 @@
+## 1.0.8
+
+- Dynamic routing, check examples/readme file.
+- Localization, details on examples and readme file.
+- Better optimization for code.
+- New utilities: setTheme and setLocale while running the app.
+- As usual, more examples, more tests, new extensions.
+
 ## 1.0.7
 
 - Rockitos: A way to use state management with dependency injection!

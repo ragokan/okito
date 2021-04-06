@@ -1,6 +1,6 @@
 # okito
 
-## Your best coding friend. State management, navigation management, local storage, dependency injection, cool extensions with best usages and with the support of best utilities!
+## Your best coding friend. All in one; state management, navigation management(with dynamic routing), local storage, dependency injection, cool extensions with best usages and with the support of best utilities!
 
 [![pub points](https://badges.bar/okito/pub%20points)](https://pub.dev/packages/okito/score)
 [![likes](https://badges.bar/okito/likes)](https://pub.dev/packages/okito/score)
@@ -22,6 +22,7 @@
   - [Watch Controller](#watch-controller)
   - [Rockitos](#rockitos)
 - [Utilities + Navigation](#utilities)
+  - [Routing Management 🚀](#routing-management)
   - [Theme Management](#theme-management)
 - [Local Storage](#local-storage)
 - [Extensions](#extensions)
@@ -198,6 +199,54 @@ Okito.pop();
 Okito.arguments;
 Okito.routeName;
 ```
+
+## Routing Management
+
+### Lets say that you want dynamic urls like
+
+```
+/posts/:id
+/posts/23
+```
+
+And this id is a dynamic variable, right?  
+With _Okito_, you can do that easily!
+
+```dart
+// You don't need to add something like OkitoPage or etc.
+// Okito lets you do your job without code changes.
+OkitoMaterialApp(
+      routes: {
+        '/': (ctx) => FirstPage(),
+        '/second/:id': (ctx) => SecondPage(),
+      }
+);
+```
+
+Now, whenever you try this:
+
+```dart
+ElevatedButton(
+  onPressed: () => Okito.pushNamed(
+    /// You can add any kind of arguments
+    '/second/33?name=Rago&postId=123&isMaterial=true',
+    arguments: 'This is an extra argument'),
+    child: const Text('Go to second page'),
+  )
+```
+
+It will push to second page with the argument [id] : [33]
+
+Moreover, you will see your arguments like this:
+
+```dart
+print(Okito.arguments);
+// result
+{'id' : '33', 'name' : 'Rago', 'postId' : 123, 'isMaterial' : true, 'arguments': 'This is an extra argument'};
+// Yes, you can even get extra arguments manually.
+```
+
+Check _example/flutter_dynamic_routing/lib/main.dart_ for a live example.
 
 ### Would you like to have more benefits? Of course!
 
