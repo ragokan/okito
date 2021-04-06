@@ -2,7 +2,7 @@ name: okito
 description: Your best coding friend. State management, navigation management,
   local storage, dependency injection, cool extensions with best usages and with
   the support of best utilities!
-version: 1.0.7
+version: 1.0.8
 homepage: https://github.com/ragokan/okito
 repository: https://github.com/ragokan/okito
 
