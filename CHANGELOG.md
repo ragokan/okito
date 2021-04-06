@@ -1,3 +1,13 @@
+## 1.1.0
+
+- Update readme
+- Fix lint errors
+- A more stable Okito is now here!
+
+## 1.0.9
+
+- Fix errors
+
 ## 1.0.8
 
 - Dynamic routing, check examples/readme file.

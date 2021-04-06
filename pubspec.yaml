@@ -1,9 +1,6 @@
 name: okito
-description: Your best coding friend. All in one; state management, navigation
-  management(with dynamic routing), local storage, dependency injection,
-  localization, cool extensions with best usages and with the support of best
-  utilities!
-version: 1.0.9
+description: Your best coding friend. All in one flutter helper!
+version: 1.1.0
 homepage: https://github.com/ragokan/okito
 repository: https://github.com/ragokan/okito
 
