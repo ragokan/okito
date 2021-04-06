@@ -95,7 +95,7 @@ class AppController extends OkitoController {
   ///
   /// We can use it like: [widgetsBindingInstance!.reassembleApplication()]
   WidgetsBinding? get _widgetsBindingInstance {
-    WidgetsBinding.instance == null ? WidgetsFlutterBinding() : null;
+    if (WidgetsBinding.instance == null) WidgetsFlutterBinding();
 
     return WidgetsBinding.instance;
   }

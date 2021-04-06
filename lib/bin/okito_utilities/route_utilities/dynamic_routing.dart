@@ -157,9 +157,9 @@ Route<dynamic>? pageRouteBuilder(RouteSettings settings) {
     }
 
     /// If the user provided arguments, we pass it here.
-    settings.arguments != null
-        ? argumentsFromRoute.addAll({'arguments': settings.arguments})
-        : null;
+    if (settings.arguments != null) {
+      argumentsFromRoute.addAll({'arguments': settings.arguments});
+    }
 
     var routeSettings =
         RouteSettings(name: settings.name!, arguments: argumentsFromRoute);

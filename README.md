@@ -1,6 +1,6 @@
 # okito
 
-## Your best coding friend. All in one; state management, navigation management(with dynamic routing), local storage, dependency injection, cool extensions with best usages and with the support of best utilities!
+## Your best coding friend. All in one; state management, navigation management(with dynamic routing), local storage, dependency injection, localization, cool extensions with best usages and with the support of best utilities!
 
 [![pub points](https://badges.bar/okito/pub%20points)](https://pub.dev/packages/okito/score)
 [![likes](https://badges.bar/okito/likes)](https://pub.dev/packages/okito/score)
@@ -34,6 +34,7 @@
 - [Tips](#tips)
   - [Cleaner Widgets](#cleaner-widgets)
   - [Update State](#update-state)
+  - [App Controller](#app-controller)
 - [Examples](#examples)
 - [How to contribute okito](#how-to-contribute-okito)
 
@@ -487,6 +488,18 @@ class CounterController extends OkitoController {
     update();
   }
 }
+```
+
+#### App Controller
+
+It is the controller of app, you can wrap your widgets that you want to change on big updates like theme changes if the data
+you wrote is not coming from a controller.
+
+```dart
+Rockito<AppController>(
+  (app) => // yourWidget
+)
+
 ```
 
 # Examples
