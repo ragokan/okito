@@ -25,6 +25,7 @@
   - [Routing Management 🚀](#routing-management)
   - [Theme Management](#theme-management)
 - [Local Storage](#local-storage)
+- [Localization](#localization)
 - [Extensions](#extensions)
 - [Dependency Injection](#dependency-injection)
 
@@ -262,8 +263,6 @@ Okito.app.setThemeData();
 Okito.app.setThemeMode();
 Okito.app.setCupertinoThemeData();
 
-
-// These both will be more usefull when I implement localization.
 Okito.app.locale;
 Okito.app.setLocale();
 ```
@@ -343,6 +342,51 @@ OkitoBuilder(
 - Works on any device that flutter supports!
 
 #### OkitoStorage is reliable but be careful when using it as database, because it is not created to be database. For complex works, you can try Hive!
+
+# Localization
+
+For global apps, it might be hard to find a new library for localization or creating your own, then you will probably have another problems
+like updating the whole app after language change and etc. Why would you do that?
+
+#### Okito provides localization solutions for your app.
+
+```dart
+// It is also so simple to have!
+// Firstly create your translations like this:
+const translations = {
+  'en': {
+    'hello': 'Hello from Okito!',
+  },
+  'tr': {
+    'hello': "Okito'dan selamlar!",
+  },
+};
+// You can have unlimited amount of locales and translations
+// You can make it dynamic, seperate files and etc. It is just a dart map!
+```
+
+```dart
+// After creating it, give it to the app.
+OkitoMaterialApp /* or OkitoCupertinoApp */(
+  translations: translations,
+  /* Your code here without any change */);
+```
+
+```dart
+// Using it? It is the simplest! Lets use it in a text widget.
+Text('hello'.loc); // It will show 'Hello from Okito!'
+
+// Lets change the language and see it again.
+Okito.app.setLocale(Locale('tr','TR'));
+// Now it says: 'Okito'dan selamlar!' as it is declared in translations.
+```
+
+```dart
+// You can also set it like this;
+Okito.localize('hello'); // returns the translation as String.
+```
+
+For better examples check example/flutter_localization/lib/main.dart
 
 # Extensions
 

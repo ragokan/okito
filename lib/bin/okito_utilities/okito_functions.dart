@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'localization/localization_functions.dart';
 
 mixin OkitoFunctions {
   /// [seconds] is the amount of time that Okito wait to call the function.
@@ -29,4 +30,16 @@ mixin OkitoFunctions {
     final timer = Timer.periodic(Duration(seconds: seconds), (_) => callback());
     return timer.cancel;
   }
+
+  /// Uses your locale and translates the sentences.
+  ///
+  /// Usage
+  ///
+  /// ```dart
+  /// Okito.localize('hello');
+  /// ```
+  /// That simple
+  ///
+  /// Check translation documents for this.
+  String localize(String key) => localizeSimple(key);
 }

@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import '../../okito.dart';
 
+/// For this file, I don't think that it is necessary to add
+/// documents for each function, so I will describe them here.
+///
+/// This page is important to set the arguments of routes when
+/// the page changes.
+///
+/// We do set two variables here, [Okito.arguments!] and [Okito.routeName!]
+
 /// Observer is the way to observe navigation in [Okito]
 class OkitoObserver extends NavigatorObserver {
   void _setVariables(Route? newRoute) {
     Okito.routeName = newRoute?.settings.name ?? Okito.context?.routeName;
 
+    /// Firstly, we do check that if we do have arguments from the
+    /// dynamic routing like [id] : [31]
+    ///
+    /// If it exists, we set arguments as [Map<String,dynamic>]
+    ///
+    /// else we get the arguments and create our arguments map.
     if (newRoute?.settings.arguments.runtimeType.toString() ==
         '_InternalLinkedHashMap<String, dynamic>') {
       Okito.arguments = newRoute?.settings.arguments as Map<String, dynamic>;

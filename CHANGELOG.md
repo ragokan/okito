@@ -5,6 +5,8 @@
 - Better optimization for code.
 - New utilities: setTheme and setLocale while running the app.
 - As usual, more examples, more tests, new extensions.
+- I also added documentation to most used app variables for OkitoMaterialApp/OkitoCupertinoApp
+- Now _Okito_ provides more opportunities to adjust variables like _Okito.app_!
 
 ## 1.0.7
 

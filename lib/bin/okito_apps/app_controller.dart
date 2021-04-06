@@ -36,10 +36,36 @@ class AppController extends OkitoController {
   /// Returns [locale] of your app.
   Locale? locale;
 
+  // A fallback locale if there are no given locale or the locale provided
+  // is not found in the translations.
+  Locale fallbackLocale = const Locale('en', 'US');
+
+  /// The [translations] of your app.
+  ///
+  /// Example translation:
+  ///
+  /// ```dart
+  /// const translations = {
+  ///   'en': {
+  ///     'hello': 'Hello from Okito!',
+  ///   },
+  ///   'tr': {
+  ///     'hello': "Okito'dan selamlar!",
+  ///   },
+  /// };
+  /// ```
+  Map<String, Map<String, String>> translations = const {};
+
   /// Updates the current [locale] of your app, then re-builds your app, so that
   /// your changes will be seen in the screen. If you don't want a re-build, you
   /// can directly set [locale].
-  void setLocale(Locale newLocale) => setState(() => locale = newLocale);
+  void setLocale(Locale newLocale) {
+    locale = newLocale;
+
+    /// Reason of using this is updating the material/cupertino app is not
+    /// enough to update all the strings, we do this and update everything.
+    _widgetsBindingInstance!.reassembleApplication();
+  }
 
   /// Returns the current app, if you used [OkitoMaterialApp], it will be true,
   /// if you used [OkitoCupertinoApp], it will be false.
@@ -62,4 +88,15 @@ class AppController extends OkitoController {
   /// the required params.
   Route<dynamic>? onGenerateRoute(RouteSettings settings) =>
       pageRouteBuilder(settings);
+
+  /// Firstly, thanks 'Stackoverflow' for showing this usage.
+  ///
+  /// This is the [WidgetsBinding] of the app.
+  ///
+  /// We can use it like: [widgetsBindingInstance!.reassembleApplication()]
+  WidgetsBinding? get _widgetsBindingInstance {
+    WidgetsBinding.instance == null ? WidgetsFlutterBinding() : null;
+
+    return WidgetsBinding.instance;
+  }
 }
