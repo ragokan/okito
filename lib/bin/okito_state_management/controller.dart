@@ -28,6 +28,8 @@ import 'modules/communication.dart';
 ///
 /// ```
 class OkitoController {
+  const OkitoController();
+
   /// [update] method notifies all the builders to re-build the state.
   ///
   /// When you make a change in your state, you can call [update()] to update

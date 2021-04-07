@@ -87,35 +87,41 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
 
 // check if mounted or not
 class _OkitoBuilderState extends State<OkitoBuilder> {
-  List<Function> unmountFunctions = [];
+  _OkitoBuilderState();
+  final List<Function> _unmountFunctions = const [];
 
   @protected
   @override
   void initState() {
     super.initState();
 
+    void updateState() {
+      if (mounted) {
+        setState(() {});
+      }
+    }
+
     /// Here, we mount the [watch] function to re-render state on changes.
-    final unmount =
-        controllerXview.watch(widget.controller, () => setState(() {}));
-    unmountFunctions.add(unmount);
+    final unmount = controllerXview.watch(widget.controller, updateState);
+    _unmountFunctions.add(unmount);
 
     /// Just like the above example, here we mount all of the controllers
     /// that build method wants to watch.
     widget.otherControllers.forEach((controller) {
-      final unmount = controllerXview.watch(controller, () => setState(() {}));
-      unmountFunctions.add(unmount);
+      final unmount = controllerXview.watch(controller, updateState);
+      _unmountFunctions.add(unmount);
     });
 
     /// In this example, we watch the changes that are happening in
     /// [OkitoStorage].
     widget.watchStorageKeys.forEach((key) {
-      final unmount = OkitoStorage.watchKey(key, () => setState(() {}));
-      unmountFunctions.add(unmount);
+      final unmount = OkitoStorage.watchKey(key, updateState);
+      _unmountFunctions.add(unmount);
     });
 
     if (widget.watchAllStorageKeys) {
-      final unmount = OkitoStorage.watchAll(() => setState(() {}));
-      unmountFunctions.add(unmount);
+      final unmount = OkitoStorage.watchAll(updateState);
+      _unmountFunctions.add(unmount);
     }
   }
 
@@ -127,12 +133,10 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
     /// On dispose, we would like to unmount the watchers, so that
     /// we don't leak the memory and the [notify] function don't
     /// call the [watch] function.
-    unmountFunctions.forEach((unmount) => unmount());
+    _unmountFunctions.forEach((unmount) => unmount());
+    _unmountFunctions.removeRange(0, _unmountFunctions.length);
   }
 
-  int count = 0;
   @override
-  Widget build(_) {
-    return widget.builder();
-  }
+  Widget build(_) => widget.builder();
 }
