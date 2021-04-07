@@ -21,7 +21,9 @@ class OkitoObserver extends NavigatorObserver {
     ///
     /// else we get the arguments and create our arguments map.
     if (newRoute?.settings.arguments.runtimeType.toString() ==
-        '_InternalLinkedHashMap<String, dynamic>') {
+            '_InternalLinkedHashMap<String, dynamic>' ||
+        newRoute?.settings.arguments.runtimeType.toString() ==
+            'IdentityMap<String, dynamic>') {
       Okito.arguments = newRoute?.settings.arguments as Map<String, dynamic>;
     } else {
       Okito.arguments = {'arguments': newRoute?.settings.arguments};

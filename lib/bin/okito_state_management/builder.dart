@@ -88,7 +88,7 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
 // check if mounted or not
 class _OkitoBuilderState extends State<OkitoBuilder> {
   _OkitoBuilderState();
-  final List<Function> _unmountFunctions = const [];
+  final List<Function> _unmountFunctions = [];
 
   @protected
   @override
