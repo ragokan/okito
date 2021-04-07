@@ -29,7 +29,7 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
 
   /// If you have more than one [controller], you can create an array of
   /// [controller]s.
-  final List<T> otherControllers;
+  final List<OkitoController> otherControllers;
 
   /// The [OkitoStorage] keys that you want to listen.
   ///

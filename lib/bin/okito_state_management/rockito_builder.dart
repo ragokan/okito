@@ -24,7 +24,7 @@ Widget RockitoBuilder<T extends OkitoController>({
   T? inject,
   bool watchAllStorageKeys = false,
   List<String> watchStorageKeys = const [],
-  List<T> otherControllers = const [],
+  List<OkitoController> otherControllers = const [],
 }) {
   if (inject != null) Okito.inject(inject);
 
