@@ -1,3 +1,10 @@
+## 1.1.2
+
+(Okito is now more stable and optimized)
+
+- More tests
+- Fix errors
+
 ## 1.1.1
 
 - Update readme
