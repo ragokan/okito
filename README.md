@@ -35,6 +35,7 @@
   - [Cleaner Widgets](#cleaner-widgets)
   - [Update State](#update-state)
   - [App Controller](#app-controller)
+- [Tutorials](#tutorials)
 - [Examples](#examples)
 - [How to contribute okito](#how-to-contribute-okito)
 
@@ -502,10 +503,14 @@ Rockito<AppController>(
 
 ```
 
+# Tutorials
+- [To Do App by Randall Morgan](https://www.youtube.com/watch?v=acsYwjldZG0&ab_channel=Monotoba)
+
 # Examples
 
 - [Counter Example](https://github.com/ragokan/okito/blob/master/example/flutter_counter/lib/main.dart)
 - [To Do Example](https://github.com/ragokan/to_do)
+
 
 # How to contribute okito
 
