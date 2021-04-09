@@ -7,8 +7,8 @@
 ///  need context to have a state or update state.
 library okito;
 
-export 'bin/okito_apps/index.dart';
-export 'bin/okito_extensions/index.dart';
-export 'bin/okito_instance.dart';
-export 'bin/okito_state_management/index.dart';
-export 'bin/okito_storage/okito_storage.dart';
+export 'src/okito_apps/index.dart';
+export 'src/okito_extensions/index.dart';
+export 'src/okito_instance.dart';
+export 'src/okito_state_management/index.dart';
+export 'src/okito_storage/okito_storage.dart';

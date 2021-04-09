@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../okito.dart';
-import '../../typedefs/callback_types.dart';
+import '../typedefs/callback_types.dart';
 
 /// The [Rockito] and other Rockitos are the way to use builders
 /// with [Okito.inject()].

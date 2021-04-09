@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../../typedefs/callback_types.dart';
+import '../typedefs/callback_types.dart';
 import 'modules/communication.dart';
 import 'state_methods.dart';
 
