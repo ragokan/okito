@@ -1,4 +1,4 @@
-import '../../typedefs/callback_types.dart';
+import '../typedefs/callback_types.dart';
 
 // I learned this usage from https://github.com/gskinnerTeam/flutter-universal-platform/blob/master/lib/universal_platform.dart
 import 'modules/okito_web_storage.dart'

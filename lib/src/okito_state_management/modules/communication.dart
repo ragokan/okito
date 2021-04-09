@@ -1,4 +1,4 @@
-import '../../../typedefs/callback_types.dart';
+import '../../typedefs/callback_types.dart';
 import '../controller.dart';
 import 'watcher_model.dart';
 

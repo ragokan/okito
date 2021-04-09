@@ -1,4 +1,4 @@
-import '../../../typedefs/callback_types.dart';
+import '../../typedefs/callback_types.dart';
 
 class Watcher<T> {
   /// The OkitoController
