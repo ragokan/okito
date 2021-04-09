@@ -135,7 +135,7 @@ Rockitos are our way to use state management with dependency injection!
 If you don't know what is dependency injection, read [Dependency Injection Guide](#dependency-injection) first.
 
 ```dart
-// Rockito - My favorite way to use Okito state.
+// Rockito - My favorite vay to use Okito state.
 
 Rockito<CounterController>(
   (controller) => Text('${controller.count}')
