@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../typedefs/callback_types.dart';
 import 'modules/communication.dart';
+import 'state_methods.dart';
 
 /// [OkitoController] is the head of okito state management.
 ///
@@ -27,7 +28,7 @@ import 'modules/communication.dart';
 /// CounterController counterController = CounterController();
 ///
 /// ```
-class OkitoController {
+class OkitoController with OkitoStateMethods {
   const OkitoController();
 
   /// [update] method notifies all the builders to re-build the state.

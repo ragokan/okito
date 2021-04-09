@@ -21,6 +21,7 @@
   - [Update Controller](#update-controller)
   - [Watch Controller](#watch-controller)
   - [Rockitos](#rockitos)
+  - [State Methods](#state-methods)
 - [Utilities + Navigation](#utilities)
   - [Routing Management 🚀](#routing-management)
   - [Theme Management](#theme-management)
@@ -152,6 +153,51 @@ Okito.inject(CounterController);
     builder: (controller) => Text('${controller.count}'),
     // You can use all of OkitoBuilder features here like otherControllers and etc.
   );
+```
+
+#### State Methods
+
+State methods are methods like the _State_ class of Flutter.
+
+```dart
+class CounterController extends OkitoController{
+  int count = 0;
+
+  /// This will be called whenever your [OkitoBuilder] is mounted
+  // to the widget tree.
+  @override
+  void initState() {
+    count++;
+  }
+  /// This will be called whenever your [OkitoBuilder] is removed
+  /// from the widget tree.
+  @override
+  void dispose() {
+    count = 0;
+  }
+}
+```
+
+I personally use State Methods when I use controllers as StatefulWidget replacers.  
+Example:
+
+```dart
+class EditProductController extends OkitoController {
+  // other nodes here
+  final priceFocusNode = FocusNode();
+
+  void submitForm(){
+    // I use my inputControllers here to get their values.
+    // then I use my Okito routing without context!
+    Okito.pushNamed('/productUpdatedSuccessfully/31')
+  }
+
+  @override
+  void dispose() {
+    // other nodes here to [dispose].
+    priceFocusNode.dispose();
+  }
+}
 ```
 
 # Utilities
@@ -504,13 +550,13 @@ Rockito<AppController>(
 ```
 
 # Tutorials
+
 - [To Do App by Randall Morgan](https://www.youtube.com/watch?v=acsYwjldZG0&ab_channel=Monotoba)
 
 # Examples
 
 - [Counter Example](https://github.com/ragokan/okito/blob/master/example/flutter_counter/lib/main.dart)
 - [To Do Example](https://github.com/ragokan/to_do)
-
 
 # How to contribute okito
 

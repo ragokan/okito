@@ -1,3 +1,9 @@
+## 1.1.3
+
+- I fixed more errors and currently testing Okito in E-commerce app, everything works perfectly.
+- New state methods in controllers (initState and dispose). I added them because it may be required
+  you can read the README.md for all details.
+
 ## 1.1.2
 
 (Okito is now more stable and optimized)

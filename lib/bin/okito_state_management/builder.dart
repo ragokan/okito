@@ -45,6 +45,11 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
   /// You have to return a Widget that you want to re-build on state changes.
   final BuilderCallback builder;
 
+  /// If you set this to true, whenever the builder disposes or activates
+  /// the *initState* and *dispose* functions will be called for all the
+  /// [otherControllers]. Be careful when using it.
+  final bool activateLifecycleForOtherControllers;
+
   /// OkitoBuilder is the way to use OkitoController.
   ///
   /// Its main advantage is having a builder that just re-renders itself on
@@ -79,6 +84,7 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
     required this.builder,
     this.watchStorageKeys = const [],
     this.watchAllStorageKeys = false,
+    this.activateLifecycleForOtherControllers = false,
   }) : super(key: key);
 
   @override
@@ -94,7 +100,10 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
   @override
   void initState() {
     super.initState();
-
+    widget.controller.initState();
+    if (widget.activateLifecycleForOtherControllers) {
+      widget.otherControllers.forEach((c) => c.initState());
+    }
     void updateState() {
       if (mounted) {
         setState(() {});
@@ -128,13 +137,17 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
   @protected
   @override
   void dispose() {
-    super.dispose();
-
     /// On dispose, we would like to unmount the watchers, so that
     /// we don't leak the memory and the [notify] function don't
     /// call the [watch] function.
     _unmountFunctions.forEach((unmount) => unmount());
     _unmountFunctions.removeRange(0, _unmountFunctions.length);
+
+    widget.controller.dispose();
+    if (widget.activateLifecycleForOtherControllers) {
+      widget.otherControllers.forEach((c) => c.initState());
+    }
+    super.dispose();
   }
 
   @override
