@@ -15,11 +15,11 @@ import '../typedefs/callback_types.dart';
 /// ```
 // ignore: non_constant_identifier_names
 Widget Rockito<T extends OkitoController>(
-  RockitoCallback<T> builder,
+  ControllerCallback<T> callback,
 ) {
   final controller = Okito.use<T>();
   return OkitoBuilder(
     controller: controller,
-    builder: () => builder(controller),
+    builder: () => callback(controller),
   );
 }

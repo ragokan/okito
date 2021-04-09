@@ -15,5 +15,5 @@ typedef WatcherCallback<T extends OkitoController> = void Function(
 
 /// It is used for Rockitos right now,
 /// Returns a void function that gives the [controller] with type [T].
-typedef RockitoCallback<T extends OkitoController> = Widget Function(
+typedef ControllerCallback<T extends OkitoController> = Widget Function(
     T controller);

@@ -20,7 +20,7 @@ import '../typedefs/callback_types.dart';
 /// ```
 // ignore: non_constant_identifier_names
 Widget RockitoBuilder<T extends OkitoController>({
-  required RockitoCallback<T> builder,
+  required ControllerCallback<T> builder,
   T? inject,
   bool watchAllStorageKeys = false,
   List<String> watchStorageKeys = const [],
