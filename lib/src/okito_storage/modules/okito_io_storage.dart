@@ -18,6 +18,9 @@ class ImplOkitoStorage {
   /// if the file doesn't exists.
   late final File _file;
 
+  /// Inıtializes the io version of storage, it is async because of
+  /// the path library, an amazingly simple library that gives us
+  /// documents directory of app.
   Future<void> init({required String storageName}) async {
     var appDocDirectory = await getApplicationDocumentsDirectory();
     var path = appDocDirectory.path;

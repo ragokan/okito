@@ -17,9 +17,10 @@ import '../typedefs/callback_types.dart';
 Widget Rockito<T extends OkitoController>(
   ControllerCallback<T> callback,
 ) {
-  final controller = Okito.use<T>();
+  /// We get the controller here with dependency injection and provide it.
+  final _controller = Okito.use<T>();
   return OkitoBuilder(
-    controller: controller,
-    builder: () => callback(controller),
+    controller: _controller,
+    builder: () => callback(_controller),
   );
 }

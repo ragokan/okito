@@ -94,6 +94,10 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
 // check if mounted or not
 class _OkitoBuilderState extends State<OkitoBuilder> {
   _OkitoBuilderState();
+
+  /// The unmount functions of controllers. At first, we watch and
+  /// we add unmount functions, then we do a loop and remove all
+  /// of the watchers.
   final List<Function> _unmountFunctions = [];
 
   @protected

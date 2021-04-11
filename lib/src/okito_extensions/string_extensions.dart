@@ -1,5 +1,6 @@
 import '../okito_utilities/localization/localization_functions.dart';
 
+/// These extensions are both for utility and localization.
 extension StringExtensions on String {
   /// It capitalizes your string.
   String get capitalize => this[0].toUpperCase() + substring(1);

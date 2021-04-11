@@ -4,6 +4,14 @@ import 'package:flutter/material.dart';
 import '../../okito.dart';
 import '../okito_utilities/route_utilities/dynamic_routing.dart';
 
+/// The root controller of [OkitoMaterialApp] and [OkitoCupertinoApp].
+///
+/// This controller is already injected to the Okito. You can use it by
+/// ```dart
+/// Okito.app
+/// //or
+/// Okito.use<AppController>()
+/// ```
 class AppController extends OkitoController {
   // Material
   /// Returns your [themeData] but it can be null if you didn't set it yet.
