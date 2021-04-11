@@ -1,3 +1,9 @@
+## 1.1.4
+
+- Better documentation
+- Added missing routing methods and new easy methods for routing.
+- Newer folder structure which helps IDE in importing files (Thanks to other contributors).
+
 ## 1.1.3
 
 - I fixed more errors and currently testing Okito in E-commerce app, everything works perfectly.

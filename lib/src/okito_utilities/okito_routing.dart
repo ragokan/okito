@@ -71,6 +71,40 @@ mixin OkitoRouting {
     );
   }
 
+  /// Equals to [Navigator.of(context).pushReplacement()]
+  /// Just give it the [route] you want to push
+  ///
+  /// Example
+  /// ```dart
+  /// // That Simple!
+  /// Okito.pushReplacement(
+  ///    MaterialPageRoute(builder: (context) => CounterPage()));
+  /// ```
+  ///
+  Future<T?> pushReplacement<T, X>(
+    Route<T> route, {
+    X? result,
+  }) async =>
+      _state?.pushReplacement<T, X>(route, result: result);
+
+  /// Similar to [Navigator.of(context).pushReplacement()]
+  /// Just give it the [page] you want to push
+  ///
+  /// Example
+  /// ```dart
+  /// // That Simple!
+  /// Okito.pushReplacementEasy(CounterPage());
+  /// ```
+  Future<T?> pushReplacementEasy<T, X>(
+    Widget page, {
+    X? result,
+  }) async =>
+      _state?.pushReplacement<T, X>(
+          Okito.app.isMaterial
+              ? MaterialPageRoute(builder: (_) => page)
+              : CupertinoPageRoute(builder: (_) => page),
+          result: result);
+
   /// Equals to [Navigator.of(context).pushReplacementNamed()]
   /// Just give it the [routeName] you want to push
   ///

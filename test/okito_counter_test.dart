@@ -2,11 +2,15 @@ import 'package:flutter_test/flutter_test.dart';
 // ignore: avoid_relative_lib_imports
 import '../example/flutter_counter/lib/main.dart';
 
+/// This controls the main widget.
 void controlCountInMain(int count) =>
     expect(find.text('Current count is $count'), findsOneWidget);
+
+/// This controls the secondary widget.
 void controlCountInSecondWidget(int count) =>
     expect(find.text('Second widget: $count'), findsOneWidget);
 
+/// And this one actually runs both with current [count].
 void control(int count) {
   controlCountInMain(count);
   controlCountInSecondWidget(count);

@@ -6,14 +6,15 @@ class Counter {
 }
 
 void main() {
-  // Firstly inject the counter
-  // Then, you can use it by [use] function anywhere!
+  /// Firstly inject the counter
+  /// Then, you can use it by [use] function anywhere!
   Okito.inject(Counter());
   doTests();
 }
 
 void doTests() {
   test('dependency tests', () {
+    /// Now, we can use it.
     final counter = Okito.use<Counter>();
 
     expect(counter.count, 0);

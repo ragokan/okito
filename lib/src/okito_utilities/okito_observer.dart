@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../okito.dart';
 
-/// For this file, I don't think that it is necessary to add
+/// For this file, I don't think that it is necessary to add detailed
 /// documents for each function, so I will describe them here.
 ///
 /// This page is important to set the arguments of routes when
@@ -28,24 +28,31 @@ class OkitoObserver extends NavigatorObserver {
     }
   }
 
+  /// Whenever the user uses push functions, we set variables.
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPush(route, previousRoute);
     _setVariables(route);
   }
 
+  /// Whenever the user uses pop functions, we set variables.
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPop(route, previousRoute);
     _setVariables(previousRoute ?? route);
   }
 
+  /// Whenever the user removes the previous route, this function will be
+  /// called and we set the variables.
   @override
   void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didRemove(route, previousRoute);
     _setVariables(previousRoute ?? route);
   }
 
+  /// Whenever the user uses replace functions, we set variables.
+  ///
+  /// Example: [Okito.pushReplacementNamed(routeName)]
   @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);

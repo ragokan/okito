@@ -19,8 +19,8 @@ void main() {
     final stopWatching = OkitoWatcher(
       watch: counterController,
       onChange: (CounterController controller) {
-        // You can also update the state there, the controller it gives to
-        // you is the instance of controller.
+        /// You can also update the state there, the controller it gives to
+        /// you is the instance of controller.
         print(controller.count);
 
         expect(counterController.count, 1);
