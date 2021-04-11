@@ -1,3 +1,7 @@
+## 1.1.5 (Pre release)
+
+- Rockito Watcher
+
 ## 1.1.4
 
 - Better documentation

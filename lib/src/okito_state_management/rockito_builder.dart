@@ -28,12 +28,12 @@ Widget RockitoBuilder<T extends OkitoController>({
 }) {
   if (inject != null) Okito.inject(inject);
 
-  final controller = Okito.use<T>();
+  final _controller = Okito.use<T>();
   return OkitoBuilder(
-    controller: controller,
+    controller: _controller,
     watchAllStorageKeys: watchAllStorageKeys,
     watchStorageKeys: watchStorageKeys,
     otherControllers: otherControllers,
-    builder: () => builder(controller),
+    builder: () => builder(_controller),
   );
 }

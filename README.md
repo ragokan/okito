@@ -1,6 +1,6 @@
 # okito
 
-## Your best coding friend. All in one; state management, navigation management(with dynamic routing), local storage, dependency injection, localization, cool extensions with best usages and with the support of best utilities!
+## Your best flutter coding friend. All in one; state management, navigation management(with dynamic routing), local storage, dependency injection, localization, cool extensions with best usages and with the support of best utilities!
 
 [![pub points](https://badges.bar/okito/pub%20points)](https://pub.dev/packages/okito/score)
 [![likes](https://badges.bar/okito/likes)](https://pub.dev/packages/okito/score)
@@ -19,8 +19,8 @@
   - [Create Controller](#create-controller)
   - [Use Controller](#use-controller)
   - [Update Controller](#update-controller)
-  - [Watch Controller](#watch-controller)
   - [Rockitos](#rockitos)
+  - [Watch Controller](#watch-controller)
   - [State Methods](#state-methods)
 - [Utilities + Navigation](#utilities)
   - [Routing Management 🚀](#routing-management)
@@ -108,27 +108,6 @@ OkitoBuilder(
 
 ---
 
-#### Watch Controller
-
-```dart
-    OkitoWatcher(
-    watch: counterController,
-    onChange: (CounterController controller) {
-      // You can also update the state there.
-      // onChange gives to you is the instance of controller.
-      print(controller.count);
-    },
-  );
-  counterController.increment();
-
-  // OkitoWatcher also returns a function that stops watching which
-  // reduces the memory usage, you can use it when your usage ends.
-
-  final stopWatching = OkitoWatcher(/* code here */);
-  // do what you want to do while watching, then:
-  stopWatching();
-```
-
 #### Rockitos
 
 Rockitos are our way to use state management with dependency injection!  
@@ -153,6 +132,36 @@ Okito.inject(CounterController);
     builder: (controller) => Text('${controller.count}'),
     // You can use all of OkitoBuilder features here like otherControllers and etc.
   );
+```
+
+---
+
+#### Watch Controller
+
+```dart
+    OkitoWatcher(
+    watch: counterController,
+    onChange: (CounterController controller) {
+      // You can also update the state there.
+      // onChange gives to you is the instance of controller.
+      print(controller.count);
+    },
+  );
+  counterController.increment();
+
+  // OkitoWatcher also returns a function that stops watching which
+  // reduces the memory usage, you can use it when your usage ends.
+
+  final stopWatching = OkitoWatcher(/* code here */);
+  // do what you want to do while watching, then:
+  stopWatching();
+```
+
+```dart
+// You can also watch with Rockitos.
+RockitoWatcher<CounterController>(
+  (controller) => print(controller.count))
+// You have to inject the controller first.
 ```
 
 #### State Methods
