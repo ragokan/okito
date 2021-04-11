@@ -552,6 +552,7 @@ Rockito<AppController>(
 # Tutorials
 
 - [To Do App by Randall Morgan](https://www.youtube.com/watch?v=acsYwjldZG0&ab_channel=Monotoba)
+- [Written To Do App by Randall Morgan](https://www.coderancher.us/2021/04/10/dart-flutter-state-management-with-okito/)
 
 # Examples
 
