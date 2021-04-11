@@ -1,5 +1,10 @@
 import '../../okito.dart';
 
+/// The base of [Okito] dependency injection.
+///
+/// We just mix this class with the [Okito], then we can use it.
+///
+/// It is a totally undependent mixin, no override or anything required.
 mixin OkitoDependencyInjection {
   /// A [Set] of injected [_dependencies].
   /// It is set because we don't want to have duplicates.

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:html' as html;
 
+/// The OkitoStorage implementation for web.
 class ImplOkitoStorage {
   bool _isInitialized = false;
 

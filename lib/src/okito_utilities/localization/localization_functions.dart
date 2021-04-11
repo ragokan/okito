@@ -12,12 +12,13 @@ import '../../../okito.dart';
 /// Check translation documents for this.
 String localizeSimple(String key) {
   if (Okito.app.locale == null) return key;
-  final languageTranslations = Okito
+  final _languageTranslations = Okito
           .app.translations[Okito.app.locale.toString()] ??
       Okito.app.translations[Okito.app.locale?.languageCode.toString()] ??
       Okito.app.translations[Okito.app.fallbackLocale.toString()] ??
       Okito.app.translations[Okito.app.fallbackLocale.languageCode.toString()];
-  final translate =
-      languageTranslations != null ? languageTranslations[key] ?? key : key;
-  return translate;
+
+  final _translate =
+      _languageTranslations != null ? _languageTranslations[key] ?? key : key;
+  return _translate;
 }

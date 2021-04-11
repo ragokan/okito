@@ -1,10 +1,15 @@
 import '../typedefs/callback_types.dart';
 
 // I learned this usage from https://github.com/gskinnerTeam/flutter-universal-platform/blob/master/lib/universal_platform.dart
+// What it does it, if we have dart.library.io, which doesnt exists on web
+// we import storage, else we import web.
 import 'modules/okito_web_storage.dart'
     if (dart.library.io) 'modules/okito_io_storage.dart';
 import 'modules/storage_watcher_model.dart';
 
+/// The implementation of [OkitoStorage]
+///
+/// The [ImplOkitoStorage] depends on the import above.
 class _OkitoStorage extends ImplOkitoStorage {
   final _watchers = <StorageWatcher>{};
 

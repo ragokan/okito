@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-final flutterDialog = showDialog;
+/// Because the function we are going to use is [showDialog] from flutter and
+/// [Okito.showDialog()], we get problems. I renamed this variable here to
+/// prevent name confusions.
+final _showDialog = showDialog;
 
+/// The way to use widgets like *snackbar* or *bottom modal sheet* without
+/// context, we have this mixin. We have to override the [context] in Okito.
 mixin OkitoWidgets {
+  /// The [BuildContext]:[context] of your app.
   BuildContext? get context;
 
   /// Shows a [SnackBar] across all registered [Scaffold]s but instead of
@@ -34,7 +40,7 @@ mixin OkitoWidgets {
   /// with Material entrance and exit animations, modal barrier color, and
   ///  modal barrier behavior (dialog is dismissible with a tap on the barrier).
   Future<T?> showDialog<T>({required Widget child}) async =>
-      flutterDialog(context: context!, builder: (ctx) => child);
+      _showDialog(context: context!, builder: (ctx) => child);
 
   /// Shows a modal material design bottom sheet.
   Future<T?> showModal<T>({

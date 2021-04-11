@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import '../okito_extensions/context_extensions.dart';
 
+/// This mixin provides informations about the device in an easier way.
+///
+/// The context is going to be provided by *Okito*, so we have to override
+/// this context.
 mixin OkitoDevice {
+  /// The [BuildContext]:[context] of your app.
   BuildContext? get context;
 
   /// The horizontal extent of this size.
@@ -36,5 +41,17 @@ mixin OkitoDevice {
   bool get isAndroid => Theme.of(context!).platform == TargetPlatform.android;
 
   /// Returns true if the device is *iOS*.
-  bool get isIos => Theme.of(context!).platform == TargetPlatform.iOS;
+  bool get isIOS => Theme.of(context!).platform == TargetPlatform.iOS;
+
+  /// Returns true if the device is *macOS*.
+  bool get isMacOS => Theme.of(context!).platform == TargetPlatform.macOS;
+
+  /// Returns true if the device is *linux*.
+  bool get isLinux => Theme.of(context!).platform == TargetPlatform.linux;
+
+  /// Returns true if the device is *windows*.
+  bool get isWindows => Theme.of(context!).platform == TargetPlatform.windows;
+
+  /// Returns true if the device is *fuchsia*.
+  bool get isFuchsia => Theme.of(context!).platform == TargetPlatform.fuchsia;
 }

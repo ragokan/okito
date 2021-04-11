@@ -5,6 +5,10 @@ import '../okito.dart';
 import 'okito_utilities/index.dart';
 import 'utilities/constants.dart';
 
+/// The implementation of [Okito].
+///
+/// We use it as a private class because it is not optimal to have multiple
+/// Okito classes.
 class _Okito
     with
         OkitoWidgets,

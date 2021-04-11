@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'localization/localization_functions.dart';
 
+/// Okito provides easier ways to use utility functions.
+///
+/// I hope we can have more utility functions in future, the aim is to reduce
+/// the code repeating.
 mixin OkitoFunctions {
   /// [seconds] is the amount of time that Okito wait to call the function.
   /// after x [seconds], [callback] funciton will be called.

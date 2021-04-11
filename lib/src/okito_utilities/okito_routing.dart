@@ -4,8 +4,20 @@ import 'package:flutter/material.dart';
 import '../../okito.dart';
 import '../utilities/constants.dart';
 
+/// This is actually the most important mixin of [Okito] class. It handles
+/// all the routing and it has the [navigatorKey] property.
+///
+/// We have to override [navigatorKey] because as you know, mixins can't be
+/// instantiated.
 mixin OkitoRouting {
+  /// The [NavigatorState] of the app.
+  /// You can use this to provide data to your material app.
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  /// Instead of writing [navigatorKey.currentState!] and doing a check, we
+  /// check it here. Moreover, we throw custom exception to the developer to
+  /// provide the [navigatorKey] or use
+  /// one of [OkitoMaterialApp]-[OkitoCupertinoApp].
   NavigatorState? get _state {
     if (navigatorKey.currentState == null) {
       throw Exception(nullException);

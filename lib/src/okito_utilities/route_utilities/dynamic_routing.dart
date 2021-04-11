@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../okito.dart';
 
+/// This is an private extension to use parsing function only.
 extension on String {
   /// Parses the string and returns a list of string.
   /// At parse, we just [split] the values with ['/']
@@ -23,8 +24,9 @@ extension on String {
   }
 }
 
+/// Again, it is also a private extension created not to do code repeating.
 extension on List<String> {
-  /// This is used for [compareRoute] function that is declared below.
+  /// This is used for [_compareRoute] function that is declared below.
   ///
   /// It gets a list of strings and returns the ones starts with alphabet.
   ///
@@ -40,7 +42,7 @@ extension on List<String> {
 }
 
 /// Compares two routes using [List<String>.whereStartsWithAlphabet] method.
-bool compareRoute(String wantedPathName, String route) {
+bool _compareRoute(String wantedPathName, String route) {
   var listRoute = route.parse.whereStartsWithAlphabet;
   var listPath = wantedPathName.parse.whereStartsWithAlphabet;
 
@@ -70,7 +72,7 @@ bool compareRoute(String wantedPathName, String route) {
 /// Then we will remove the [:] at the beginning of [id] and create a map
 /// with arguments
 /// [{id:31}], amazing, right?
-Map<String, dynamic> getArgumentsFromRoute(
+Map<String, dynamic> _getArgumentsFromRoute(
     String wantedPathName, String route) {
   try {
     /// Firstly, we do [parse] the [route] and [wantedPathName]
@@ -117,10 +119,10 @@ Map<String, dynamic> getArgumentsFromRoute(
 /// everywhere I can add.
 Route<dynamic>? pageRouteBuilder(RouteSettings settings) {
   /// Firstly we should have a target page to push.
-  Widget Function(BuildContext)? targetPage;
+  Widget Function(BuildContext)? _targetPage;
 
   /// Secondly we do need a parsedString, empty at start.
-  var parsedString = '';
+  var _parsedString = '';
 
   /// We will check all of [Okito.app.routes] which are the [route] list
   /// that is defined at [OkitoMaterialApp] or [OkitoCupertinoApp].
@@ -128,41 +130,41 @@ Route<dynamic>? pageRouteBuilder(RouteSettings settings) {
   /// Then, we simply call this method to set
   /// both [targetPage] and [parsedString]
   void setRoute(route, value) {
-    targetPage = value;
-    parsedString = route;
+    _targetPage = value;
+    _parsedString = route;
   }
 
   /// We check the apps routes whether there are a route named like target
   /// route or not.
   Okito.app.routes.forEach((route, value) =>
-      (compareRoute(settings.name!, route)) ? setRoute(route, value) : null);
+      (_compareRoute(settings.name!, route)) ? setRoute(route, value) : null);
 
-  if (targetPage != null) {
+  if (_targetPage != null) {
     /// Here we give the name to show in browser
     /// Arguments are also coming from route.
 
-    var argumentsFromRoute =
-        getArgumentsFromRoute(Uri.parse(settings.name!).path, parsedString);
+    var _argumentsFromRoute =
+        _getArgumentsFromRoute(Uri.parse(settings.name!).path, _parsedString);
 
-    final stringQuery = Uri.parse(settings.name!).hasQuery
+    final _stringQuery = Uri.parse(settings.name!).hasQuery
         ? Uri.parse(settings.name!).query
         : null;
 
-    if (stringQuery != null) {
-      final listQuery = stringQuery.split(RegExp(r'[?&]'));
-      listQuery.forEach((element) {
+    if (_stringQuery != null) {
+      final _listQuery = _stringQuery.split(RegExp(r'[?&]'));
+      _listQuery.forEach((element) {
         final queryElement = element.split('=');
-        argumentsFromRoute.addAll({queryElement[0]: queryElement[1]});
+        _argumentsFromRoute.addAll({queryElement[0]: queryElement[1]});
       });
     }
 
     /// If the user provided arguments, we pass it here.
     if (settings.arguments != null) {
-      argumentsFromRoute.addAll({'arguments': settings.arguments});
+      _argumentsFromRoute.addAll({'arguments': settings.arguments});
     }
 
-    var routeSettings =
-        RouteSettings(name: settings.name!, arguments: argumentsFromRoute);
+    var _routeSettings =
+        RouteSettings(name: settings.name!, arguments: _argumentsFromRoute);
 
     /// We check if the app is MaterialApp or not.
     /// If material, we show material animations, if cupertino
@@ -171,19 +173,19 @@ Route<dynamic>? pageRouteBuilder(RouteSettings settings) {
         ? MaterialPageRoute(
             fullscreenDialog: false,
             maintainState: true,
-            settings: routeSettings,
+            settings: _routeSettings,
             builder: (
               context,
             ) =>
-                targetPage!(context))
+                _targetPage!(context))
         : CupertinoPageRoute(
             fullscreenDialog: false,
             maintainState: true,
-            settings: routeSettings,
+            settings: _routeSettings,
             builder: (
               context,
             ) =>
-                targetPage!(context));
+                _targetPage!(context));
   } else {
     /// The route user wanted may not be registered to the app,
     /// in that case we will try to push to /notFound, if that exists.
@@ -192,7 +194,3 @@ Route<dynamic>? pageRouteBuilder(RouteSettings settings) {
     }
   }
 }
-
-/// It just generates settings from [name] and [arguments].
-RouteSettings generateSettings({required String name, Object? arguments}) =>
-    RouteSettings(name: name, arguments: arguments);
