@@ -108,32 +108,32 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
     if (widget.activateLifecycleForOtherControllers) {
       widget.otherControllers.forEach((c) => c.initState());
     }
-    void updateState() {
+    void _updateState() {
       if (mounted) {
         setState(() {});
       }
     }
 
     /// Here, we mount the [watch] function to re-render state on changes.
-    final unmount = controllerXview.watch(widget.controller, updateState);
+    final unmount = controllerXview.watch(widget.controller, _updateState);
     _unmountFunctions.add(unmount);
 
     /// Just like the above example, here we mount all of the controllers
     /// that build method wants to watch.
     widget.otherControllers.forEach((controller) {
-      final unmount = controllerXview.watch(controller, updateState);
+      final unmount = controllerXview.watch(controller, _updateState);
       _unmountFunctions.add(unmount);
     });
 
     /// In this example, we watch the changes that are happening in
     /// [OkitoStorage].
     widget.watchStorageKeys.forEach((key) {
-      final unmount = OkitoStorage.watchKey(key, updateState);
+      final unmount = OkitoStorage.watchKey(key, _updateState);
       _unmountFunctions.add(unmount);
     });
 
     if (widget.watchAllStorageKeys) {
-      final unmount = OkitoStorage.watchAll(updateState);
+      final unmount = OkitoStorage.watchAll(_updateState);
       _unmountFunctions.add(unmount);
     }
   }

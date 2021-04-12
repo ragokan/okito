@@ -79,8 +79,36 @@ class OkitoController with OkitoStateMethods {
   ///   void increment() => setState(() => count++);
   /// ```
   @mustCallSuper
-  void setState(VoidCallback callback) {
+  void setState(VoidCallback callback) async {
     callback();
+    update();
+  }
+
+  /// [setStateAsync] method notifies all the builders to re-build the state
+  /// after the callback ends.
+  ///
+  /// It is same with [setState] but it is asynchronous.
+  ///
+  ///Example
+  ///```dart
+  ///void increment(){
+  ///    setStateAsync(() async{
+  ///     final data = await yourFuture.get('count');
+  ///     count = data;
+  ///   });
+  ///}
+  ///```
+  ///
+  /// The [setStateAsync] can be async;
+  /// ```dart
+  ///   setStateAsync(() async{
+  ///     // do something async
+  ///     count++;
+  ///   });
+  /// ```
+  @mustCallSuper
+  Future<void> setStateAsync(FutureVoidCallback callback) async {
+    await callback();
     update();
   }
 }

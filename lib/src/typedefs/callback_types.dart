@@ -4,6 +4,9 @@ import '../../okito.dart';
 /// Regular callback type for the whole library.
 typedef VoidCallback = void Function();
 
+/// Regular future callback type for the whole library.
+typedef FutureVoidCallback = Future<void> Function();
+
 /// A callback that returns Widget.
 /// It is current used only for OkitoBuilder.
 typedef BuilderCallback = Widget Function();

@@ -71,6 +71,8 @@ class CounterController extends OkitoController {
 CounterController counterController = CounterController();
 ```
 
+You can also use _setStateAsync_ function to update data asynchronously.
+
 ---
 
 #### Use Controller

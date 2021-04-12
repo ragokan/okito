@@ -1,6 +1,7 @@
-## 1.1.5 (Pre release)
+## 1.1.5
 
 - Rockito Watcher
+- Set state asynchronous function : setStateAsync
 
 ## 1.1.4
 
