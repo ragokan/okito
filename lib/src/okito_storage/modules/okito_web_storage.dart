@@ -12,12 +12,13 @@ class ImplOkitoStorage {
 
   final String _key = 'okitoStorage';
 
-  html.Storage get localStorage => html.window.localStorage;
+  html.Storage get _localStorage => html.window.localStorage;
 
-  // Future for IO version.
+  /// Future for IO version.
+  /// Inits the local storage and get current data.
   Future<void> init({required String storageName}) async {
-    if (!localStorage.containsKey(_key)) {
-      localStorage[_key] = jsonEncode(_emptyData);
+    if (!_localStorage.containsKey(_key)) {
+      _localStorage[_key] = jsonEncode(_emptyData);
     }
     _currentData = _getData();
     _isInitialized = true;
@@ -25,8 +26,8 @@ class ImplOkitoStorage {
 
   Map<String, dynamic> _getData() {
     try {
-      return localStorage.containsKey(_key)
-          ? jsonDecode(localStorage[_key]!)
+      return _localStorage.containsKey(_key)
+          ? jsonDecode(_localStorage[_key]!)
           : _emptyData;
     } on FormatException catch (_) {
       clearStorage();
@@ -34,38 +35,46 @@ class ImplOkitoStorage {
     }
   }
 
-  void _saveToWebStorage() => localStorage[_key] = _encodedData;
+  void _saveToWebStorage() => _localStorage[_key] = _encodedData;
 
+  /// Get data from local storage.
   T? read<T>(String key) => _isInitialized ? _currentData[key] : null;
 
+  /// Get all keys from local storage.
   List<String>? readAllKeys() =>
       _isInitialized ? _currentData.keys.toList() : null;
 
+  /// Get all values from local storage.
   List<dynamic>? readAllValues() =>
       _isInitialized ? _currentData.values.toList() : null;
 
+  /// Get everything from local storage.
   Map<String, dynamic>? readAll() => _isInitialized ? _currentData : null;
 
+  /// Writes current data to the local storage.
   void write<T>(String key, T value) {
     if (!_isInitialized) return;
     _currentData[key] = value;
     _saveToWebStorage();
   }
 
+  /// Deletes a key from the storage.
   void removeKey<T>(String key) {
     if (!_isInitialized) return;
     _currentData.remove(key);
     _saveToWebStorage();
   }
 
+  /// Clear the data of local storage.
   void clearStorage() {
     if (!_isInitialized) return;
 
-    localStorage[_key] = jsonEncode(_emptyData);
+    _localStorage[_key] = jsonEncode(_emptyData);
   }
 
+  /// Delete the storage permanently.
   void deleteStorage() {
     if (!_isInitialized) return;
-    localStorage.remove(_key);
+    _localStorage.remove(_key);
   }
 }

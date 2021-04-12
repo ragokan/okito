@@ -1,5 +1,6 @@
 import '../../typedefs/callback_types.dart';
 
+/// The watcher model for watching the state.
 class Watcher<T> {
   /// The OkitoController
   final T controller;
@@ -8,5 +9,6 @@ class Watcher<T> {
   /// *update* or *setState*
   final VoidCallback callback;
 
+  /// Constructor (amazing docs, I know)
   const Watcher(this.controller, this.callback);
 }

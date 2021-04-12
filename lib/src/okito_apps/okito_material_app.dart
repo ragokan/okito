@@ -10,6 +10,7 @@ import 'app_controller.dart';
 /// [OkitoMaterialApp] is the replacement of [MaterialApp] to use
 /// all of [Okito] features in your app!
 class OkitoMaterialApp extends StatelessWidget {
+  /// The constant constuctor of [OkitoMaterialApp].
   const OkitoMaterialApp({
     Key? key,
     this.scaffoldMessengerKey,
@@ -79,13 +80,28 @@ class OkitoMaterialApp extends StatelessWidget {
 
   /// Starting route of your app, defaults to '/'.
   final String? initialRoute;
+
+  /// This function is called at the start of app, when it generates
+  /// the routes.
   final InitialRouteListFactory? onGenerateInitialRoutes;
 
   /// When we went to an route that is not registered this will work.
   final RouteFactory? onUnknownRoute;
+
+  /// A route information provider that provides route information
+  /// for the [Router] widget.
   final RouteInformationProvider? routeInformationProvider;
+
+  /// A delegate that is used by the [Router] widget to parse a route
+  ///  information into a configuration of type T.
   final RouteInformationParser<Object>? routeInformationParser;
+
+  /// A delegate that is used by the [Router] widget to build and
+  ///  configure a navigating widget.
   final RouterDelegate<Object>? routerDelegate;
+
+  /// Report to a [Router] when the user taps the back button on
+  /// platforms that support back buttons like Android.
   final BackButtonDispatcher? backButtonDispatcher;
 
   /// The builder of your app, you can use this for
@@ -112,7 +128,11 @@ class OkitoMaterialApp extends StatelessWidget {
 
   /// Your theme for [darkTheme] mode.
   final ThemeData? darkTheme;
+
+  /// High constrast theme for your app.
   final ThemeData? highContrastTheme;
+
+  /// High constrast dark theme for your app.
   final ThemeData? highContrastDarkTheme;
 
   /// The [themeMode] of your app.
@@ -125,21 +145,48 @@ class OkitoMaterialApp extends StatelessWidget {
 
   /// Default locale that your app will use for [Okito] localizations.
   final Locale? locale;
+
+  /// The delegates for this app's [Localizations] widget.
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+
+  /// This callback is responsible for choosing the app's locale when the app
+  /// is started, and when the user changes the device's locale.
   final LocaleListResolutionCallback? localeListResolutionCallback;
+
+  /// The signature of [WidgetsApp.localeResolutionCallback].
   final LocaleResolutionCallback? localeResolutionCallback;
 
   /// List of supported locales.
   final Iterable<Locale> supportedLocales;
+
+  /// Turns on a performance overlay.
   final bool showPerformanceOverlay;
-  final bool showSemanticsDebugger;
-  final bool debugShowCheckedModeBanner;
-  final Map<LogicalKeySet, Intent>? shortcuts;
-  final Map<Type, Action<Intent>>? actions;
-  final String? restorationScopeId;
-  final bool debugShowMaterialGrid;
+
+  /// Turns on checkerboarding of raster cache images.
   final bool checkerboardRasterCacheImages;
+
+  /// Turns on checkerboarding of layers rendered to offscreen bitmaps.
   final bool checkerboardOffscreenLayers;
+
+  /// Turns on an overlay that shows the accessibility information
+  ///  reported by the framework.
+  final bool showSemanticsDebugger;
+
+  /// Turns on a little "DEBUG" banner in checked mode to indicate
+  ///  that the app is in checked mode.
+  final bool debugShowCheckedModeBanner;
+
+  /// The default map of intent keys to actions for the application.
+  final Map<Type, Action<Intent>>? actions;
+
+  /// The identifier to use for state restoration of this app.
+  final String? restorationScopeId;
+
+  /// The default map of keyboard shortcuts to intents for the application.
+  final Map<LogicalKeySet, Intent>? shortcuts;
+
+  /// Turns on a [GridPaper] overlay that paints a baseline grid Material apps.
+  final bool debugShowMaterialGrid;
 
   @override
   Widget build(BuildContext ctx) {

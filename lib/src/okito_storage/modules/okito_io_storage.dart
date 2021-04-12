@@ -46,34 +46,42 @@ class ImplOkitoStorage {
 
   void _saveToIOStorage() => _file.writeAsStringSync(_encodedData);
 
+  /// Get data from local storage.
   T? read<T>(String key) => _isInitialized ? _currentData[key] : null;
 
+  /// Get all keys from local storage.
   List<String>? readAllKeys() =>
       _isInitialized ? _currentData.keys.toList() : null;
 
+  /// Get all values from local storage.
   List<dynamic>? readAllValues() =>
       _isInitialized ? _currentData.values.toList() : null;
 
+  /// Get everything from local storage.
   Map<String, dynamic>? readAll() => _isInitialized ? _currentData : null;
 
+  /// Writes current data to the local storage.
   void write<T>(String key, T value) {
     if (!_isInitialized) return;
     _currentData[key] = value;
     _saveToIOStorage();
   }
 
+  /// Deletes a key from the storage.
   void removeKey<T>(String key) {
     if (!_isInitialized) return;
     _currentData.remove(key);
     _saveToIOStorage();
   }
 
+  /// Clear the data of local storage.
   void clearStorage() {
     if (!_isInitialized) return;
 
     _file.writeAsStringSync(jsonEncode(_emptyData));
   }
 
+  /// Delete the storage permanently.
   void deleteStorage() {
     if (!_isInitialized) return;
     _file.deleteSync();

@@ -5,6 +5,7 @@ include: package:pedantic/analysis_options.yaml
 
 linter:
   rules:
+    - public_member_api_docs
     - prefer_relative_imports
     - prefer_const_constructors
     - directives_ordering

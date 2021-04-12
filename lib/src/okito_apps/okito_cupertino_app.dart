@@ -11,6 +11,7 @@ import 'app_controller.dart';
 /// [OkitoCupertinoApp] is the replacement of [CupertinoApp] to use
 /// all of [Okito] features in your app!
 class OkitoCupertinoApp extends StatelessWidget {
+  /// The constant constuctor of [OkitoCupertinoApp].
   const OkitoCupertinoApp({
     Key? key,
     this.home,
@@ -71,13 +72,28 @@ class OkitoCupertinoApp extends StatelessWidget {
 
   /// Starting route of your app, defaults to '/'.
   final String? initialRoute;
+
+  /// This function is called at the start of app, when it generates
+  /// the routes.
   final InitialRouteListFactory? onGenerateInitialRoutes;
 
   /// When we went to an route that is not registered this will work.
   final RouteFactory? onUnknownRoute;
+
+  /// A route information provider that provides route information
+  /// for the [Router] widget.
   final RouteInformationProvider? routeInformationProvider;
+
+  /// A delegate that is used by the [Router] widget to parse a route
+  ///  information into a configuration of type T.
   final RouteInformationParser<Object>? routeInformationParser;
+
+  /// A delegate that is used by the [Router] widget to build and
+  ///  configure a navigating widget.
   final RouterDelegate<Object>? routerDelegate;
+
+  /// Report to a [Router] when the user taps the back button on
+  /// platforms that support back buttons like Android.
   final BackButtonDispatcher? backButtonDispatcher;
 
   /// The builder of your app, you can use this for
@@ -106,19 +122,44 @@ class OkitoCupertinoApp extends StatelessWidget {
 
   /// Default locale that your app will use for [Okito] localizations.
   final Locale? locale;
+
+  /// The delegates for this app's [Localizations] widget.
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+
+  /// This callback is responsible for choosing the app's locale when the app
+  /// is started, and when the user changes the device's locale.
   final LocaleListResolutionCallback? localeListResolutionCallback;
+
+  /// The signature of [WidgetsApp.localeResolutionCallback].
   final LocaleResolutionCallback? localeResolutionCallback;
 
   /// List of supported locales.
   final Iterable<Locale> supportedLocales;
+
+  /// Turns on a performance overlay.
   final bool showPerformanceOverlay;
+
+  /// Turns on checkerboarding of raster cache images.
   final bool checkerboardRasterCacheImages;
+
+  /// Turns on checkerboarding of layers rendered to offscreen bitmaps.
   final bool checkerboardOffscreenLayers;
+
+  /// Turns on an overlay that shows the accessibility information
+  ///  reported by the framework.
   final bool showSemanticsDebugger;
+
+  /// Turns on a little "DEBUG" banner in checked mode to indicate
+  ///  that the app is in checked mode.
   final bool debugShowCheckedModeBanner;
+
+  /// The default map of intent keys to actions for the application.
   final Map<Type, Action<Intent>>? actions;
+
+  /// The identifier to use for state restoration of this app.
   final String? restorationScopeId;
+
+  /// The default map of keyboard shortcuts to intents for the application.
   final Map<LogicalKeySet, Intent>? shortcuts;
 
   @override

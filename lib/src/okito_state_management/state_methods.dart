@@ -1,5 +1,6 @@
 import '../../okito.dart';
 
+/// The mixin that has some of stateful widget methods.
 mixin OkitoStateMethods {
   /// [initState] methods is called when your [OkitoBuilder] is mounted
   /// to the widget tree.

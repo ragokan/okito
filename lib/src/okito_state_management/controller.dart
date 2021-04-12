@@ -29,6 +29,7 @@ import 'state_methods.dart';
 ///
 /// ```
 class OkitoController with OkitoStateMethods {
+  /// The constructor of [OkitoController], luckily it is constant!
   const OkitoController();
 
   /// [update] method notifies all the builders to re-build the state.

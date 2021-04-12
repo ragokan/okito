@@ -37,6 +37,9 @@ class AppController extends OkitoController {
   /// if you didn't set it yet.
   CupertinoThemeData? cupertinoThemeData;
 
+  /// Updates the current [cupertinoThemeData] of your app, then re-builds
+  ///  your app, so that your changes will be seen in the screen. If you don't
+  ///  want a re-build , you can directly set [cupertinoThemeData].
   void setCupertinoThemeData(CupertinoThemeData newCupertinoThemeData) =>
       setState(() => cupertinoThemeData = newCupertinoThemeData);
 
@@ -44,8 +47,8 @@ class AppController extends OkitoController {
   /// Returns [locale] of your app.
   Locale? locale;
 
-  // A fallback locale if there are no given locale or the locale provided
-  // is not found in the translations.
+  /// A fallback locale if there are no given locale or the locale provided
+  /// is not found in the translations.
   Locale fallbackLocale = const Locale('en', 'US');
 
   /// The [translations] of your app.
