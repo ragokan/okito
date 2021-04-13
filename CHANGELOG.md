@@ -1,6 +1,8 @@
-## 1.1.6 (Pre-release)
+## 1.1.6
 
-- Nothing yet
+- All the documentations are done.
+- Better approach for dependency injection.
+- More tests.
 
 ## 1.1.5
 

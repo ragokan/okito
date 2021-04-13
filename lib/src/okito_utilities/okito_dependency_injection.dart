@@ -36,8 +36,7 @@ mixin OkitoDependencyInjection {
   ///
   /// Good for memory, if you don't use dependency, just kill it :D
   /// After you [eject], you won't be able to [use] it anymore.
-  void eject<T>() => _dependencies.removeWhere(
-      (dependency) => dependency.runtimeType.toString() == T.toString());
+  void eject<T>() => _dependencies.removeWhere((dependency) => dependency is T);
 
   /// Returns the dependency that is injected before with [inject] function.
   ///
@@ -52,8 +51,7 @@ mixin OkitoDependencyInjection {
   /// counter.count++;
   /// counter.count--;
   /// ```
-  T use<T>() => _dependencies.firstWhere(
-      (dependency) => dependency.runtimeType.toString() == T.toString(),
+  T use<T>() => _dependencies.firstWhere((dependency) => dependency is T,
       orElse: () => throw Exception('''
       You have to declare a variable to use [use] function.
       Please read the documents or hover over the [use] function to see its usage.
