@@ -2,13 +2,13 @@ import '../../typedefs/callback_types.dart';
 import '../controller.dart';
 import 'watcher_model.dart';
 
-class _ControllerCommunication<Okito> {
+class _CustomControllerStream<Okito> {
   final _watchers = <Watcher>{};
 
   /// [notify] method is the method called when you use 'update' or 'setState'.
   void notify<T extends Okito>(T controller) {
     for (var watcher in _watchers) {
-      if (watcher.controller == controller) {
+      if (watcher.toWatch == controller) {
         watcher.callback();
       }
     }
@@ -28,11 +28,11 @@ class _ControllerCommunication<Okito> {
 
 /// ### For Developers
 ///
-/// The [controllerXview] is a bridge between controller
+/// The [controllerXviewStream] is a bridge between controller
 ///  and view(stateful widget).
 ///
 /// In the okito, we don't use Dependency Injection, instead we use
 /// set with watchers which is triggered whenever a controller
 /// notifies the state to update/re-build.
-final _ControllerCommunication controllerXview =
-    _ControllerCommunication<OkitoController>();
+final _CustomControllerStream controllerXviewStream =
+    _CustomControllerStream<OkitoController>();

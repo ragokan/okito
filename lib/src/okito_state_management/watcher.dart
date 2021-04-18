@@ -32,7 +32,7 @@ Function OkitoWatcher<T extends OkitoController>({
   /// onChange: (controller) => /* Your code here */
   required WatcherCallback<T> onChange,
 }) {
-  return controllerXview.watch(
+  return controllerXviewStream.watch(
     watch,
     () => onChange(watch),
   );

@@ -115,13 +115,14 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
     }
 
     /// Here, we mount the [watch] function to re-render state on changes.
-    final unmount = controllerXview.watch(widget.controller, _updateState);
+    final unmount =
+        controllerXviewStream.watch(widget.controller, _updateState);
     _unmountFunctions.add(unmount);
 
     /// Just like the above example, here we mount all of the controllers
     /// that build method wants to watch.
     widget.otherControllers.forEach((controller) {
-      final unmount = controllerXview.watch(controller, _updateState);
+      final unmount = controllerXviewStream.watch(controller, _updateState);
       _unmountFunctions.add(unmount);
     });
 

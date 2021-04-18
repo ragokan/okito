@@ -31,7 +31,7 @@ Function RockitoWatcher<T extends OkitoController>(
 }) {
   if (inject != null) Okito.inject(inject);
   final _watch = Okito.use<T>();
-  return controllerXview.watch(
+  return controllerXviewStream.watch(
     _watch,
     () => callback(_watch),
   );
