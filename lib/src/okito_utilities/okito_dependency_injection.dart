@@ -53,11 +53,61 @@ mixin OkitoDependencyInjection {
   /// ```
   T use<T>() => _dependencies.firstWhere((dependency) => dependency is T,
       orElse: () => throw Exception('''
-      You have to declare a variable to use [use] function.
+      You have to inject a variable to use it with [use] function.
       Please read the documents or hover over the [use] function to see its usage.
       Note that you can't use type [dynamic] with [use] function.
         '''));
 
   /// Same as [use] function, use whichever you want :)
   T take<T>() => use<T>();
+
+  /// It is going to be our second store for dependencies but for key storage.
+  final Map<String, dynamic> _dependenciesWithKey = <String, dynamic>{};
+
+  /// It works just like [inject] function, but instead of just type,
+  /// you give it a key. It is mostly suitable for usages of same type more
+  /// than once.
+  ///
+  /// ```dart
+  /// Okito.injectWithKey('yourKey',yourValue);
+  ///
+  /// // They are different instances to use.
+  /// Okito.injectWithKey('controller1',CounterController());
+  /// Okito.injectWithKey('controller2',CounterController());
+  ///
+  /// ```
+  /// To use, check [useWithKey], to remove, check [ejectWithKey].
+  T injectWithKey<T>(String key, T dependency) {
+    _dependenciesWithKey[key] = dependency;
+    return dependency;
+  }
+
+  /// It works just like [use] function, but instead of type, you use with key.
+  /// You have to inject using [injectWithKey] function first.
+  /// ```dart
+  /// final appSecret = Okito.useWithKey<String>('appSecret');
+  /// final firstCounterController =
+  ///     Okito.useWithKey<CounterController>('controller1');
+  /// final secondCounterController =
+  ///     Okito.useWithKey<CounterController>('controller2');
+  /// ```
+  T useWithKey<T>(String key) {
+    if (_dependenciesWithKey.containsKey(key)) {
+      return _dependenciesWithKey[key];
+    }
+
+    throw Exception('''
+      You have to inject a variable with key to use [useWithKey] function.
+      Please read the documents or hover over the [useWithKey] function to see its usage.
+      Note that you can't use type [dynamic] with [useWithKey] function.
+        ''');
+  }
+
+  /// It works just like [eject] function, but instead of just type,
+  /// you give it a key.
+  ///
+  /// ```dart
+  /// Okito.ejectWithKey('yourKey');
+  /// ```
+  void ejectWithKey<T>(String key) => _dependenciesWithKey.remove(key);
 }

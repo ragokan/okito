@@ -497,6 +497,37 @@ Okito.eject<Counter>();
 
 #### For more details, check the tests or examples about it!
 
+## Injection With Keys
+
+It is useful when you want to storage with a String key instead of type which gives you advantage of multiple injects with same type.
+
+```dart
+// Example Variable
+class Counter(){
+  count = 0;
+}
+
+// Inject it
+Okito.injectWithKey('firstCounter',Counter());
+Okito.injectWithKey('secondCounter',Counter());
+
+
+// Use it anywhere with type support!
+final firstCounter = Okito.useWithKey<Counter>('firstCounter');
+final secondCounter = Okito.useWithKey<Counter>('secondCounter');
+
+// Update however you want
+firstCounter.count++;
+secondCounter.count++;
+```
+
+Soo, lets say that your job is done with that class, why would we let it to use memory?
+
+```dart
+// Second counter will be gone forever!
+Okito.ejectWithKey('secondCounter');
+```
+
 # Tips
 
 #### Cleaner Widgets

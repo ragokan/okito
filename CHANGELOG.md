@@ -1,5 +1,9 @@
 ## 1.1.6
 
+- Dependency injection with key. (Check readme)
+
+## 1.1.6
+
 - All the documentations are done.
 - Better approach for dependency injection.
 - More tests.
