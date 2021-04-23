@@ -1,3 +1,9 @@
+## 1.1.8
+
+- Fix RockitoWatcher
+- Okito with Firestore Streams
+- Okito with Streams (Check README file)
+
 ## 1.1.7
 
 - Dependency injection with key. (Check readme)
