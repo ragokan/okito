@@ -22,6 +22,7 @@
   - [Rockitos](#rockitos)
   - [Watch Controller](#watch-controller)
   - [State Methods](#state-methods)
+  - [Streams (Including Firestore)](#streams)
 - [Utilities + Navigation](#utilities)
   - [Routing Management 🚀](#routing-management)
   - [Theme Management](#theme-management)
@@ -174,17 +175,23 @@ State methods are methods like the _State_ class of Flutter.
 class CounterController extends OkitoController{
   int count = 0;
 
-  /// This will be called whenever your [OkitoBuilder] is mounted
+  // This will be called whenever your [OkitoBuilder] is mounted
   // to the widget tree.
   @override
   void initState() {
     count++;
   }
-  /// This will be called whenever your [OkitoBuilder] is removed
-  /// from the widget tree.
+  // This will be called whenever your [OkitoBuilder] is removed
+  // from the widget tree.
   @override
   void dispose() {
     count = 0;
+  }
+
+  // This method will only be called when you use inject method of Okito.
+  @override
+  void onInject() {
+    count++;
   }
 }
 ```
@@ -208,6 +215,66 @@ class EditProductController extends OkitoController {
     // other nodes here to [dispose].
     priceFocusNode.dispose();
   }
+}
+```
+
+#### Streams
+
+You might have streams in your app and you might want to watch them, update state on changes etc.  
+This streams can also be Firestore streams, you can use it, too.
+
+You might want to check _examples_ folder for an example of it.
+
+Firstly, we have to use _OkitoStreamMixin_
+
+```dart
+class YourController extends OkitoController with OkitoStreamMixin{
+  // your code, totally same.
+}
+```
+
+```dart
+// For regular streams.
+class CounterController extends OkitoController with OkitoStreamMixin {
+   int count = 0;
+  @override
+   void onInject(){
+     initStream<int>(stream: yourIntStream, onData(data) {
+         count = data; // You don't need to do anything or update.
+    });
+  }
+}
+```
+
+```dart
+// For Firestore query stream
+// To use, you have to get the snapshot as Stream of query.
+class PeopleController extends OkitoController with OkitoStreamMixin {
+  List<Person> people = [];
+  @override  // Alternatively, you can use the constructor.
+  void onInject(){
+     initFirestoreQueryStream(querySnapshot: querySnapshot, onData(data) {
+        // This data is a list of documents(it is a map) of your collection.
+        people = data;
+    });
+  }
+}
+```
+
+```dart
+// For Firestore query stream
+// To use, you have to get the snapshot as Stream of query.
+class PersonController extends OkitoController with OkitoStreamMixin{
+  Person person = Person();
+  @override  // Alternatively, you can use the constructor.
+  void onInject(){
+     initFirestoreDocumentStream(
+        documentSnapshot: documentSnapshot,
+        onData(data) {
+          // This data is your document as map.
+          person = Person.fromMap(data);
+     });
+   }
 }
 ```
 
@@ -288,7 +355,7 @@ Now, whenever you try this:
 ```dart
 ElevatedButton(
   onPressed: () => Okito.pushNamed(
-    /// You can add any kind of arguments
+    // You can add any kind of arguments
     '/second/33?name=Rago&postId=123&isMaterial=true',
     arguments: 'This is an extra argument'),
     child: const Text('Go to second page'),
