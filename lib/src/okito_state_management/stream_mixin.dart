@@ -20,7 +20,7 @@ mixin OkitoStreamMixin {
   ///
   /// Example;
   /// ```dart
-  /// class CounterController extends OkitoController{
+  /// class CounterController extends OkitoController with OkitoStreamMixin {
   ///   int count = 0;
   ///
   ///   @override  // Alternatively, you can use the constructor.
@@ -45,7 +45,7 @@ mixin OkitoStreamMixin {
   ///
   /// Example;
   /// ```dart
-  /// class PeopleController extends OkitoController{
+  /// class PeopleController extends OkitoController with OkitoStreamMixin {
   ///   List<Person> people = [];
   ///
   ///   @override  // Alternatively, you can use the constructor.
@@ -76,7 +76,7 @@ mixin OkitoStreamMixin {
   ///
   /// Example;
   /// ```dart
-  /// class PersonController extends OkitoController{
+  /// class PersonController extends OkitoController with OkitoStreamMixin{
   ///   Person person = Person();
   ///
   ///   @override  // Alternatively, you can use the constructor.

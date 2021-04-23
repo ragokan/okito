@@ -25,9 +25,9 @@ mixin OkitoDependencyInjection {
   /// ```
   T inject<T>(T dependency) {
     _dependencies.add(dependency);
-    if (T is OkitoController) {
+    if (dependency is OkitoController) {
       // We call the onInject method if the controller is [OkitoController].
-      (dependency as OkitoController).onInject();
+      dependency.onInject();
     }
     return dependency;
   }
