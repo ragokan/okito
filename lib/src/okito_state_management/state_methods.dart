@@ -20,4 +20,32 @@ mixin OkitoStateMethods {
   ///
   /// Called when this object is removed from the tree permanently.
   void dispose() {}
+
+  /// [onInject] method is called only when you
+  ///  *inject* it with [Okito.inject()]
+  ///
+  /// For example;
+  /// ```dart
+  /// class CounterController extends OkitoController{
+  ///     @override
+  ///     initController(){
+  ///       print('CounterController is created!');
+  ///    }
+  /// }
+  ///
+  /// void main(){
+  ///   Okito.inject(CounterController()); // initController is called now.
+  /// }
+  /// ```
+  /// ---
+  /// ---
+  /// If you don't want to inject the controller, you can do this;
+  /// ```dart
+  ///  CounterController counterController = CounterController();
+  ///
+  /// void main(){
+  ///   counterController.onInject();
+  /// }
+  /// ```
+  void onInject() {}
 }
