@@ -34,16 +34,6 @@
 - [Extensions](#extensions)
 - [Dependency Injection](#dependency-injection)
 
-## İçerikler
-
-- [Taktikler](#tips)
-  - [Daha Temiz Widgetler](#cleaner-widgets)
-  - [State'i Güncelleme](#update-state)
-  - [Uygulama Controller](#app-controller)
-- [Tutoriallar](#tutorials)
-- [Örnekler](#examples)
-- [Okitoya katkı sağlama](#how-to-contribute-okito)
-
 &nbsp;
 
 # State Management
@@ -230,7 +220,7 @@ Material/CupertinoApp(
 
 ## Sonrasında tüm Okito özelliklerine sahip olabilirsiniz.
 
-_All of the properities has same usages with its long usage_
+_Tüm Okito kullanımları navigator kullanımı ile aynıdır, sadece daha az kod yazmanız gerekir :),_
 
 _For example: Okito.pushNamed('/secondPage') = Navigator.of(context).pushNamed('secondPage')_
 
@@ -244,7 +234,7 @@ Okito.isPortrait;
 Okito.theme;
 
 Okito.showSnackBar();
-Okito.showToast(); // Snackbar without widget, usefull for simple usage.
+Okito.showToast(); // Widget oluşturmaya ihtiyaç duymadan snackbar gösterir.
 Okito.showModal();
 Okito.showDialog();
 
@@ -259,19 +249,17 @@ Okito.routeName;
 
 ## Routing Management
 
-### Lets say that you want dynamic urls like
+### Dinamik url için kullanım
 
 ```
 /posts/:id
 /posts/23
 ```
 
-And this id is a dynamic variable, right?  
-With _Okito_, you can do that easily!
+Bu ':id' dinamik bir değişken, değil mi?
+_Okito_ ile bu değişkenlere rahatça erişebilirsiniz!
 
 ```dart
-// You don't need to add something like OkitoPage or etc.
-// Okito lets you do your job without code changes.
 OkitoMaterialApp(
       routes: {
         '/': (ctx) => FirstPage(),
@@ -280,7 +268,7 @@ OkitoMaterialApp(
 );
 ```
 
-Now, whenever you try this:
+Şimdi, ne zaman bunu yaparsenız;
 
 ```dart
 ElevatedButton(
@@ -292,28 +280,26 @@ ElevatedButton(
   )
 ```
 
-It will push to second page with the argument [id] : [33]
+Sizi 2. sayfaya [id] parametresi de [33] olarak gönderir.
 
-Moreover, you will see your arguments like this:
+Dahası, bu argümanlara kolaylıkla erişebilirsiniz;
 
 ```dart
 print(Okito.arguments);
-// result
+// sonuç
 {'id' : '33', 'name' : 'Rago', 'postId' : 123, 'isMaterial' : true, 'arguments': 'This is an extra argument'};
-// Yes, you can even get extra arguments manually.
+// Evet, ekstra argüment de hemen buraya geliyor.
 ```
 
-Check _example/flutter_dynamic_routing/lib/main.dart_ for a live example.
-
-### Would you like to have more benefits? Of course!
+Canlı bir örnek için _example/flutter_dynamic_routing/lib/main.dart_ dosyasını ziyaret edin.
 
 ## Theme Management
 
 ```dart
-// Firstly, the bottom method gives you the app controller, you can update anything manually.
+// Başlangıç olarak bu bize uygulamanın ana controllerini veriyor.
 Okito.app; /* or */ Okito.use<AppController>();
 
-// Then you have all of its usages.
+// Sonrasında da tüm kullanımlara erişebiliyorsunuz.
 
 Okito.app.setThemeData();
 Okito.app.setThemeMode();
@@ -325,63 +311,61 @@ Okito.app.setLocale();
 
 # Local Storage
 
-### _OkitoStorage_ is a way to save variables to the local storage.
+### _OkitoStorage_ ile yerel depolamaya veri kaydedebilirsiniz.
 
-### It works like SharedPereferences but it is synchronous like GetStorage.
+### Kullanımı ve işlemleri SharedPereferences gibi asenkron değil, GetStorage gibi senkrondur.
 
-#### _OkitoStorage_ is blazingly fast because in read operations it uses memory to get data instead of reading from disk everytime!
+#### _OkitoStorage_ inanılmaz bir şekilde hızlıdır çünkü okuma işlemleri için hafızayı kullanır!
 
 ```dart
-// To use, you should init the storage, it is not required for web but required for all other platforms.
+// Web dışı tüm platformlarda init etmek için 'await' kullanmanız gerekiyor, sonrasında tabii hiç gerekmiyor.
 
 void main() async{
-  // Only init is asynchronous, you can also call without await but it is not recommended.
+  // Sadece 'init' fonksyiyonu asenkron olarak çalışıyor.
   await OkitoStorage.init();
 
 
-  // Usage
-  final box = OkitoStorage; // For easier reference.
+  // Kullanım
+  final box = OkitoStorage; // Kolay referans için
 
   box.write('sayı', 0);
 
   final int sayı = box.read<int>('sayı');
-  // Simple as this!
+  // Bu kadar basit!
 
   print('Count is $sayı');
-  // Rest of your code will be here.
 }
 ```
 
-Other Usages
+Diğer Kullanımlar
 
 ```dart
   box.watchKey('sayı', () =>
-    print('This function will be called whenever the sayı changes.');
+    print('Bu fonksiyon sayı ne zaman değişirse çalışır.');
   );
 
   box.watchAll(() =>
-    print('This function will be called whenever the storage changes.');
+    print('Bu fonksiyon storage ne zaman değişirse çalışır.');
   );
 
-  box.removeKey('sayı'); // Removes the key
+  box.removeKey('sayı'); // Anahtarı yok eder
 
-  box.readAllKeys(); // returns all keys in storage
+  box.readAllKeys(); // Depolamadaki tüm anahtarları verir
 
-  box.readAllValues(); // returns all values in storage
+  box.readAllValues(); // Depolamadaki tüm değerleri verir
 
-  box.readAll(); // returns all of the storage
+  box.readAll(); // Depolamadaki tüm veriyi verir
 
-  box.clearStorage(); // removes everything from the storage but storage will still exists.
+  box.clearStorage(); // Depodaki tüm anahtar ve değerleri siler
 
-  box.deleteStorage(); // removes the storage from file system completely, after this operation, OkitoStorage won't be able to write or read.
+  box.deleteStorage(); // Depoyu diskten tamamen yok eder.
 ```
 
 ### Watch OkitoStorage With OkitoBuilder
 
 ```dart
-// Check the example/flutter_okito_storage/lib/main.dart for more examples!
 
-// It will run whenever key 'sayı' changes.
+// Ne zaman sayı değişirse bu builder tekrardan çalışır
 OkitoBuilder(
       controller: yourController,
       watchStorageKeys: ['sayı'],
@@ -389,26 +373,13 @@ OkitoBuilder(
     );
 ```
 
-#### Benefits Of OkitoStorage
-
-- Really fast
-- You can watch the changes from anywhere, even in your builders.
-- It is synchronous, so you don't have to use 'await' keyword.
-- You can storage Strings, ints, Maps and even Lists.
-- Works on any device that flutter supports!
-
-#### OkitoStorage is reliable but be careful when using it as database, because it is not created to be database. For complex works, you can try Hive!
-
 # Localization
 
-For global apps, it might be hard to find a new library for localization or creating your own, then you will probably have another problems
-like updating the whole app after language change and etc. Why would you do that?
-
-#### Okito provides localization solutions for your app.
+#### Okito ile uygulamanızı lokalize edebilirsiniz.
 
 ```dart
-// It is also so simple to have!
-// Firstly create your translations like this:
+// Kullanımı da çok basit
+// Başta çevirilerinizi bu şekilde belirtiyorsunuz.
 const translations = {
   'en': {
     'hello': 'Hello from Okito!',
@@ -417,37 +388,28 @@ const translations = {
     'hello': "Okito'dan selamlar!",
   },
 };
-// You can have unlimited amount of locales and translations
-// You can make it dynamic, seperate files and etc. It is just a dart map!
 ```
 
 ```dart
-// After creating it, give it to the app.
+// Sonrasında da uygulamaya veriyorsunuz
 OkitoMaterialApp /* or OkitoCupertinoApp */(
   translations: translations,
-  /* Your code here without any change */);
+  /* Hiçbir değişime uğramadan kodunuzun geri kalanı */);
 ```
 
 ```dart
-// Using it? It is the simplest! Lets use it in a text widget.
-Text('hello'.loc); // It will show 'Hello from Okito!'
+// Kullanımı mı ? O çok daha basit
+Text('hello'.loc); // Bu dil Türkçe iken "Okito'dan Selamlar" yazısı verecek.
 
-// Lets change the language and see it again.
-Okito.app.setLocale(Locale('tr','TR'));
-// Now it says: 'Okito'dan selamlar!' as it is declared in translations.
+// Hadi dili değiştirip tekrar deneyelim
+Okito.app.setLocale(Locale('en','US'));
+// Şu anda da 'Hello from Okito!' diyor, çünkü 'translations' verisinde o şekilde belirttik.
 ```
-
-```dart
-// You can also set it like this;
-Okito.localize('hello'); // returns the translation as String.
-```
-
-For better examples check example/flutter_localization/lib/main.dart
 
 # Extensions
 
 ```dart
-// Context Extensions
+// Context Extensionları
 context.width;
 context.height;
 context.aspectRatio;
@@ -461,116 +423,35 @@ context.routeName;
 
 # Dependency Injection
 
-### Dependency injection is your way to inject variables to the _Okito_ and use it anywhere in your app. With _Okito_, it is as simple as it can be!
+### Dependency injection ile değişkenleri uygulamanın her yerinde kullanabilirsiniz ve _Okito_ ile bunu yapmak çok basit.
 
 ```dart
-// Example Variable
+// Örnek değişken;
 class Sayaç(){
   sayı = 0;
 }
 
-// Inject it
+// Enjekte edelim
 Okito.inject(Sayaç());
 
 
-// Use it anywhere!
+// Herhangi bir yerde kullanalım
 Okito.use<Sayaç>();
 
-// Asign it with type support!
+// Tip desteği ile de kullanabilirsiniz
 final sayaç = Okito.use<Sayaç>();
 
-// Update however you want
+// İstediğiniz şekilde kullanın! Örneğin;
 sayaç.sayı++;
-// or
+// veya
 Okito.use<Sayaç>().sayı++;
 ```
 
-Soo, lets say that your job is done with that class, why would we let it to use memory?
+Son olarak, diyelim ki değişken ile işiniz bitti, neden hafızada yer kaplasın ki?
 
 ```dart
-// Sayaç will be gone forever!
+// Sayaç sonsuza dek gitmiş olacak!
 Okito.eject<Sayaç>();
 ```
 
-#### For more details, check the tests or examples about it!
-
-# Tips
-
-#### Cleaner Widgets
-
-```dart
-// In your widgets folder or any other folder, declare builder.
-OkitoBuilder SayaçBuilder({
-  required Widget Function() builder,
-}) =>
-    OkitoBuilder(
-      controller: sayaçController,
-      builder: () => builder(),
-    );
-
-// Usage
-SayaçBuilder(builder: () => Text('${sayaçController.sayı}'));
-```
-
-My Favorite Way
-
-```dart
-OkitoBuilder SayaçBuilder({
-  required Widget Function(SayaçController state) builder,
-}) =>
-    OkitoBuilder(
-      controller: sayaçController,
-      builder: () => builder(sayaçController),
-    );
-
-// Usage
-SayaçBuilder(builder: (state) => Text('${state.sayı}'));
-```
-
----
-
-#### Update State
-
-```dart
-class SayaçController extends OkitoController {
-  int _sayı = 0;
-
-  int get sayı => _sayı;
-
-  set sayı(int sayı) {
-    _sayı = sayı;
-    // Now, whenever you change sayı like 'sayı++', it will update state.
-    update();
-  }
-}
-```
-
-#### App Controller
-
-It is the controller of app, you can wrap your widgets that you want to change on big updates like theme changes if the data
-you wrote is not coming from a controller.
-
-```dart
-Rockito<AppController>(
-  (app) => // yourWidget
-)
-
-```
-
-# Tutorials
-
-- [To Do App by Randall Morgan](https://www.youtube.com/watch?v=acsYwjldZG0&ab_channel=Monotoba)
-- [Written To Do App by Randall Morgan](https://www.coderancher.us/2021/04/10/dart-flutter-state-management-with-okito/)
-
-# Examples
-
-- [Sayaç Example](https://github.com/ragokan/okito/blob/master/example/flutter_sayaç/lib/main.dart)
-- [To Do Example](https://github.com/ragokan/to_do)
-
-# How to contribute okito
-
-- okito needs tests.
-- okito needs more examples.
-- okito needs a better readme file :D
-- okito needs reputition, likes and users!
-- okito needs test with Apple products, I tested on linux, android, web and Windows
+#### Daha fazla bilgi için testleri ve örnekleri kontrol edebilirsiniz!
