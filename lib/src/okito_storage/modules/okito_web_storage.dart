@@ -1,4 +1,6 @@
 import 'dart:convert';
+// For analysis, it gives error, weirdly.
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
 /// The OkitoStorage implementation for web.

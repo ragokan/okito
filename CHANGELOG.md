@@ -1,3 +1,8 @@
+## 1.1.9
+
+- Fix analysis scores
+- Add _OkitoTickerProviderMixin_
+
 ## 1.1.8
 
 - Fix RockitoWatcher
