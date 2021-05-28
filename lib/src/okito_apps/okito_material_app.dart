@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../okito.dart';
+import '../../public_types/main.dart';
 import '../okito_instance.dart';
 import '../okito_utilities/okito_observer.dart';
 import 'app_controller.dart';
@@ -63,7 +64,7 @@ class OkitoMaterialApp extends StatelessWidget {
   ///   },
   /// };
   /// ```
-  final Map<String, Map<String, String>> translations;
+  final TranslationMapType translations;
 
   /// State for a [ScaffoldMessenger].
   ///

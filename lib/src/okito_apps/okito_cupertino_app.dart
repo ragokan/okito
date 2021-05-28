@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../okito.dart';
+import '../../public_types/main.dart';
 import '../okito_instance.dart';
 import '../okito_utilities/okito_observer.dart';
 import 'app_controller.dart';
@@ -58,7 +59,7 @@ class OkitoCupertinoApp extends StatelessWidget {
   ///   },
   /// };
   /// ```
-  final Map<String, Map<String, String>> translations;
+  final TranslationMapType translations;
 
   /// The main widget of your app, if you are not using a total routing system
   /// you can declare a home widget.
