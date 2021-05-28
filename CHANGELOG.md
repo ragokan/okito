@@ -1,3 +1,8 @@
+## 1.2.0
+
+- Update to latest Dart SDK version
+- Add public types such as TranslationMapType which can be useful for translation.
+
 ## 1.1.9
 
 - Fix analysis scores
