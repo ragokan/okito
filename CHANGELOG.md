@@ -1,3 +1,7 @@
+## 1.2.1
+
+- Update state ticker provider mixin.
+
 ## 1.2.0
 
 - Update to latest Dart SDK version

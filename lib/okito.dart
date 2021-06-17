@@ -12,3 +12,4 @@ export 'src/okito_extensions/index.dart';
 export 'src/okito_instance.dart';
 export 'src/okito_state_management/index.dart';
 export 'src/okito_storage/okito_storage.dart';
+export 'src/okito_utilities/index.dart';
