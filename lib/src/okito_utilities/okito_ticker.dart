@@ -14,3 +14,10 @@ mixin OkitoTickerProviderMixin implements TickerProvider {
   @override
   Ticker createTicker(TickerCallback onTick) => Ticker(onTick);
 }
+
+/// For newer versions of Flutter, you can just use this;
+/// ```dart
+///    TabController controller =
+///             TabController(vsync: OkitoTickerProvider(), length:3);
+/// ```
+class OkitoTickerProvider with OkitoTickerProviderMixin {}
