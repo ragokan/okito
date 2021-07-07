@@ -1,3 +1,9 @@
+## 1.2.2
+
+- New widget; OkitoBuilderLite: It has less features but more speed.
+- Rockito is now faster with OkitoBuilderLite
+
+
 ## 1.2.1
 
 - Update state ticker provider mixin.

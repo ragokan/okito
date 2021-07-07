@@ -1,4 +1,5 @@
 export './builder.dart';
+export './builder_lite.dart';
 export './controller.dart';
 export './rockito.dart';
 export './rockito_builder.dart';

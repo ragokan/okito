@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+import '../../okito.dart';
+
+import '../typedefs/callback_types.dart';
+import 'controller.dart';
+import 'modules/communication.dart';
+
+/// [OkitoBuilderLite] is the lite version of [OkitoBuilder]
+///
+/// Example
+///
+/// ```dart
+/// OkitoBuilderLite(
+/// controller: counterController,
+/// builder: () => Text('${counterController.count}',
+///   ),
+/// );
+/// ```
+class OkitoBuilderLite<T extends OkitoController> extends StatefulWidget {
+  /// [controller] should be a class that extends or mixs [OkitoController].
+  final T controller;
+
+  /// Builder callback is called whenever your state changes.
+  ///
+  /// You have to return a Widget that you want to re-build on state changes.
+  final BuilderCallback builder;
+
+  /// OkitoBuilderLite is the way to use OkitoController.
+  ///
+  /// Its main advantage is having a builder that just re-renders itself on
+  /// state change which means that your other widgets that doesn't depend
+  /// on your state won't re-build on update.
+  ///
+  /// Usage is simple, just create an [OkitoController] just like it is declared
+  /// in its documentation, then show that controller when you call the builder.
+  ///
+  /// Example
+  ///
+  ///```dart
+  /// OkitoBuilderLite(
+  ///        controller: counterController,
+  ///        builder: () => Text('Current count is ${counterController.count}'),
+  ///        ),
+  /// ```
+  ///
+  /// Example With Multiple Controllers
+  ///
+  ///```dart
+  /// OkitoBuilderLite(
+  ///        controller: counterController,
+  ///        otherControllers: [ageController, userController /* and other controllers */],
+  ///        builder: () => Text('Current count is ${counterController.count}'),
+  ///        ),
+  /// ```
+  const OkitoBuilderLite({
+    Key? key,
+    required this.controller,
+    required this.builder,
+  }) : super(key: key);
+
+  @override
+  _OkitoBuilderLiteState createState() => _OkitoBuilderLiteState();
+}
+
+// check if mounted or not
+class _OkitoBuilderLiteState extends State<OkitoBuilderLite> {
+  _OkitoBuilderLiteState();
+
+  /// The unmount functions of controllers. At first, we watch and
+  /// we add unmount functions, then we do a loop and remove all
+  /// of the watchers.
+  Function? _unmountFunction;
+
+  @protected
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.initState();
+
+    void _updateState() {
+      if (mounted) {
+        setState(() {});
+      }
+    }
+
+    /// Here, we mount the [watch] function to re-render state on changes.
+    _unmountFunction =
+        controllerXviewStream.watch(widget.controller, _updateState);
+  }
+
+  @protected
+  @override
+  void dispose() {
+    /// On dispose, we would like to unmount the watchers, so that
+    /// we don't leak the memory and the [notify] function don't
+    /// call the [watch] function.
+    _unmountFunction?.call();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(_) => widget.builder();
+}

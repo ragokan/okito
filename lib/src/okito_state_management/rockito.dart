@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../okito.dart';
 import '../typedefs/callback_types.dart';
+import 'builder_lite.dart';
 
 /// The [Rockito] and other Rockitos are the way to use builders
 /// with [Okito.inject()].
@@ -19,7 +20,7 @@ Widget Rockito<T extends OkitoController>(
 ) {
   /// We get the controller here with dependency injection and provide it.
   final _controller = Okito.use<T>();
-  return OkitoBuilder(
+  return OkitoBuilderLite(
     controller: _controller,
     builder: () => callback(_controller),
   );
