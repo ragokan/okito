@@ -1,3 +1,7 @@
+## 1.2.3
+
+- Add navigatorObservers for OkitoMaterialApp and OkitoCupertinoApp, so that you can use external routing libraries.
+
 ## 1.2.2
 
 - New widget; OkitoBuilderLite: It has less features but more speed.

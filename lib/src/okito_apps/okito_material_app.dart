@@ -48,7 +48,12 @@ class OkitoMaterialApp extends StatelessWidget {
     this.checkerboardRasterCacheImages = false,
     this.checkerboardOffscreenLayers = false,
     this.translations = const {},
+    this.navigatorObservers,
   });
+
+  /// Use this only if you are using another library that requires
+  /// navigatorObservers. You don't need to do this for Okito.
+  final List<NavigatorObserver>? navigatorObservers;
 
   /// The [translations] of your app.
   ///
@@ -196,7 +201,9 @@ class OkitoMaterialApp extends StatelessWidget {
     if (locale != null && Okito.app.locale == null) Okito.app.locale = locale;
     Okito.app.translations = translations;
     final navigatorKey = Okito.navigatorKey;
-    final navigatorObservers = <NavigatorObserver>[OkitoObserver()];
+    final _navigatorObservers = navigatorObservers == null
+        ? <NavigatorObserver>[OkitoObserver()]
+        : <NavigatorObserver>[OkitoObserver(), ...navigatorObservers!];
     return Rockito<AppController>(
       (app) => routerDelegate == null
           ? MaterialApp(
@@ -219,7 +226,7 @@ class OkitoMaterialApp extends StatelessWidget {
               checkerboardOffscreenLayers: checkerboardOffscreenLayers,
               checkerboardRasterCacheImages: checkerboardRasterCacheImages,
               localizationsDelegates: localizationsDelegates,
-              navigatorObservers: navigatorObservers,
+              navigatorObservers: _navigatorObservers,
               onGenerateInitialRoutes: onGenerateInitialRoutes,
               onGenerateRoute: Okito.app.onGenerateRoute,
               onGenerateTitle: onGenerateTitle,

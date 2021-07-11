@@ -43,7 +43,12 @@ class OkitoCupertinoApp extends StatelessWidget {
     this.restorationScopeId,
     this.shortcuts,
     this.translations = const {},
+    this.navigatorObservers,
   }) : super(key: key);
+
+  /// Use this only if you are using another library that requires
+  /// navigatorObservers. You don't need to do this for Okito.
+  final List<NavigatorObserver>? navigatorObservers;
 
   /// The [translations] of your app.
   ///
@@ -171,7 +176,9 @@ class OkitoCupertinoApp extends StatelessWidget {
     Okito.app.translations = translations;
 
     final navigatorKey = Okito.navigatorKey;
-    final navigatorObservers = <NavigatorObserver>[OkitoObserver()];
+    final _navigatorObservers = navigatorObservers == null
+        ? <NavigatorObserver>[OkitoObserver()]
+        : <NavigatorObserver>[OkitoObserver(), ...navigatorObservers!];
     return Rockito<AppController>((app) => routerDelegate == null
         ? CupertinoApp(
             restorationScopeId: restorationScopeId,
@@ -192,7 +199,7 @@ class OkitoCupertinoApp extends StatelessWidget {
             checkerboardOffscreenLayers: checkerboardOffscreenLayers,
             checkerboardRasterCacheImages: checkerboardRasterCacheImages,
             localizationsDelegates: localizationsDelegates,
-            navigatorObservers: navigatorObservers,
+            navigatorObservers: _navigatorObservers,
             onGenerateInitialRoutes: onGenerateInitialRoutes,
             onGenerateRoute: Okito.app.onGenerateRoute,
             onGenerateTitle: onGenerateTitle,
