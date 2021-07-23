@@ -1,6 +1,6 @@
 name: okito
 description: Your best flutter coding friend. All in one flutter helper with state, route, navigation, localization, dependency injection and local storage management!
-version: 1.2.3
+version: 1.2.4
 homepage: https://github.com/ragokan/okito
 repository: https://github.com/ragokan/okito
 
@@ -16,3 +16,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic: ^1.11.0
+
+flutter:
+  uses-material-design: true

@@ -70,3 +70,4 @@ web
 lib/main.dart
 *.stamp
 .vscode/settings.json
+test/widget_test.dart

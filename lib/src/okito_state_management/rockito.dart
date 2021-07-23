@@ -16,12 +16,14 @@ import 'builder_lite.dart';
 /// ```
 // ignore: non_constant_identifier_names
 Widget Rockito<T extends OkitoController>(
-  ControllerCallback<T> callback,
-) {
+  ControllerCallback<T> callback, {
+  FilterCallback<T>? filter,
+}) {
   /// We get the controller here with dependency injection and provide it.
   final _controller = Okito.use<T>();
   return OkitoBuilderLite(
     controller: _controller,
+    filter: filter,
     builder: () => callback(_controller),
   );
 }

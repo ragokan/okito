@@ -29,7 +29,8 @@ class CounterApp extends StatelessWidget {
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: OkitoBuilder(
+          title: OkitoBuilderLite<CounterController>(
+            filter: (c) => c.count,
             controller: counterController,
             builder: () => Text('Current count is ${counterController.count}'),
           ),

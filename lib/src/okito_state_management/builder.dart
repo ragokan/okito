@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../okito.dart';
 
@@ -45,6 +46,12 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
   /// You have to return a Widget that you want to re-build on state changes.
   final BuilderCallback builder;
 
+  /// Filter of builder
+  final FilterCallback<T>? filter;
+
+  /// Filter of builder
+  Object? callFilter() => filter?.call(controller);
+
   /// If you set this to true, whenever the builder disposes or activates
   /// the *initState* and *dispose* functions will be called for all the
   /// [otherControllers]. Be careful when using it.
@@ -85,6 +92,7 @@ class OkitoBuilder<T extends OkitoController> extends StatefulWidget {
     this.watchStorageKeys = const [],
     this.watchAllStorageKeys = false,
     this.activateLifecycleForOtherControllers = false,
+    this.filter,
   }) : super(key: key);
 
   @override
@@ -100,18 +108,35 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
   /// of the watchers.
   final List<Function> _unmountFunctions = [];
 
+  bool _shouldUpdate = false;
+
+  Object? _filter;
+
+  void _updateState() {
+    if (!_shouldUpdate || !mounted) return;
+
+    if (widget.callFilter() == null) {
+      setState(() {});
+    } else {
+      var _currentFilter = widget.callFilter();
+      if (_currentFilter != _filter) {
+        _filter = _currentFilter;
+        setState(() {});
+      }
+    }
+  }
+
   @protected
   @override
   void initState() {
     super.initState();
     widget.controller.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      _shouldUpdate = true;
+    });
+
     if (widget.activateLifecycleForOtherControllers) {
       widget.otherControllers.forEach((c) => c.initState());
-    }
-    void _updateState() {
-      if (mounted) {
-        setState(() {});
-      }
     }
 
     /// Here, we mount the [watch] function to re-render state on changes.
@@ -137,6 +162,8 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
       final unmount = OkitoStorage.watchAll(_updateState);
       _unmountFunctions.add(unmount);
     }
+
+    _filter = widget.callFilter();
   }
 
   @protected
@@ -148,10 +175,14 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
     _unmountFunctions.forEach((unmount) => unmount());
     _unmountFunctions.removeRange(0, _unmountFunctions.length);
 
+    _shouldUpdate = false;
+    _filter = null;
+
     widget.controller.dispose();
     if (widget.activateLifecycleForOtherControllers) {
       widget.otherControllers.forEach((c) => c.initState());
     }
+
     super.dispose();
   }
 

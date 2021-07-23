@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 import '../../okito.dart';
 
 /// The base of [Okito] dependency injection.
@@ -42,6 +44,10 @@ mixin OkitoDependencyInjection {
   /// After you [eject], you won't be able to [use] it anymore.
   void eject<T>() => _dependencies.removeWhere((dependency) => dependency is T);
 
+  /// Check if the dependency is injected and ready to use.
+  bool canUse<T>() =>
+      _dependencies.firstWhereOrNull((dependency) => dependency is T) != null;
+
   /// Returns the dependency that is injected before with [inject] function.
   ///
   /// ```dart
@@ -61,9 +67,6 @@ mixin OkitoDependencyInjection {
       Please read the documents or hover over the [use] function to see its usage.
       Note that you can't use type [dynamic] with [use] function.
         '''));
-
-  /// Same as [use] function, use whichever you want :)
-  T take<T>() => use<T>();
 
   /// It is going to be our second store for dependencies but for key storage.
   final Map<String, dynamic> _dependenciesWithKey = <String, dynamic>{};

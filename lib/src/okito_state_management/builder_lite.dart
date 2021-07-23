@@ -25,6 +25,12 @@ class OkitoBuilderLite<T extends OkitoController> extends StatefulWidget {
   /// You have to return a Widget that you want to re-build on state changes.
   final BuilderCallback builder;
 
+  /// Filter of builder
+  final FilterCallback<T>? filter;
+
+  /// Filter of builder
+  Object? callFilter() => filter?.call(controller);
+
   /// OkitoBuilderLite is the way to use OkitoController.
   ///
   /// Its main advantage is having a builder that just re-renders itself on
@@ -56,14 +62,16 @@ class OkitoBuilderLite<T extends OkitoController> extends StatefulWidget {
     Key? key,
     required this.controller,
     required this.builder,
+    this.filter,
   }) : super(key: key);
 
   @override
-  _OkitoBuilderLiteState createState() => _OkitoBuilderLiteState();
+  _OkitoBuilderLiteState createState() => _OkitoBuilderLiteState<T>();
 }
 
 // check if mounted or not
-class _OkitoBuilderLiteState extends State<OkitoBuilderLite> {
+class _OkitoBuilderLiteState<T extends OkitoController>
+    extends State<OkitoBuilderLite> {
   _OkitoBuilderLiteState();
 
   /// The unmount functions of controllers. At first, we watch and
@@ -71,21 +79,39 @@ class _OkitoBuilderLiteState extends State<OkitoBuilderLite> {
   /// of the watchers.
   Function? _unmountFunction;
 
+  bool _shouldUpdate = false;
+
+  Object? _filter;
+
+  void _updateState() {
+    if (!_shouldUpdate || !mounted) return;
+
+    if (widget.callFilter() == null) {
+      setState(() {});
+    } else {
+      var _currentFilter = widget.callFilter();
+      if (_currentFilter != _filter) {
+        _filter = _currentFilter;
+        setState(() {});
+      }
+    }
+  }
+
   @protected
   @override
   void initState() {
     super.initState();
     widget.controller.initState();
 
-    void _updateState() {
-      if (mounted) {
-        setState(() {});
-      }
-    }
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      _shouldUpdate = true;
+    });
 
     /// Here, we mount the [watch] function to re-render state on changes.
     _unmountFunction =
         controllerXviewStream.watch(widget.controller, _updateState);
+
+    _filter = widget.callFilter();
   }
 
   @protected
@@ -95,6 +121,8 @@ class _OkitoBuilderLiteState extends State<OkitoBuilderLite> {
     /// we don't leak the memory and the [notify] function don't
     /// call the [watch] function.
     _unmountFunction?.call();
+    _shouldUpdate = false;
+    _filter = null;
 
     super.dispose();
   }

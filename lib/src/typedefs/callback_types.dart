@@ -20,3 +20,7 @@ typedef WatcherCallback<T extends OkitoController> = void Function(
 /// Returns a void function that gives the [controller] with type [T].
 typedef ControllerCallback<T extends OkitoController> = Widget Function(
     T controller);
+
+/// We use this only for filtering Builders.
+typedef FilterCallback<T extends OkitoController> = Object? Function(
+    T controller);

@@ -1,3 +1,8 @@
+## 1.2.4
+
+- Performance improvements.
+- Filter for state methods.
+
 ## 1.2.3
 
 - Add navigatorObservers for OkitoMaterialApp and OkitoCupertinoApp, so that you can use external routing libraries.
