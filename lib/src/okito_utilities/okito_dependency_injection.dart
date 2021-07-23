@@ -1,5 +1,3 @@
-import 'package:collection/collection.dart';
-
 import '../../okito.dart';
 
 /// The base of [Okito] dependency injection.
@@ -45,8 +43,7 @@ mixin OkitoDependencyInjection {
   void eject<T>() => _dependencies.removeWhere((dependency) => dependency is T);
 
   /// Check if the dependency is injected and ready to use.
-  bool canUse<T>() =>
-      _dependencies.firstWhereOrNull((dependency) => dependency is T) != null;
+  bool canUse<T>() => _dependencies.whereType<T>().isNotEmpty;
 
   /// Returns the dependency that is injected before with [inject] function.
   ///
