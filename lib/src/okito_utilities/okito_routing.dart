@@ -215,6 +215,27 @@ mixin OkitoRouting {
         predicate ?? (_) => false,
       );
 
+  /// Easier way of [Navigator.of(context).pushAndRemoveUntil()]
+  /// Just give it the [page] you want to push
+  ///
+  /// Example
+  /// ```dart
+  /// // That Simple!
+  /// Okito.pushEasyAndRemoveUntil(
+  ///    MaterialPageRoute(CounterPage()));
+  /// ```
+  ///  Not required but you can give it a [predicate]
+  Future<T?> pushEasyAndRemoveUntil<T>(
+    Widget page, {
+    bool Function(Route<dynamic>)? predicate,
+  }) async =>
+      _state?.pushAndRemoveUntil<T>(
+        Okito.app.isMaterial
+            ? MaterialPageRoute(builder: (_) => page)
+            : CupertinoPageRoute(builder: (_) => page),
+        predicate ?? (_) => false,
+      );
+
   /// Equals to [Navigator.of(context).pop()]
   ///
   /// Example

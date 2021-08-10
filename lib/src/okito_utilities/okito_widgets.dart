@@ -18,6 +18,7 @@ mixin OkitoWidgets {
     Duration? duration,
     SnackBarAction? action,
     TextStyle? textStyle,
+    Color? backgroundColor,
   }) {
     ScaffoldMessenger.of(context!).showSnackBar(
       SnackBar(
@@ -25,6 +26,7 @@ mixin OkitoWidgets {
           text,
           style: textStyle,
         ),
+        backgroundColor: backgroundColor,
         duration: duration ?? const Duration(seconds: 5),
         action: action,
       ),
@@ -39,8 +41,25 @@ mixin OkitoWidgets {
   /// Displays a Material dialog above the current contents of the app,
   /// with Material entrance and exit animations, modal barrier color, and
   ///  modal barrier behavior (dialog is dismissible with a tap on the barrier).
-  Future<T?> showDialog<T>({required Widget child}) async =>
-      _showDialog(context: context!, builder: (ctx) => child);
+  Future<T?> showDialog<T>({
+    required Widget child,
+    bool barrierDismissible = true,
+    Color? barrierColor = Colors.black54,
+    String? barrierLabel,
+    bool useSafeArea = true,
+    bool useRootNavigator = true,
+    RouteSettings? routeSettings,
+  }) async =>
+      _showDialog(
+        context: context!,
+        builder: (_) => child,
+        barrierColor: barrierColor,
+        barrierDismissible: barrierDismissible,
+        barrierLabel: barrierLabel,
+        routeSettings: routeSettings,
+        useRootNavigator: useRootNavigator,
+        useSafeArea: useSafeArea,
+      );
 
   /// Shows a modal material design bottom sheet.
   Future<T?> showModal<T>({

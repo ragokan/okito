@@ -1,3 +1,7 @@
+## 1.2.5
+
+- Performance improvements.
+
 ## 1.2.4
 
 - Performance improvements.
