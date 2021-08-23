@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../okito.dart';
 
+import '../../okito.dart';
+import '../typedefs/callback_types.dart';
 import 'controller.dart';
 import 'modules/communication.dart';
 
@@ -26,9 +27,16 @@ class RockitofulWidget<T extends OkitoController> extends StatefulWidget {
     update();
   }
 
+  /// Filter of builder
+  final FilterCallback<T>? filter;
+
+  /// Filter of builder
+  Object? callFilter(T controller) => filter?.call(controller);
+
   /// You don't need to construct this widget.
   const RockitofulWidget({
     Key? key,
+    this.filter,
   }) : super(key: key);
 
   @override
@@ -44,9 +52,20 @@ class _RockitofulWidgetState<T extends OkitoController>
 
   bool _shouldUpdate = false;
 
+  Object? _filter;
+
   void _updateState() {
     if (!_shouldUpdate || !mounted) return;
-    setState(() {});
+
+    if (widget.callFilter(controller) == null) {
+      setState(() {});
+    } else {
+      var _currentFilter = widget.callFilter(controller);
+      if (_currentFilter != _filter) {
+        _filter = _currentFilter;
+        setState(() {});
+      }
+    }
   }
 
   @protected
@@ -61,6 +80,8 @@ class _RockitofulWidgetState<T extends OkitoController>
     });
 
     _unmountFunction = controllerXviewStream.watch(controller, _updateState);
+
+    _filter = widget.callFilter(controller);
   }
 
   @protected
@@ -69,6 +90,7 @@ class _RockitofulWidgetState<T extends OkitoController>
     widget.dispose();
     _unmountFunction?.call();
     _shouldUpdate = false;
+    _filter = null;
     super.dispose();
   }
 
