@@ -1,3 +1,7 @@
+## 1.2.6
+
+- New Widget; RockitofulWidget.
+
 ## 1.2.5
 
 - Performance improvements.
