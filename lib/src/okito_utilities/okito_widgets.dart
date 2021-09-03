@@ -19,7 +19,11 @@ mixin OkitoWidgets {
     SnackBarAction? action,
     TextStyle? textStyle,
     Color? backgroundColor,
+    bool hideCurrentSnackbar = true,
   }) {
+    if (hideCurrentSnackbar) {
+      ScaffoldMessenger.of(context!).hideCurrentSnackBar();
+    }
     ScaffoldMessenger.of(context!).showSnackBar(
       SnackBar(
         content: Text(
@@ -34,7 +38,13 @@ mixin OkitoWidgets {
   }
 
   /// Shows a [SnackBar] across all registered [Scaffold]s.
-  void showSnackBar({required SnackBar snackBar}) {
+  void showSnackBar({
+    required SnackBar snackBar,
+    bool hideCurrentSnackbar = true,
+  }) {
+    if (hideCurrentSnackbar) {
+      ScaffoldMessenger.of(context!).hideCurrentSnackBar();
+    }
     ScaffoldMessenger.of(context!).showSnackBar(snackBar);
   }
 

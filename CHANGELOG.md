@@ -1,3 +1,7 @@
+## 1.2.8
+
+- Improvements.
+
 ## 1.2.7
 
 - New Widget; RockitofulWidget (added more features like filter).
