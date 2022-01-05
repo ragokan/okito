@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../okito.dart';
 
 import '../typedefs/callback_types.dart';
-import 'controller.dart';
 import 'modules/communication.dart';
 
 /// [OkitoBuilderLite] is the lite version of [OkitoBuilder]

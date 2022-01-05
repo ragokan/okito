@@ -1,6 +1,5 @@
 import '../../okito.dart';
 import '../typedefs/callback_types.dart';
-import 'controller.dart';
 import 'modules/communication.dart';
 
 /// [OkitoWatcher] is the easiest and the most lightweight way to observe

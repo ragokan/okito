@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../okito_extensions/context_extensions.dart';
 
 /// This mixin provides informations about the device in an easier way.

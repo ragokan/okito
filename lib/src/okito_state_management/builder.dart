@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../../okito.dart';
 
+import '../../okito.dart';
 import '../typedefs/callback_types.dart';
-import 'controller.dart';
 import 'modules/communication.dart';
 
 /// [OkitoBuilder] is the easiest way to track state changes and

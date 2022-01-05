@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../okito.dart';
-import 'okito_utilities/index.dart';
 import 'utilities/constants.dart';
 
 /// The implementation of [Okito].

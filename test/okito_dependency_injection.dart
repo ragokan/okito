@@ -1,5 +1,5 @@
-import 'package:okito/okito.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:okito/okito.dart';
 
 class Counter {
   int count = 0;

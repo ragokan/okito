@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:okito/okito.dart';
-import 'package:okito/src/okito_state_management/rockito_watcher.dart';
 
 class CounterController extends OkitoController {
   int count = 0;
