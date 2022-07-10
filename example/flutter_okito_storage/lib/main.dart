@@ -5,7 +5,7 @@ final box = OkitoStorage;
 
 void main() async {
   await box.init(storageName: 'my_okito_app');
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class Numbers extends OkitoController {
@@ -21,6 +21,8 @@ class Numbers extends OkitoController {
 Numbers numbers = Numbers();
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
           children: [
             OkitoBuilder(
               controller: numbers,
-              watchStorageKeys: ['numbers'],
+              watchStorageKeys: const ['numbers'],
               builder: () => Text(
                 box.read('numbers').toString(),
                 style: const TextStyle(fontSize: 20),

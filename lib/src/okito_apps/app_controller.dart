@@ -75,7 +75,7 @@ class AppController extends OkitoController {
 
     /// Reason of using this is updating the material/cupertino app is not
     /// enough to update all the strings, we do this and update everything.
-    _widgetsBindingInstance!.reassembleApplication();
+    _widgetsBindingInstance.reassembleApplication();
   }
 
   /// Returns the current app, if you used [OkitoMaterialApp], it will be true,
@@ -105,9 +105,7 @@ class AppController extends OkitoController {
   /// This is the [WidgetsBinding] of the app.
   ///
   /// We can use it like: [widgetsBindingInstance!.reassembleApplication()]
-  WidgetsBinding? get _widgetsBindingInstance {
-    if (WidgetsBinding.instance == null) WidgetsFlutterBinding();
-
+  WidgetsBinding get _widgetsBindingInstance {
     return WidgetsBinding.instance;
   }
 }

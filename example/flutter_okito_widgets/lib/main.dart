@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:okito/okito.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return OkitoMaterialApp(
@@ -18,9 +20,9 @@ class MyApp extends StatelessWidget {
             children: [
               ElevatedButton(
                   onPressed: () => Okito.showModal(
-                      child: Container(
+                      child: const SizedBox(
                           height: 300,
-                          child: const Center(child: Text('Okito Modal!')))),
+                          child: Center(child: Text('Okito Modal!')))),
                   child: const Text('Show Bottom Modal')),
               const SizedBox(height: 30),
               ElevatedButton(

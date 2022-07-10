@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_renaming_method_parameters
+
 import 'package:flutter/cupertino.dart';
 
 import '../../okito.dart';
@@ -172,7 +174,7 @@ class OkitoCupertinoApp extends StatelessWidget {
     Okito.app.translations = translations;
 
     final navigatorKey = Okito.navigatorKey;
-    final _navigatorObservers = navigatorObservers == null
+    final localNavigatorObservers = navigatorObservers == null
         ? <NavigatorObserver>[OkitoObserver()]
         : <NavigatorObserver>[OkitoObserver(), ...navigatorObservers!];
     return Rockito<AppController>((app) => routerDelegate == null
@@ -195,7 +197,7 @@ class OkitoCupertinoApp extends StatelessWidget {
             checkerboardOffscreenLayers: checkerboardOffscreenLayers,
             checkerboardRasterCacheImages: checkerboardRasterCacheImages,
             localizationsDelegates: localizationsDelegates,
-            navigatorObservers: _navigatorObservers,
+            navigatorObservers: localNavigatorObservers,
             onGenerateInitialRoutes: onGenerateInitialRoutes,
             onGenerateRoute: Okito.app.onGenerateRoute,
             onGenerateTitle: onGenerateTitle,

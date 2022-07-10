@@ -116,9 +116,9 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
     if (widget.callFilter() == null) {
       setState(() {});
     } else {
-      var _currentFilter = widget.callFilter();
-      if (_currentFilter != _filter) {
-        _filter = _currentFilter;
+      var currentFilter = widget.callFilter();
+      if (currentFilter != _filter) {
+        _filter = currentFilter;
         setState(() {});
       }
     }
@@ -129,12 +129,14 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
   void initState() {
     super.initState();
     widget.controller.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _shouldUpdate = true;
     });
 
     if (widget.activateLifecycleForOtherControllers) {
-      widget.otherControllers.forEach((c) => c.initState());
+      for (var c in widget.otherControllers) {
+        c.initState();
+      }
     }
 
     /// Here, we mount the [watch] function to re-render state on changes.
@@ -144,17 +146,17 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
 
     /// Just like the above example, here we mount all of the controllers
     /// that build method wants to watch.
-    widget.otherControllers.forEach((controller) {
+    for (var controller in widget.otherControllers) {
       final unmount = controllerXviewStream.watch(controller, _updateState);
       _unmountFunctions.add(unmount);
-    });
+    }
 
     /// In this example, we watch the changes that are happening in
     /// [OkitoStorage].
-    widget.watchStorageKeys.forEach((key) {
+    for (var key in widget.watchStorageKeys) {
       final unmount = OkitoStorage.watchKey(key, _updateState);
       _unmountFunctions.add(unmount);
-    });
+    }
 
     if (widget.watchAllStorageKeys) {
       final unmount = OkitoStorage.watchAll(_updateState);
@@ -170,7 +172,9 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
     /// On dispose, we would like to unmount the watchers, so that
     /// we don't leak the memory and the [notify] function don't
     /// call the [watch] function.
-    _unmountFunctions.forEach((unmount) => unmount());
+    for (var unmount in _unmountFunctions) {
+      unmount();
+    }
     _unmountFunctions.removeRange(0, _unmountFunctions.length);
 
     _shouldUpdate = false;
@@ -178,7 +182,9 @@ class _OkitoBuilderState extends State<OkitoBuilder> {
 
     widget.controller.dispose();
     if (widget.activateLifecycleForOtherControllers) {
-      widget.otherControllers.forEach((c) => c.initState());
+      for (var c in widget.otherControllers) {
+        c.initState();
+      }
     }
 
     super.dispose();

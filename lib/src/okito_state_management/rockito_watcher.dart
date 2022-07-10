@@ -29,9 +29,9 @@ Function RockitoWatcher<T extends OkitoController>(
   T? inject,
 }) {
   if (inject != null) Okito.inject(inject);
-  final _watch = Okito.use<T>();
+  final watch = Okito.use<T>();
   return controllerXviewStream.watch(
-    _watch,
-    () => callback(_watch),
+    watch,
+    () => callback(watch),
   );
 }

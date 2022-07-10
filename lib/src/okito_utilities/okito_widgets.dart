@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// Because the function we are going to use is [showDialog] from flutter and
 /// [Okito.showDialog()], we get problems. I renamed this variable here to
 /// prevent name confusions.
-final _showDialog = showDialog;
+const _showDialog = showDialog;
 
 /// The way to use widgets like *snackbar* or *bottom modal sheet* without
 /// context, we have this mixin. We have to override the [context] in Okito.

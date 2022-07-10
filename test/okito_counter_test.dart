@@ -19,7 +19,7 @@ void control(int count) {
 void main() {
   testWidgets('Counter test with okito', (WidgetTester tester) async {
     // Build app
-    await tester.pumpWidget(CounterApp());
+    await tester.pumpWidget(const CounterApp());
 
     // Check the screen for count:0
     control(0);

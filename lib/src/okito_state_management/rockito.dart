@@ -19,10 +19,10 @@ Widget Rockito<T extends OkitoController>(
   FilterCallback<T>? filter,
 }) {
   /// We get the controller here with dependency injection and provide it.
-  final _controller = Okito.use<T>();
+  final controller = Okito.use<T>();
   return OkitoBuilderLite(
-    controller: _controller,
+    controller: controller,
     filter: filter,
-    builder: () => callback(_controller),
+    builder: () => callback(controller),
   );
 }

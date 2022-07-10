@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:okito/okito.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return OkitoMaterialApp(
       title: 'Material App',
       routes: {
-        '/': (_) => PageOne(),
-        '/second': (_) => PageTwo(),
-        '/third': (_) => PageThree(),
+        '/': (_) => const PageOne(),
+        '/second': (_) => const PageTwo(),
+        '/third': (_) => const PageThree(),
       },
     );
   }
 }
 
 class PageOne extends StatelessWidget {
+  const PageOne({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -35,6 +39,8 @@ class PageOne extends StatelessWidget {
 }
 
 class PageTwo extends StatelessWidget {
+  const PageTwo({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -44,7 +50,7 @@ class PageTwo extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               // navi.pushReplacementNamed('/third');
-              Okito.pushEasy(PageThree());
+              Okito.pushEasy(const PageThree());
             },
             child: const Text('Go to page 3'),
           ),
@@ -53,6 +59,8 @@ class PageTwo extends StatelessWidget {
 }
 
 class PageThree extends StatelessWidget {
+  const PageThree({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(

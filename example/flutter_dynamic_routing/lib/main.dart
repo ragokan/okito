@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:okito/okito.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(_) => OkitoMaterialApp(routes: {
-        '/': (ctx) => FirstPage(),
-        '/second/:id': (ctx) => SecondPage(),
-        '/third': (ctx) => ThirdPage()
+        '/': (ctx) => const FirstPage(),
+        '/second/:id': (ctx) => const SecondPage(),
+        '/third': (ctx) => const ThirdPage()
       });
 }
 
 class FirstPage extends StatelessWidget {
+  const FirstPage({Key? key}) : super(key: key);
+
   @override
   Widget build(_) => Scaffold(
       appBar: AppBar(title: const Text('First Page')),
@@ -31,6 +35,8 @@ class FirstPage extends StatelessWidget {
 }
 
 class SecondPage extends StatelessWidget {
+  const SecondPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     print(Okito.arguments);
@@ -51,11 +57,13 @@ class SecondPage extends StatelessWidget {
 }
 
 class ThirdPage extends StatelessWidget {
+  const ThirdPage({Key? key}) : super(key: key);
+
   @override
   Widget build(_) {
     print(Okito.arguments);
     return Scaffold(
         appBar: AppBar(title: const Text('Third Page')),
-        body: Center(child: Container(child: const Text('Third Page'))));
+        body: const Center(child: Text('Third Page')));
   }
 }

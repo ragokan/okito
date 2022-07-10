@@ -17,10 +17,6 @@ class _Okito
         OkitoFunctions {
   @override
 
-  /// The [NavigatorState] of the app.
-  /// You can use this to provide data to your material app.
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
   /// The [BuildContext]:[context] of your app.
   /// If you don't use [OkitoMaterialApp]-[OkitoCupertinoApp] or
   /// provide [navigatorKey] to the your app, it will throw an exception.

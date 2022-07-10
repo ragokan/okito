@@ -14,12 +14,14 @@ class _OkitoStorage extends ImplOkitoStorage {
   final _watchers = <StorageWatcher>{};
 
   /// [_notify] is the method that notifies all watchers.
-  void _notify(String key) => _watchers.forEach((element) {
-        /// These elements are coming from [watchAll]
-        /// they don't have any key.
-        if (element.key == null) return element.callback();
-        if (element.key == key) element.callback();
-      });
+  void _notify(String key) {
+    for (var element in _watchers) {
+      /// These elements are coming from [watchAll]
+      /// they don't have any key.
+      if (element.key == null) continue;
+      if (element.key == key) element.callback();
+    }
+  }
 
   /// [watchKey] gives you a callback that called whenever the [key]
   /// you declared changes/creates.

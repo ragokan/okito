@@ -88,9 +88,9 @@ class _OkitoBuilderLiteState<T extends OkitoController>
     if (widget.callFilter() == null) {
       setState(() {});
     } else {
-      var _currentFilter = widget.callFilter();
-      if (_currentFilter != _filter) {
-        _filter = _currentFilter;
+      var currentFilter = widget.callFilter();
+      if (currentFilter != _filter) {
+        _filter = currentFilter;
         setState(() {});
       }
     }
@@ -102,7 +102,7 @@ class _OkitoBuilderLiteState<T extends OkitoController>
     super.initState();
     widget.controller.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _shouldUpdate = true;
     });
 

@@ -14,10 +14,12 @@ class CounterController extends OkitoController {
 
 void main() {
   Okito.inject(CounterController());
-  runApp(CounterApp());
+  runApp(const CounterApp());
 }
 
 class CounterApp extends StatelessWidget {
+  const CounterApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,22 +31,20 @@ class CounterApp extends StatelessWidget {
           ),
         ),
         body: Center(
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: Okito.use<CounterController>().increment,
-                  child: const Text('Increment'),
-                ),
-                OtherWidget(),
-                ElevatedButton(
-                  onPressed: () => Okito.use<CounterController>()
-                      .setState(() => Okito.use<CounterController>().count--),
-                  child: const Text('Decrement'),
-                ),
-              ],
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: Okito.use<CounterController>().increment,
+                child: const Text('Increment'),
+              ),
+              const OtherWidget(),
+              ElevatedButton(
+                onPressed: () => Okito.use<CounterController>()
+                    .setState(() => Okito.use<CounterController>().count--),
+                child: const Text('Decrement'),
+              ),
+            ],
           ),
         ),
       ),
@@ -53,6 +53,8 @@ class CounterApp extends StatelessWidget {
 }
 
 class OtherWidget extends StatelessWidget {
+  const OtherWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(_) => Rockito<CounterController>((c) => Text('${c.count}'));
 }

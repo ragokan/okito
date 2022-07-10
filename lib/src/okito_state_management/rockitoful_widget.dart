@@ -59,9 +59,9 @@ class _RockitofulWidgetState<T extends OkitoController>
     if (widget.callFilter(controller) == null) {
       setState(() {});
     } else {
-      var _currentFilter = widget.callFilter(controller);
-      if (_currentFilter != _filter) {
-        _filter = _currentFilter;
+      var currentFilter = widget.callFilter(controller);
+      if (currentFilter != _filter) {
+        _filter = currentFilter;
         setState(() {});
       }
     }
@@ -74,7 +74,7 @@ class _RockitofulWidgetState<T extends OkitoController>
     controller.initState();
     widget.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _shouldUpdate = true;
     });
 

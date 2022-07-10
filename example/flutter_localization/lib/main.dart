@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:okito/okito.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 const translations = {
   'en': {
@@ -15,6 +15,8 @@ const translations = {
 };
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => const OkitoMaterialApp(
         title: 'Material App',
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage();
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
