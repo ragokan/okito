@@ -42,6 +42,8 @@ class OkitoCupertinoApp extends StatelessWidget {
     this.shortcuts,
     this.translations = const {},
     this.navigatorObservers,
+    this.scrollBehavior,
+    this.useInheritedMediaQuery = false,
   }) : super(key: key);
 
   /// Use this only if you are using another library that requires
@@ -166,6 +168,13 @@ class OkitoCupertinoApp extends StatelessWidget {
   /// The default map of keyboard shortcuts to intents for the application.
   final Map<LogicalKeySet, Intent>? shortcuts;
 
+  /// The default [ScrollBehavior] for the application.
+  final ScrollBehavior? scrollBehavior;
+
+  /// If true, an inherited MediaQuery will be used. If one is not available,
+  /// or this is false, one will be built from the window.
+  final bool useInheritedMediaQuery;
+
   @override
   Widget build(BuildContext ctx) {
     if (routes != null) Okito.app.routes = routes!;
@@ -207,6 +216,8 @@ class OkitoCupertinoApp extends StatelessWidget {
             showSemanticsDebugger: showSemanticsDebugger,
             supportedLocales: supportedLocales,
             title: title,
+            scrollBehavior: scrollBehavior,
+            useInheritedMediaQuery: useInheritedMediaQuery,
           )
         : CupertinoApp.router(
             shortcuts: shortcuts,
@@ -233,6 +244,8 @@ class OkitoCupertinoApp extends StatelessWidget {
             showSemanticsDebugger: showSemanticsDebugger,
             supportedLocales: supportedLocales,
             title: title,
+            scrollBehavior: scrollBehavior,
+            useInheritedMediaQuery: useInheritedMediaQuery,
           ));
   }
 }

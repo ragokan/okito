@@ -48,6 +48,8 @@ class OkitoMaterialApp extends StatelessWidget {
     this.checkerboardOffscreenLayers = false,
     this.translations = const {},
     this.navigatorObservers,
+    this.scrollBehavior,
+    this.useInheritedMediaQuery = false,
   }) : super(key: key);
 
   /// Use this only if you are using another library that requires
@@ -193,6 +195,13 @@ class OkitoMaterialApp extends StatelessWidget {
   /// Turns on a [GridPaper] overlay that paints a baseline grid Material apps.
   final bool debugShowMaterialGrid;
 
+  /// The default [ScrollBehavior] for the application.
+  final ScrollBehavior? scrollBehavior;
+
+  /// If true, an inherited MediaQuery will be used. If one is not available,
+  /// or this is false, one will be built from the window.
+  final bool useInheritedMediaQuery;
+
   @override
   Widget build(BuildContext ctx) {
     if (routes != null) Okito.app.routes = routes!;
@@ -240,6 +249,8 @@ class OkitoMaterialApp extends StatelessWidget {
               theme: app.themeData ?? theme,
               themeMode: app.themeMode ?? themeMode,
               title: title,
+              scrollBehavior: scrollBehavior,
+              useInheritedMediaQuery: useInheritedMediaQuery,
             )
           : MaterialApp.router(
               backButtonDispatcher: backButtonDispatcher,
@@ -272,6 +283,8 @@ class OkitoMaterialApp extends StatelessWidget {
               theme: app.themeData ?? theme,
               themeMode: app.themeMode ?? themeMode,
               title: title,
+              scrollBehavior: scrollBehavior,
+              useInheritedMediaQuery: useInheritedMediaQuery,
             ),
     );
   }
