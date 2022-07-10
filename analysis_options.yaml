@@ -65,6 +65,7 @@ linter:
     avoid_null_checks_in_equality_operators: true
     library_private_types_in_public_api: false
     avoid_print: false
+    avoid_empty_else: true
 
 analyzer:
   exclude:

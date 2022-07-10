@@ -1,7 +1,14 @@
 ## 1.2.9
 
 - Improvements.
-- Pump versions.
+- Bump versions.
+- Update to latest Dart/Flutter versions.
+- Use best linter options.
+
+## 1.2.9
+
+- Improvements.
+- Bump versions.
 
 ## 1.2.8
 
