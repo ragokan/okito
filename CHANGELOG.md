@@ -1,4 +1,4 @@
-## 1.2.9
+## 1.3.0
 
 - Improvements.
 - Bump versions.
