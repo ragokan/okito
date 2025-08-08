@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide FilterCallback;
 
 import '../../okito.dart';
 import '../typedefs/callback_types.dart';

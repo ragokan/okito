@@ -13,6 +13,52 @@
 
 &nbsp;
 
+## Quick start (Dart 3 / Flutter stable)
+
+- Add dependency in your app:
+
+```yaml
+dependencies:
+  okito: ^1.3.0
+```
+
+- Wrap your app with `OkitoMaterialApp` or `OkitoCupertinoApp` to enable navigatorKey, localization, and utilities.
+
+```dart
+void main() {
+  runApp(const OkitoMaterialApp(home: MyHome()));
+}
+```
+
+- Use controllers with `OkitoBuilder` or `Rockito` for DI + state.
+
+```dart
+final counter = Okito.inject(CounterController());
+
+OkitoBuilder(
+  controller: counter,
+  builder: () => Text('${counter.count}'),
+);
+```
+
+## Testing
+
+- Run all tests:
+
+```bash
+flutter pub get
+flutter test -r expanded
+```
+
+- Storage tests run on IO and create a temporary file; no extra setup is needed.
+- Widget tests use the example counter app to validate behavior without breaking changes.
+
+## Editor integration
+
+- This repo includes `.cursorrules` for Cursor to run tests automatically and enforce formatting and review checks.
+
+&nbsp;
+
 ## Features
 
 - [State Management](#state-management)

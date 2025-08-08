@@ -1,0 +1,24 @@
+# Cursor Rules for Okito Repo
+
+- prefer_small_commits: true
+- run_tests_pre_push: true
+- test_command: flutter test -r expanded
+- build_command: flutter pub get
+- code_style:
+  - language: dart
+    rules:
+      - prefer_single_quotes: false
+      - max_line_length: 100
+      - avoid_print: false
+      - public_member_api_docs: true
+- refactor_guidelines:
+  - Do not introduce breaking changes in public APIs of `okito`.
+  - Maintain backward-compatible behavior for routing, DI, storage, and widgets.
+  - Keep imports relative within `lib/` unless referencing external packages.
+- review_checklist:
+  - All new public APIs have tests.
+  - No analyzer warnings in changed files.
+  - README updated if behavior changes.
+- ci:
+  - require_green_tests: true
+  - formatter: dart format --output=none --set-exit-if-changed .

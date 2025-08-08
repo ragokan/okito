@@ -1,9 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:okito/okito.dart';
+import 'test_utils/mock_path_provider.dart';
 
 final box = OkitoStorage;
 
 void main() async {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  installFakePathProvider();
   /// Firstly we have to init the storage, for web, we don't have to init.
   ///
   /// You may not [await] but it is not recommended.

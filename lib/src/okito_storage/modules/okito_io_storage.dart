@@ -78,12 +78,14 @@ class ImplOkitoStorage {
   void clearStorage() {
     if (!_isInitialized) return;
 
+    _currentData = {};
     _file.writeAsStringSync(jsonEncode(_emptyData));
   }
 
   /// Delete the storage permanently.
   void deleteStorage() {
     if (!_isInitialized) return;
+    _currentData = {};
     _file.deleteSync();
   }
 }
